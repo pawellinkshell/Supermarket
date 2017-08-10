@@ -49,7 +49,7 @@ public class DefaultSpecialPriceDTO implements SpecialPriceDTO {
 
   @Override
   public String toString() {
-    return "DefaultSpecialPriceDTO{" +
+    return "\nDefaultSpecialPriceDTO{" +
         "id=" + id +
         ", amount=" + amount +
         ", price=" + price +

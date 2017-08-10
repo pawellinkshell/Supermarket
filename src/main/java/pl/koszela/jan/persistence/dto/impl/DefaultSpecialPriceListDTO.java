@@ -22,4 +22,11 @@ public class DefaultSpecialPriceListDTO implements SpecialPriceListDTO {
   public void setSpecialPrices(List<SpecialPriceDTO> specialPrices) {
     this.specialPrices = specialPrices;
   }
+
+  @Override
+  public String toString() {
+    return "DefaultSpecialPriceListDTO{\n" +
+        "specialPrices=" + specialPrices +
+        "\n}";
+  }
 }
