@@ -1,5 +1,6 @@
 package pl.koszela.jan.persistence.dto.impl;
 
+import com.google.gson.annotations.SerializedName;
 import pl.koszela.jan.persistence.dto.SpecialPriceDTO;
 
 /**
@@ -8,8 +9,12 @@ import pl.koszela.jan.persistence.dto.SpecialPriceDTO;
  * @author Jan Koszela
  */
 public class DefaultSpecialPriceDTO implements SpecialPriceDTO {
+
+  @SerializedName("id")
   private int id;
+  @SerializedName("amount")
   private int amount;
+  @SerializedName("price")
   private double price;
 
   @Override
@@ -40,5 +45,14 @@ public class DefaultSpecialPriceDTO implements SpecialPriceDTO {
   @Override
   public void setPrice(double price) {
     this.price = price;
+  }
+
+  @Override
+  public String toString() {
+    return "DefaultSpecialPriceDTO{" +
+        "id=" + id +
+        ", amount=" + amount +
+        ", price=" + price +
+        '}';
   }
 }

@@ -1,5 +1,6 @@
 package pl.koszela.jan.persistence.dto.impl;
 
+import com.google.gson.annotations.SerializedName;
 import pl.koszela.jan.persistence.dto.ProductDTO;
 
 /**
@@ -9,10 +10,15 @@ import pl.koszela.jan.persistence.dto.ProductDTO;
  */
 public class DefaultProductDTO implements ProductDTO {
 
+  @SerializedName("id")
   private int id;
+  @SerializedName("item")
   private String item;
+  @SerializedName("unitPrice")
   private double unitPrice;
+  @SerializedName("currency")
   private String currency;
+  @SerializedName("multipricing")
   private boolean multipricing;
 
   @Override
@@ -63,5 +69,16 @@ public class DefaultProductDTO implements ProductDTO {
   @Override
   public void setMultipricing(boolean multipricing) {
     this.multipricing = multipricing;
+  }
+
+  @Override
+  public String toString() {
+    return "\nDefaultProductDTO{" +
+        "id=" + id +
+        ", item='" + item + '\'' +
+        ", unitPrice=" + unitPrice +
+        ", currency='" + currency + '\'' +
+        ", multipricing=" + multipricing +
+        '}';
   }
 }
