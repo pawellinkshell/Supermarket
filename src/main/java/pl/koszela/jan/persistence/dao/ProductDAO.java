@@ -9,9 +9,9 @@ import pl.koszela.jan.persistence.dto.ProductDTO;
  * @author Jan Koszela
  */
 public interface ProductDAO {
-  List<ProductDTO> findAllItems();
+  List<ProductDTO> getAllItems();
 
-  List<ProductDTO> findItemsByMultipricing(boolean isMultipricing);
+  List<ProductDTO> getItemsByMultipricing(boolean isMultipricing);
 
-  List<ProductDTO> findItemsByCurrency(String currency);
+  List<ProductDTO> getItemsByCurrency(String currency);
 }
