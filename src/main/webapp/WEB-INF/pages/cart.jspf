@@ -1,0 +1,110 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Jan Koszela
+  Date: 10.08.2017
+  Time: 20:51
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<div class="container">
+    <h2>
+        <span class="glyphicon glyphicon-shopping-cart" style="color: darkkhaki"></span> &nbsp;
+        <ins>Shopping Cart</ins>
+    </h2>
+    <div class="row">
+        <div class="col-sm-12 col-md-10 col-md-offset-1">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th class="text-center">Price</th>
+                    <th class="text-center">Total</th>
+                    <th> </th>
+                </tr>
+                </thead>
+                <tbody>
+                <%--PRODUCTS--%>
+                <tr>
+                    <td class="col-sm-8 col-md-6">
+                        <div class="media">
+                            <a class="thumbnail pull-left" href="#"> <img class="media-object"
+                                                                          src="http://via.placeholder.com/72x72?text=${productDTO}"
+                                                                          style="width: 72px; height: 72px;">
+                            </a>
+                            <div class="media-body">
+                                <h4 class="media-heading"><a href="#">Product name</a></h4>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="col-sm-1 col-md-1" style="text-align: center">
+                        <input type="email" class="form-control" id="exampleInputEmail1" value="3">
+                    </td>
+                    <td class="col-sm-1 col-md-1 text-center"><strong><span
+                            class="glyphicon glyphicon-eur"></span>4.87</strong></td>
+                    <td class="col-sm-1 col-md-1 text-center"><strong><span
+                            class="glyphicon glyphicon-eur"></span>14.61</strong></td>
+                    <td class="col-sm-1 col-md-1">
+                        <button type="button" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove"></span> Remove
+                        </button>
+                    </td>
+                </tr>
+                <%--END OF PRODUCTS--%>
+                <%--PRODUCTS--%>
+                <tr>
+                    <td class="col-md-6">
+                        <div class="media">
+                            <a class="thumbnail pull-left" href="#"> <img class="media-object"
+                                                                          src="http://via.placeholder.com/72x72?text=${productDTO}"
+                                                                          style="width: 72px; height: 72px;">
+                            </a>
+                            <div class="media-body">
+                                <h4 class="media-heading"><a href="#">Product name</a></h4>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="col-md-1" style="text-align: center">
+                        <input type="email" class="form-control" id="exampleInputEmail1" value="2">
+                    </td>
+                    <td class="col-md-1 text-center"><strong><span
+                            class="glyphicon glyphicon-eur"></span>4.99</strong></td>
+                    <td class="col-md-1 text-center"><strong><span
+                            class="glyphicon glyphicon-eur"></span>9.98</strong></td>
+                    <td class="col-md-1">
+                        <button type="button" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove"></span> Remove
+                        </button>
+                    </td>
+                </tr>
+                <%--END OF PRODUCTS--%>
+                <tr>
+                    <td>  </td>
+                    <td>  </td>
+                    <td>  </td>
+                    <td><h3>Total</h3></td>
+                    <td class="text-right"><h3><strong><span class="glyphicon glyphicon-eur"></span>31.53</strong>
+                    </h3></td>
+                </tr>
+                <tr>
+                    <td>  </td>
+                    <td>  </td>
+                    <td>  </td>
+                    <td>
+                        <button type="button" class="btn btn-default">
+                            <span class="glyphicon glyphicon-shopping-cart"></span> Continue
+                            Shopping
+                        </button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-success">
+                            Checkout <span class="glyphicon glyphicon-play"></span>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
