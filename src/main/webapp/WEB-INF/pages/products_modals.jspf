@@ -1,0 +1,77 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Jan Koszela
+  Date: 10.08.2017
+  Time: 20:54
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<c:forEach var="i" begin="1" end="5">
+    <div class="modal fade product_view" id="product_view_${i}">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a href="#" data-dismiss="modal" class="class pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </a>
+                    <h3 class="modal-title">${productDTO}</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6 product_img">
+                            <img src="http://via.placeholder.com/500x300?text=${productDTO}"
+                                 class="img-responsive">
+                        </div>
+                        <div class="col-md-6 product_content">
+                            <h4>
+                                Product Id: <span>51526</span>
+                            </h4>
+                            <div class="rating">
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                (10 reviews)
+                            </div>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting
+                                industry. Lorem Ipsum has been the industry's standard dummy text
+                                ever
+                                since the 1500s, when an unknown printer took a galley of type and
+                                scrambled it to make a type specimen book.Lorem Ipsum is simply
+                                dummy
+                                text of the printing and typesetting industry.
+                            </p>
+
+                            <div class="row">
+                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                    <h3 class="cost">
+                                        <span class="glyphicon glyphicon-eur"></span> 75.00
+                                    </h3>
+                                </div>
+                                <!-- end col -->
+                                <div class="col-md-4 col-sm-12">
+                                    <select class="form-control" name="select">
+                                        <option value="" selected="">QTY</option>
+                                        <option value="">1</option>
+                                        <option value="">2</option>
+                                        <option value="">3</option>
+                                        <option value="">4</option>
+                                    </select>
+                                </div>
+                                <!-- end col -->
+                            </div>
+                            <div class="space-ten"></div>
+                            <div class="btn-ground">
+                                <button type="button" class="btn btn-primary"><span
+                                        class="glyphicon glyphicon-shopping-cart"></span>
+                                    Add To Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</c:forEach>

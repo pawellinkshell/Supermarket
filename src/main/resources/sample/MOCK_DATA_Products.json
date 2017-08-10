@@ -3,98 +3,98 @@
     "id": 1,
     "item": "Civic",
     "unitPrice": 72,
-    "currency": "CNY",
+    "currency": "EUR",
     "isMultipricing": true
   },
   {
     "id": 2,
     "item": "Prius",
     "unitPrice": 81,
-    "currency": "RUB",
+    "currency": "EUR",
     "isMultipricing": false
   },
   {
     "id": 3,
     "item": "Z4 M",
     "unitPrice": 61,
-    "currency": "SEK",
+    "currency": "EUR",
     "isMultipricing": true
   },
   {
     "id": 4,
     "item": "Jimmy",
     "unitPrice": 34,
-    "currency": "IDR",
+    "currency": "EUR",
     "isMultipricing": true
   },
   {
     "id": 5,
     "item": "Edge",
     "unitPrice": 2,
-    "currency": "GTQ",
+    "currency": "EUR",
     "isMultipricing": true
   },
   {
     "id": 6,
     "item": "200",
     "unitPrice": 93,
-    "currency": "SEK",
+    "currency": "EUR",
     "isMultipricing": false
   },
   {
     "id": 7,
     "item": "Lancer",
     "unitPrice": 9,
-    "currency": "UAH",
+    "currency": "EUR",
     "isMultipricing": true
   },
   {
     "id": 8,
     "item": "62",
     "unitPrice": 74,
-    "currency": "ILS",
+    "currency": "EUR",
     "isMultipricing": true
   },
   {
     "id": 9,
     "item": "Sephia",
     "unitPrice": 18,
-    "currency": "BYR",
+    "currency": "EUR",
     "isMultipricing": false
   },
   {
     "id": 10,
     "item": "Cutlass Supreme",
     "unitPrice": 28,
-    "currency": "CZK",
+    "currency": "EUR",
     "isMultipricing": true
   },
   {
     "id": 11,
     "item": "Somerset",
     "unitPrice": 52,
-    "currency": "SEK",
+    "currency": "EUR",
     "isMultipricing": false
   },
   {
     "id": 12,
     "item": "Expedition",
     "unitPrice": 90,
-    "currency": "YER",
+    "currency": "EUR",
     "isMultipricing": true
   },
   {
     "id": 13,
     "item": "Freelander",
     "unitPrice": 11,
-    "currency": "IDR",
+    "currency": "EUR",
     "isMultipricing": false
   },
   {
     "id": 14,
     "item": "Express 2500",
     "unitPrice": 22,
-    "currency": "RUB",
+    "currency": "EUR",
     "isMultipricing": true
   },
   {

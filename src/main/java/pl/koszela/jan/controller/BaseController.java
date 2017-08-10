@@ -24,6 +24,7 @@ public class BaseController {
 
     model.addAttribute("message", "Welcome");
     model.addAttribute("counter", ++counter);
+    model.addAttribute("productDTO", "Mustang");
     LOGGER.debug("[welcome] counter : {}", counter);
 
     // Spring uses InternalResourceViewResolver and return back index.jsp
