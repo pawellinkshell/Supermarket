@@ -40,7 +40,7 @@
                     <div class="space-ten"></div>
                     <div class="btn-ground text-center">
                         <button type="button" class="btn btn-primary" data-toggle="modal"
-                                data-target="#product_view_${i}"><i class="fa fa-search"></i>
+                                data-target="#product_view_${product.id}"><i class="fa fa-search"></i>
                             Quick View
                         </button>
                     </div>

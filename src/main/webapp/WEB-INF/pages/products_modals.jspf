@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <c:forEach var="product" items="${productsDTO}">
-    <div class="modal fade product_view" id="product_view_${i}">
+    <div class="modal fade product_view" id="product_view_${product.id}">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
