@@ -39,6 +39,18 @@ Raw data will be transfered onto DAO/DTO patterns model.
 
 [1 H] Implementing model layer
 
+10.08.2017:
+
+[0,5 H] Update documentation, merge feature/GUI branch into develop
+
+[2,5 H] Add missing dependency, implementing DTOs with tests
+
+[1 H] Add Json converter for mocking sample data
+
+[1 H] Implementing DAOs and domain objects with test
+
+[0,5 H] Push sample data from Json to view layer for tests.
+
 ## Bugs and Issues
 
 Have you seen a bug or an issue in my page? [Open a new issue](https://github.com/pawellinkshell/supermarket/issues) here on GitHub
