@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<c:forEach var="i" begin="1" end="5">
+<c:forEach var="product" items="${productsDTO}">
     <div class="modal fade product_view" id="product_view_${i}">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -14,17 +14,17 @@
                     <a href="#" data-dismiss="modal" class="class pull-right">
                         <span class="glyphicon glyphicon-remove"></span>
                     </a>
-                    <h3 class="modal-title">${productDTO}</h3>
+                    <h3 class="modal-title">${product.item}</h3>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6 product_img">
-                            <img src="http://via.placeholder.com/500x300?text=${productDTO}"
+                            <img src="http://via.placeholder.com/500x300?text=${product.item}"
                                  class="img-responsive">
                         </div>
                         <div class="col-md-6 product_content">
                             <h4>
-                                Product Id: <span>51526</span>
+                                Product Id: <span>${product.id}</span>
                             </h4>
                             <div class="rating">
                                 <span class="glyphicon glyphicon-star"></span>
@@ -46,7 +46,7 @@
                             <div class="row">
                                 <div class="col-md-4 col-sm-6 col-xs-12">
                                     <h3 class="cost">
-                                        <span class="glyphicon glyphicon-eur"></span> 75.00
+                                        <span class="glyphicon glyphicon-eur"></span> ${product.unitPrice}
                                     </h3>
                                 </div>
                                 <!-- end col -->
