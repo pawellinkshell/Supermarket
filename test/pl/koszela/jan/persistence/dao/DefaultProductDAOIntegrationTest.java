@@ -23,16 +23,14 @@ import pl.koszela.jan.persistence.dto.ProductListDTO;
 @ActiveProfiles("test")
 @RunWith(MockitoJUnitRunner.class)
 public class DefaultProductDAOIntegrationTest {
+
+  public static final String SRC_MAIN_RESOURCES_SAMPLE = "src\\main\\resources\\sample\\";
   @Mock
   private ProductDAO givenProductDAO;
-
-  @Mock
-  private ProductListDTO productListDTO;
 
   @Before
   public void setUp() {
   }
-
 
   @Test
   public void shouldGetAllItems() {
@@ -74,7 +72,7 @@ public class DefaultProductDAOIntegrationTest {
   private List<ProductDTO> getProductListFromJson() {
     List<ProductDTO> expected = Lists.newArrayList();
 
-    JsonConverter converter = new JsonConverter();
+    JsonConverter converter = new JsonConverter(SRC_MAIN_RESOURCES_SAMPLE);
     converter.convert();
 
     expected.addAll(converter.getProductList());

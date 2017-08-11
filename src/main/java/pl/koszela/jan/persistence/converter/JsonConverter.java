@@ -22,30 +22,13 @@ public class JsonConverter {
   public static final Gson GSON = new Gson();
   private static final String PRODUCT_FILE = "MOCK_DATA_Products.json";
   private static final String SPECIAL_PRICES_FILE = "MOCK_DATA_Special_Prices.json";
-  public static final String RESOURCES_SAMPLE_PATH = "src\\main\\resources\\sample\\";
+  public String resourcesSamplePath = "src\\main\\resources\\sample\\";
 
   private DefaultProductDTO[] productDTOS;
   private DefaultSpecialPriceDTO[] specialPriceDTOS;
 
-  public static void main(String[] args) {
-
-    try (Reader reader = new FileReader(RESOURCES_SAMPLE_PATH + PRODUCT_FILE)) {
-
-      // Convert JSON to Java Object
-      DefaultProductDTO[] productDTOS = GSON.fromJson(reader, DefaultProductDTO[].class);
-
-      for (int i = 0; i < productDTOS.length; i++) {
-        System.out.println(productDTOS[i]);
-      }
-
-      DefaultProductListDTO productList = new DefaultProductListDTO();
-      productList.setProducts(Arrays.asList(productDTOS));
-
-      System.out.println(productList);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-
+  public JsonConverter(String resourcePath) {
+    this.resourcesSamplePath = resourcePath;
   }
 
   public void convert() {
@@ -54,7 +37,17 @@ public class JsonConverter {
   }
 
   private void convertProducts() {
-    try (Reader reader = new FileReader(RESOURCES_SAMPLE_PATH + PRODUCT_FILE)) {
+    String current = null;
+    try {
+      current = new java.io.File( "." ).getCanonicalPath();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+//    System.out.println("Current dir:"+current);
+//    String currentDir = System.getProperty("user.dir");
+//    System.out.println("Current dir using System:" +currentDir);
+
+    try (Reader reader = new FileReader(resourcesSamplePath + PRODUCT_FILE)) {
 
       // Convert JSON to Java Object
       productDTOS = GSON.fromJson(reader, DefaultProductDTO[].class);
@@ -65,7 +58,7 @@ public class JsonConverter {
   }
 
   private void convertSpecialPrices() {
-    try (Reader reader = new FileReader(RESOURCES_SAMPLE_PATH + SPECIAL_PRICES_FILE)) {
+    try (Reader reader = new FileReader(resourcesSamplePath + SPECIAL_PRICES_FILE)) {
 
       // Convert JSON to Java Object
       specialPriceDTOS = GSON.fromJson(reader, DefaultSpecialPriceDTO[].class);

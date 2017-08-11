@@ -6,6 +6,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import pl.koszela.jan.persistence.converter.JsonConverter;
 
 /**
  * Created on 09.08.2017.
@@ -22,14 +23,22 @@ public class BaseController {
   @RequestMapping(value = "/", method = RequestMethod.GET)
   public String welcome(ModelMap model) {
 
+    JsonConverter converter = new JsonConverter(getSampleDataPath());
+    converter.convert();
+
+
     model.addAttribute("message", "Welcome");
     model.addAttribute("counter", ++counter);
-    model.addAttribute("productDTO", "Mustang");
+    model.addAttribute("productsDTO", converter.getProductList());
     LOGGER.debug("[welcome] counter : {}", counter);
 
     // Spring uses InternalResourceViewResolver and return back index.jsp
     return VIEW_INDEX;
 
+  }
+
+  private String getSampleDataPath() {
+    return getClass().getClassLoader().getResource("/").getPath() + "sample/";
   }
 
   @RequestMapping(value = "/{name}", method = RequestMethod.GET)
