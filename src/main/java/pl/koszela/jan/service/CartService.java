@@ -7,4 +7,5 @@ package pl.koszela.jan.service;
  */
 public interface CartService {
 
+  boolean findProduct(String product);
 }
