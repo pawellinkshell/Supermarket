@@ -1,5 +1,7 @@
 package pl.koszela.jan.service;
 
+import pl.koszela.jan.domain.Order;
+
 /**
  * Created on 12.08.2017.
  *
@@ -7,5 +9,5 @@ package pl.koszela.jan.service;
  */
 public interface CartService {
 
-  boolean findProduct(String product);
+  Order findOrderByName(String productName);
 }
