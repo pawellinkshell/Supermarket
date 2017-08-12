@@ -1,5 +1,7 @@
 package pl.koszela.jan.domain;
 
+import java.util.Objects;
+
 /**
  * Created on 12.08.2017.
  *
@@ -8,23 +10,19 @@ package pl.koszela.jan.domain;
 public class Order {
 
   private String productName;
-  private String quantity;
+  private int quantity;
 
-  @java.beans.ConstructorProperties({"productName", "quantity"})
-  Order(String productName, String quantity) {
+  public Order(String productName, int quantity) {
     this.productName = productName;
     this.quantity = quantity;
   }
 
-  public static OrderBuilder builder() {
-    return new OrderBuilder();
-  }
 
   public String getProductName() {
     return this.productName;
   }
 
-  public String getQuantity() {
+  public int getQuantity() {
     return this.quantity;
   }
 
@@ -32,35 +30,24 @@ public class Order {
     this.productName = productName;
   }
 
-  public void setQuantity(String quantity) {
+  public void setQuantity(int quantity) {
     this.quantity = quantity;
   }
 
-  public static class OrderBuilder {
-
-    private String productName;
-    private String quantity;
-
-    OrderBuilder() {
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
-
-    public Order.OrderBuilder productName(String productName) {
-      this.productName = productName;
-      return this;
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
+    Order order = (Order) o;
+    return Objects.equals(productName, order.productName);
+  }
 
-    public Order.OrderBuilder quantity(String quantity) {
-      this.quantity = quantity;
-      return this;
-    }
-
-    public Order build() {
-      return new Order(productName, quantity);
-    }
-
-    public String toString() {
-      return "pl.koszela.jan.domain.Order.OrderBuilder(productName=" + this.productName
-          + ", quantity=" + this.quantity + ")";
-    }
+  @Override
+  public int hashCode() {
+    return Objects.hash(productName, quantity);
   }
 }
