@@ -5,6 +5,7 @@
   Time: 20:54
   To change this template use File | Settings | File Templates.
 --%>
+<!-- Start of products_modals.jspf -->
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <c:forEach var="product" items="${productsDTO}">
     <div class="modal fade product_view" id="product_view_${product.id}">
@@ -17,6 +18,9 @@
                     <h3 class="modal-title">${product.item}</h3>
                 </div>
                 <div class="modal-body">
+                    <form action="/${servletPath}/cart" method="get">
+                        <input type="hidden" name="product" value="${product.item}" >
+
                     <div class="row">
                         <div class="col-md-6 product_img">
                             <img src="http://via.placeholder.com/500x300?text=${product.item}"
@@ -51,27 +55,30 @@
                                 </div>
                                 <!-- end col -->
                                 <div class="col-md-4 col-sm-12">
-                                    <select class="form-control" name="select">
+                                    <select class="form-control" name="quantity">
                                         <option value="" selected="">QTY</option>
-                                        <option value="">1</option>
-                                        <option value="">2</option>
-                                        <option value="">3</option>
-                                        <option value="">4</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
                                     </select>
                                 </div>
                                 <!-- end col -->
                             </div>
                             <div class="space-ten"></div>
                             <div class="btn-ground">
-                                <button type="button" class="btn btn-primary"><span
+                                <button type="submit" class="btn btn-primary"><span
                                         class="glyphicon glyphicon-shopping-cart"></span>
+
                                     Add To Cart
                                 </button>
                             </div>
                         </div>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </c:forEach>
+<!-- End of products_modals.jspf -->
