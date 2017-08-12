@@ -1,5 +1,8 @@
 package pl.koszela.jan.constans;
 
+import java.util.AbstractMap.SimpleEntry;
+import java.util.Map;
+
 /**
  * Created on 12.08.2017.
  *
@@ -7,7 +10,9 @@ package pl.koszela.jan.constans;
  */
 public class SupermarketAttributeConstans {
 
-  public static final String SERVLET_NAME_KEY = "servletPath";
-  public static final String SERVLET_NAME_VALUE = "Supermarket";
+  public static final Map.Entry<String, String> SERVLET_NAME = new SimpleEntry<>(
+      "servletPath", "Supermarket");
+  public static final Map.Entry<String, String> ADD_DOMAIN_NAME = new SimpleEntry<>(
+      "addDomain", "add");
 
 }

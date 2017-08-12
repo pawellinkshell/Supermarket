@@ -18,7 +18,7 @@
                     <h3 class="modal-title">${product.item}</h3>
                 </div>
                 <div class="modal-body">
-                    <form action="/${servletPath}/cart" method="get">
+                    <form action="/${servletPath}/${addDomain}" method="get">
                         <input type="hidden" name="product" value="${product.item}" >
 
                     <div class="row">
