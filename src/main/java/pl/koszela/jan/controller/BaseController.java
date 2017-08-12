@@ -1,6 +1,5 @@
 package pl.koszela.jan.controller;
 
-import javax.swing.text.html.HTMLDocument.Iterator;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,15 +8,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import pl.koszela.jan.constans.SupermarketAttributeConstans;
-import pl.koszela.jan.constans.SupermarketConstans;
-import pl.koszela.jan.persistence.converter.JsonConverter;
-import pl.koszela.jan.persistence.dto.ProductDTO;
-import pl.koszela.jan.persistence.dto.ProductListDTO;
-import pl.koszela.jan.persistence.dto.impl.DefaultProductDTO;
-import pl.koszela.jan.persistence.dto.impl.DefaultProductListDTO;
-import pl.koszela.jan.service.CartService;
+import pl.koszela.jan.domain.Order;
+import pl.koszela.jan.service.OrderService;
 import pl.koszela.jan.service.ProductService;
 
 /**
@@ -26,6 +20,7 @@ import pl.koszela.jan.service.ProductService;
  * @author Jan Koszela
  */
 @Controller
+@EnableWebMvc
 public class BaseController {
 
   private static int counter = 0;
@@ -36,13 +31,15 @@ public class BaseController {
   private ProductService productService;
 
   @Autowired
-  private CartService cartService;
+  private OrderService orderService;
 
   @RequestMapping(value = "/", method = RequestMethod.GET)
   public String welcome(ModelMap model) {
 
-
-    model.addAttribute(SupermarketAttributeConstans.SERVLET_NAME_KEY, SupermarketAttributeConstans.SERVLET_NAME_VALUE);
+    model.addAttribute(SupermarketAttributeConstans.SERVLET_NAME.getKey(),
+        SupermarketAttributeConstans.SERVLET_NAME.getValue());
+    model.addAttribute(SupermarketAttributeConstans.ADD_DOMAIN_NAME.getKey(),
+        SupermarketAttributeConstans.ADD_DOMAIN_NAME.getValue());
     model.addAttribute("message", "Welcome");
     model.addAttribute("counter", ++counter);
     model.addAttribute("productsDTO", productService.getProducts());
@@ -55,8 +52,19 @@ public class BaseController {
 
   @RequestMapping(value = "/{name}", method = RequestMethod.GET)
   public String welcomeName(@PathVariable String name, ModelMap model,
-      @RequestParam(value="product", required=false) String product,
-      @RequestParam(value="quantity", required=false) String quantity) {
+            @RequestParam(value = "product", required = false) String product,
+      @RequestParam(value = "quantity", required = false) String quantity) {
+
+      Order foundOrder = orderService.findOrderByName(product);
+      if (foundOrder == null) {
+        Order newOrder = new Order(product, Integer.valueOf(quantity));
+        orderService.createOrder(newOrder);
+      } else {
+        if(foundOrder.getQuantity() != Integer.valueOf(quantity)){
+          Order newOrder = new Order(product, Integer.valueOf(quantity));
+          orderService.updateOrder(newOrder);
+        }
+      }
 
     model.addAttribute("message", "Welcome " + name);
     model.addAttribute("counter", ++counter);
@@ -64,5 +72,29 @@ public class BaseController {
     return VIEW_INDEX;
 
   }
+
+//  @RequestMapping(value = "/add", method = RequestMethod.GET)
+//  public String addName(@PathVariable String name, ModelMap model,
+//      @RequestParam(value = "product", required = false) String product,
+//      @RequestParam(value = "quantity", required = false) String quantity) {
+//
+//
+//
+////    Order order = Order.builder()
+////        .productName(product)
+////        .quantity(quantity)
+////        .build();
+////
+////    Cart cart = Cart.builder()
+////        .productName(product)
+////        .quantity(quantity)
+////        .build();
+//
+//    model.addAttribute("message", "Welcome " + name);
+//    model.addAttribute("counter", ++counter);
+//    LOGGER.debug("[welcomeName] counter : {}", counter);
+//    return VIEW_INDEX;
+//
+//  }
 
 }
