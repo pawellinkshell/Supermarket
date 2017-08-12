@@ -60,5 +60,12 @@ public class DefaultOrderService implements OrderService {
     throw new IndexOutOfBoundsException("Method should be null-checked before in calls");
   }
 
-
+  @Override
+  public boolean removeOrder(Order order) {
+    Order foundOrder = findOrderByName(order.getProductName());
+    if (foundOrder != null) {
+      orders.remove(getIdFromOrders(foundOrder));
+    }
+    return false;
+  }
 }
