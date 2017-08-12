@@ -5,6 +5,7 @@
   Time: 20:53
   To change this template use File | Settings | File Templates.
 --%>
+<!-- Start of products.jspf -->
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="container">
     <div class="row">
@@ -52,3 +53,4 @@
 </div>
 
 <%@include file="products_modals.jspf" %>
+<!-- End of products.jspf -->
