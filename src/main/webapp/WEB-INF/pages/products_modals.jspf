@@ -8,27 +8,27 @@
 <!-- Start of products_modals.jspf -->
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <c:forEach var="product" items="${products}">
-    <div class="modal fade product_view" id="product_view_${product.id}">
+    <div class="modal fade product_view" id="product_view_${product.key.id}">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <a href="#" data-dismiss="modal" class="class pull-right">
                         <span class="glyphicon glyphicon-remove"></span>
                     </a>
-                    <h3 class="modal-title">${product.name}</h3>
+                    <h3 class="modal-title">${product.key.name}</h3>
                 </div>
                 <div class="modal-body">
                     <form action="/${servletPath}/${addDomain}" method="get">
-                        <input type="hidden" name="product" value="${product.name}" >
+                        <input type="hidden" name="product" value="${product.key.name}" >
 
                     <div class="row">
                         <div class="col-md-6 product_img">
-                            <img src="http://via.placeholder.com/500x300?text=${product.name}"
+                            <img src="http://via.placeholder.com/500x300?text=${product.key.name}"
                                  class="img-responsive">
                         </div>
                         <div class="col-md-6 product_content">
                             <h4>
-                                Product Id: <span>${product.id}</span>
+                                Product Id: <span>${product.key.id}</span>
                             </h4>
                             <div class="rating">
                                 <span class="glyphicon glyphicon-star"></span>
@@ -50,7 +50,7 @@
                             <div class="row">
                                 <div class="col-md-4 col-sm-6 col-xs-12">
                                     <h3 class="cost">
-                                        <span class="glyphicon glyphicon-eur"></span> __product.unitPrice__
+                                        <span class="glyphicon glyphicon-eur"></span> ${product.value.unit}
                                     </h3>
                                 </div>
                                 <!-- end col -->

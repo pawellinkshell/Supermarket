@@ -1,8 +1,8 @@
 package pl.koszela.jan.service;
 
-import java.util.List;
+import java.util.Map;
+import pl.koszela.jan.domain.Price;
 import pl.koszela.jan.domain.impl.Product;
-import pl.koszela.jan.persistence.dto.ProductDTO;
 
 /**
  * Created on 12.08.2017.
@@ -11,9 +11,12 @@ import pl.koszela.jan.persistence.dto.ProductDTO;
  */
 public interface ProductService {
 
-  List<Product> getProducts();
+  Map<Product, Price> getProducts();
 
   Product getProductById(int id);
 
   Product getProductByName(String productName);
+
+  Price getPrice(Product product);
+
 }

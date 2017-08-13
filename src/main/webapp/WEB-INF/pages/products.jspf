@@ -12,14 +12,14 @@
         <c:forEach var="product" items="${products}">
             <div class="col-md-4">
                 <div class="thumbnail">
-                    <img src="http://via.placeholder.com/300x200?text=${product.name}"
+                    <img src="http://via.placeholder.com/300x200?text=${product.key.name}"
                          alt="" class="img-responsive">
                     <div class="caption">
                         <h4 class="pull-right">
-                            <span class="glyphicon glyphicon-eur"></span> __product.unitPrice__
+                            <span class="glyphicon glyphicon-eur"></span> ${product.value.unit}
                         </h4>
                         <h4>
-                            <a href="#">${product.name}</a>
+                            <a href="#">${product.key.name}</a>
                         </h4>
                         <p>Lorem Ipsum is simply dummy text of the printing and typesetting
                             industry.
@@ -41,7 +41,7 @@
                     <div class="space-ten"></div>
                     <div class="btn-ground text-center">
                         <button type="button" class="btn btn-primary" data-toggle="modal"
-                                data-target="#product_view_${product.id}"><i class="fa fa-search"></i>
+                                data-target="#product_view_${product.key.id}"><i class="fa fa-search"></i>
                             Quick View
                         </button>
                     </div>
