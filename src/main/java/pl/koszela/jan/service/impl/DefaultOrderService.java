@@ -55,14 +55,18 @@ public class DefaultOrderService implements OrderService {
       Price totalPrice = calculateTotalPrice(order.getProduct(), order.getQuantity());
       order.setTotalPrice(totalPrice);
 
-      if(totalPrice instanceof SpecialPrice){
+      if (totalPrice instanceof SpecialPrice) {
         order.setSpecialOffer(true);
       }
 
       return this.orders.add(order);
 
     } else {
-      orders.remove(getIdFromOrders(order));
+
+      int idFromOrders = getIdFromOrders(order);
+      if (idFromOrders > Integer.MIN_VALUE) {
+        orders.remove(idFromOrders);
+      }
     }
 
     return false;
@@ -118,12 +122,21 @@ public class DefaultOrderService implements OrderService {
   public void updateOrder(Order newOrder) {
     Order foundOrder = findOrderByName(newOrder.getProduct().getName());
     if (foundOrder != null) {
-      if (newOrder.getQuantity() > 0) {
-        orders.set(getIdFromOrders(foundOrder), newOrder);
-      } else {
-        orders.remove(getIdFromOrders(foundOrder));
+      int idFromOrders = getIdFromOrders(foundOrder);
+
+      if (isOutOfArray(idFromOrders)) {
+        if (newOrder.getQuantity() > 0) {
+          orders.set(idFromOrders, newOrder);
+        } else {
+          orders.remove(idFromOrders);
+        }
       }
+
     }
+  }
+
+  private boolean isOutOfArray(int idFromOrders) {
+    return idFromOrders > Integer.MIN_VALUE;
   }
 
   private int getIdFromOrders(Order order) {
@@ -133,7 +146,7 @@ public class DefaultOrderService implements OrderService {
       }
     }
 
-    throw new IndexOutOfBoundsException("Method should be null-checked before in calls");
+    return Integer.MIN_VALUE;
   }
 
   @Override

@@ -5,6 +5,7 @@
   Time: 20:51
   To change this template use File | Settings | File Templates.
 --%>
+<!-- Start of cart.jspf -->
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="container">
     <h2>
@@ -32,14 +33,18 @@
                     <tr>
                         <td class="col-sm-8 col-md-6">
                             <div class="media">
-                                <a class="thumbnail pull-left" href="#">
+                                <a class="thumbnail pull-left" href="#" data-toggle="modal"
+                                   data-target="#product_view_${order.product.id}">
                                     <img class="media-object"
                                       src="http://via.placeholder.com/72x72?text=${order.product.name}"
                                       style="width: 72px; height: 72px;">
                                 </a>
                                 <div class="media-body">
                                     <h4 class="media-heading">
-                                        <a href="#">${order.product.name}</a>
+                                        <a href="#" data-toggle="modal"
+                                           data-target="#product_view_${order.product.id}">
+                                                ${order.product.name}
+                                        </a>
                                     </h4>
                                 </div>
                             </div>
@@ -107,3 +112,4 @@
         </div>
     </div>
 </div>
+<!-- End of cart.jspf -->
