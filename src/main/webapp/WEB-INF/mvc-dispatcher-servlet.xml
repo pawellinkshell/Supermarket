@@ -10,7 +10,7 @@
         http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-  <context:component-scan base-package="pl.koszela.jan.controller"/>
+  <context:component-scan base-package="pl.koszela.jan"/>
 
   <bean
     class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -20,6 +20,18 @@
     <property name="suffix">
       <value>.jsp</value>
     </property>
+  </bean>
+
+  <bean id="productDTO"
+    class="pl.koszela.jan.persistence.dto.impl.DefaultProductDTO"
+    scope="prototype">
+
+  </bean>
+
+  <bean id="specialPriceDTO"
+    class="pl.koszela.jan.persistence.dto.impl.NormalPriceDTO"
+    scope="prototype">
+
   </bean>
 
   <mvc:resources mapping="/resources/**" location="/resources/styles/css/"

@@ -17,14 +17,6 @@ public interface ProductDTO {
 
   void setItem(final String item);
 
-  double getUnitPrice();
-
-  void setUnitPrice(final double unitPrice);
-
-  String getCurrency();
-
-  void setCurrency(final String currency);
-
   boolean isMultipricing();
 
   void setMultipricing(final boolean isMultipricing);

@@ -5,17 +5,17 @@ package pl.koszela.jan.persistence.dto;
  *
  * @author Jan Koszela
  */
-public interface SpecialPriceDTO {
+public interface PriceDTO {
 
   int getId();
 
   void setId(final int id);
 
-  int getAmount();
-
-  void setAmount(final int amount);
-
   double getPrice();
 
   void setPrice(final double price);
+
+  String getCurrency();
+
+  void setCurrency(final String currency);
 }
