@@ -12,14 +12,14 @@
         <c:forEach var="product" items="${productsDTO}">
             <div class="col-md-4">
                 <div class="thumbnail">
-                    <img src="http://via.placeholder.com/300x200?text=${product.item}"
+                    <img src="http://via.placeholder.com/300x200?text=${product.name}"
                          alt="" class="img-responsive">
                     <div class="caption">
                         <h4 class="pull-right">
                             <span class="glyphicon glyphicon-eur"></span> ${product.unitPrice}
                         </h4>
                         <h4>
-                            <a href="#">${product.item}</a>
+                            <a href="#">${product.name}</a>
                         </h4>
                         <p>Lorem Ipsum is simply dummy text of the printing and typesetting
                             industry.

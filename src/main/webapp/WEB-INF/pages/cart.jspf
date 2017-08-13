@@ -31,11 +31,11 @@
                         <td class="col-sm-8 col-md-6">
                             <div class="media">
                                 <a class="thumbnail pull-left" href="#"> <img class="media-object"
-                                                                              src="http://via.placeholder.com/72x72?text=${cart.product.item}"
+                                                                              src="http://via.placeholder.com/72x72?text=${cart.product.name}"
                                                                               style="width: 72px; height: 72px;">
                                 </a>
                                 <div class="media-body">
-                                    <h4 class="media-heading"><a href="#">${cart.product.item}</a></h4>
+                                    <h4 class="media-heading"><a href="#">${cart.product.name}</a></h4>
                                 </div>
                             </div>
                         </td>
