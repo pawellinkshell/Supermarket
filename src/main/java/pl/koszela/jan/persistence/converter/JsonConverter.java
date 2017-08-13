@@ -6,10 +6,12 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.Arrays;
 import java.util.List;
+import pl.koszela.jan.domain.impl.SpecialPrice;
 import pl.koszela.jan.persistence.dto.ProductDTO;
 import pl.koszela.jan.persistence.dto.PriceDTO;
-import pl.koszela.jan.persistence.dto.impl.DefaultPriceDTO;
+import pl.koszela.jan.persistence.dto.impl.NormalPriceDTO;
 import pl.koszela.jan.persistence.dto.impl.DefaultProductDTO;
+import pl.koszela.jan.persistence.dto.impl.SpecialPriceDTO;
 
 /**
  * Created on 10.08.2017.
@@ -25,8 +27,8 @@ public class JsonConverter {
   public String resourcesSamplePath = "src\\main\\resources\\sample\\";
 
   private DefaultProductDTO[] productDTOS;
-  private DefaultPriceDTO[] specialPriceDTOS;
-  private DefaultPriceDTO[] normalPriceDTOS;
+  private SpecialPriceDTO[] specialPriceDTOS;
+  private NormalPriceDTO[] normalPriceDTOS;
 
   public JsonConverter(String resourcePath) {
     this.resourcesSamplePath = resourcePath;
@@ -60,7 +62,7 @@ public class JsonConverter {
     try (Reader reader = new FileReader(resourcesSamplePath + SPECIAL_PRICES_FILE)) {
 
       // Convert JSON to Java Object
-      specialPriceDTOS = GSON.fromJson(reader, DefaultPriceDTO[].class);
+      specialPriceDTOS = GSON.fromJson(reader, SpecialPriceDTO[].class);
 
     } catch (IOException e) {
       e.printStackTrace();
@@ -71,7 +73,7 @@ public class JsonConverter {
     try (Reader reader = new FileReader(resourcesSamplePath + NORMAL_PRICES_FILE)) {
 
       // Convert JSON to Java Object
-      normalPriceDTOS = GSON.fromJson(reader, DefaultPriceDTO[].class);
+      normalPriceDTOS = GSON.fromJson(reader, NormalPriceDTO[].class);
 
     } catch (IOException e) {
       e.printStackTrace();

@@ -10,10 +10,10 @@ import pl.koszela.jan.persistence.dto.PriceDTO;
  *
  * @author Jan Koszela
  */
-public class DefaultPriceMapper {
+public class NormalPriceMapper {
 
   public static PriceDTO map(Price price) {
-    DefaultPriceDTO dto = new DefaultPriceDTO();
+    NormalPriceDTO dto = new NormalPriceDTO();
     dto.setId(price.getId());
     dto.setPrice(price.getPrice());
 

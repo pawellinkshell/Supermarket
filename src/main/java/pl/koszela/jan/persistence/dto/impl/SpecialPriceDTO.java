@@ -4,14 +4,16 @@ import com.google.gson.annotations.SerializedName;
 import pl.koszela.jan.persistence.dto.PriceDTO;
 
 /**
- * Created on 10.08.2017.
+ * Created on 13.08.2017.
  *
  * @author Jan Koszela
  */
-public class DefaultPriceDTO implements PriceDTO {
+public class SpecialPriceDTO implements PriceDTO {
 
   @SerializedName("id")
   private int id;
+  @SerializedName("amount")
+  private int amount;
   @SerializedName("price")
   private double price;
   @SerializedName("currency")
@@ -47,4 +49,12 @@ public class DefaultPriceDTO implements PriceDTO {
     this.currency = currency;
   }
 
+  public int getAmount() {
+    return amount;
+  }
+
+  public void setAmount(int amount) {
+    this.amount = amount;
+  }
 }
+

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import pl.koszela.jan.constans.SupermarketAttributeConstans;
 import pl.koszela.jan.domain.impl.Order;
+import pl.koszela.jan.domain.impl.Product;
 import pl.koszela.jan.service.CartService;
 import pl.koszela.jan.service.OrderService;
 import pl.koszela.jan.service.ProductService;
@@ -66,11 +67,12 @@ public class BaseController {
 
       Order newOrder = null;
       if (foundOrder == null) {
-        newOrder = new Order(product, Integer.valueOf(quantity));
+        newOrder = new Order(
+            productService.getProductByName(product), Integer.valueOf(quantity));
         orderService.createOrder(newOrder);
       } else {
         if (foundOrder.getQuantity() != Integer.valueOf(quantity)) {
-          newOrder = new Order(product, Integer.valueOf(quantity));
+          newOrder = new Order(productService.getProductByName(product), Integer.valueOf(quantity));
           orderService.updateOrder(newOrder);
         } else {
           newOrder = foundOrder;
