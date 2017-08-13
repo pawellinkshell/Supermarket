@@ -1,9 +1,9 @@
 package pl.koszela.jan.service.impl;
 
-import java.util.HashSet;
-import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.koszela.jan.domain.Price;
+import pl.koszela.jan.domain.impl.Cart;
 import pl.koszela.jan.domain.impl.Order;
 import pl.koszela.jan.service.CartService;
 import pl.koszela.jan.service.ProductService;
@@ -16,27 +16,29 @@ import pl.koszela.jan.service.ProductService;
 @Service("cartService")
 public class DefaultCartService implements CartService {
 
-  private static Set<Order> orders;
-
-  @Autowired
-  private ProductService productService;
+  private static Cart cart;
 
   public DefaultCartService() {
-    this.orders = new HashSet<>();
+    this.cart = new Cart();
   }
 
   @Override
-  public Set<Order> getOrders() {
-    return this.orders;
+  public Cart getCart() {
+    return this.cart;
   }
 
   @Override
-  public void addOrderToCart(Order order) {
-    orders.add(order);
+  public void addOrder(Order order) {
+    cart.add(order);
   }
 
   @Override
-  public void removeOrderFromCart(Order order) {
-    orders.remove(order);
+  public void removeOrder(Order order) {
+    cart.remove(order);
+  }
+
+  @Override
+  public Price getCartPrice() {
+    return cart.getPrice();
   }
 }

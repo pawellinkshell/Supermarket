@@ -47,7 +47,7 @@ public class BaseController {
     model.addAttribute(SupermarketAttributeConstans.PRODUCTS.getKey(),
         productService.getProducts());
     model.addAttribute(SupermarketAttributeConstans.CART.getKey(),
-        cartService.getOrders());
+        cartService.getCart());
     model.addAttribute("message", "Welcome");
     model.addAttribute("counter", ++counter);
     LOGGER.debug("[welcome] counter : {}", counter);
@@ -78,7 +78,7 @@ public class BaseController {
         }
       }
 
-      cartService.addOrderToCart(newOrder);
+      cartService.addOrder(newOrder);
     }
 
     model.addAttribute(SupermarketAttributeConstans.SERVLET_NAME.getKey(),
@@ -88,7 +88,7 @@ public class BaseController {
     model.addAttribute(SupermarketAttributeConstans.PRODUCTS.getKey(),
         productService.getProducts());
     model.addAttribute(SupermarketAttributeConstans.CART.getKey(),
-        cartService.getOrders());
+        cartService.getCart());
 
     model.addAttribute("message", "Welcome " + name);
     model.addAttribute("counter", ++counter);

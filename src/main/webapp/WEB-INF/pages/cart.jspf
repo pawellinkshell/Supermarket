@@ -17,53 +17,52 @@
                 <thead>
                 <tr>
                     <th>Product</th>
+                    <th class="text-center">Special price</th>
                     <th>Quantity</th>
                     <th class="text-center">Price</th>
                     <th class="text-center">Total</th>
-                    <th class="text-center">Special price</th>
                     <th> </th>
                 </tr>
                 </thead>
                 <tbody>
 
                 <%--PRODUCTS--%>
-                <c:forEach var="cart" items="${carts}">
-                    ${cart}
+                <c:forEach var="order" items="${cart.orders}">
                 </br>
                     <tr>
                         <td class="col-sm-8 col-md-6">
                             <div class="media">
                                 <a class="thumbnail pull-left" href="#">
                                     <img class="media-object"
-                                      src="http://via.placeholder.com/72x72?text=${cart.product.name}"
+                                      src="http://via.placeholder.com/72x72?text=${order.product.name}"
                                       style="width: 72px; height: 72px;">
                                 </a>
                                 <div class="media-body">
                                     <h4 class="media-heading">
-                                        <a href="#">${cart.product.name}</a>
+                                        <a href="#">${order.product.name}</a>
                                     </h4>
                                 </div>
                             </div>
                         </td>
-                        <td class="col-sm-1 col-md-1" style="text-align: center">
-                            <input type="email" class="form-control"
-                                   id="exampleInputEmail1" value="${cart.quantity}">
-                        </td>
                         <td class="col-sm-1 col-md-1 text-center">
                             <strong>
-                                <span class="glyphicon glyphicon-eur"></span>${cart.stockPrice.unit}
-                            </strong>
-                        </td>
-                        <td class="col-sm-1 col-md-1 text-center">
-                            <strong>
-                                <span class="glyphicon glyphicon-eur"></span>${cart.totalPrice.unit}
-                            </strong>
-                        </td>
-                        <td class="col-sm-1 col-md-1 text-center">
-                            <strong>
-                                <c:if test="${cart.specialOffer}">
+                                <c:if test="${order.specialOffer}">
                                     <span class="glyphicon glyphicon-star"></span>
                                 </c:if>
+                            </strong>
+                        </td>
+                        <td class="col-sm-1 col-md-1" style="text-align: center">
+                            <input type="email" class="form-control"
+                                   id="exampleInputEmail1" value="${order.quantity}">
+                        </td>
+                        <td class="col-sm-1 col-md-1 text-center">
+                            <strong>
+                                <span class="glyphicon glyphicon-eur"></span>${order.stockPrice.unit}
+                            </strong>
+                        </td>
+                        <td class="col-sm-1 col-md-1 text-center">
+                            <strong>
+                                <span class="glyphicon glyphicon-eur"></span>${order.totalPrice.unit}
                             </strong>
                         </td>
                         <td class="col-sm-1 col-md-1">
@@ -79,8 +78,12 @@
                     <td>  </td>
                     <td>  </td>
                     <td><h3>Total</h3></td>
-                    <td class="text-right"><h3><strong><span class="glyphicon glyphicon-eur"></span>31.53</strong>
-                    </h3></td>
+                    <td class="text-right">
+                        <h3><strong>
+                            <span class="glyphicon glyphicon-eur"></span>
+                            ${cart.price.unit}
+                        </strong></h3>
+                    </td>
                 </tr>
                 <tr>
                     <td>  </td>

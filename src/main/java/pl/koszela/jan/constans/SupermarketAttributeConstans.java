@@ -17,6 +17,6 @@ public class SupermarketAttributeConstans {
   public static final Map.Entry<String, String> PRODUCTS = new SimpleEntry<>(
       "products", "");
   public static final Map.Entry<String, String> CART = new SimpleEntry<>(
-      "carts", "");
+      "cart", "");
 
 }
