@@ -1,13 +1,19 @@
 package pl.koszela.jan.service;
 
-import pl.koszela.jan.domain.Order;
+import java.util.Map;
+import pl.koszela.jan.domain.Price;
+import pl.koszela.jan.domain.impl.Order;
 
 /**
- * Created on 12.08.2017.
+ * Created on 13.08.2017.
  *
  * @author Jan Koszela
  */
 public interface CartService {
 
-  Order findOrderByName(String productName);
+  Map<Order, Price> getOrders();
+
+  void addOrderToCart(Order newOrder);
+
+  void removeOrderFromCart(Order order);
 }

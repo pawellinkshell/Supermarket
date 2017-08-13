@@ -1,41 +1,88 @@
 package pl.koszela.jan.service.impl;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
+import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.koszela.jan.domain.Order;
-import pl.koszela.jan.domain.Product;
+import pl.koszela.jan.domain.Price;
+import pl.koszela.jan.domain.impl.Order;
+import pl.koszela.jan.domain.impl.Product;
+import pl.koszela.jan.domain.impl.SpecialPrice;
+import pl.koszela.jan.persistence.dto.ProductDTO;
+import pl.koszela.jan.persistence.dto.impl.DefaultProductMapper;
 import pl.koszela.jan.service.CartService;
+import pl.koszela.jan.service.ProductService;
 
 /**
- * Created on 12.08.2017.
+ * Created on 13.08.2017.
  *
  * @author Jan Koszela
  */
 @Service("cartService")
 public class DefaultCartService implements CartService {
 
-  private static List<Order> orders;
+  private static Map<Order, Price> orders;
+
+  @Autowired
+  private ProductService productService;
 
   public DefaultCartService() {
-    orders = new ArrayList<>();
+    this.orders = new HashMap<>();
   }
 
   @Override
-  public Order findOrderByName(String productName) {
-    for(Iterator<Order> i = orders.iterator(); i.hasNext();) {
-      Order currentOrder = i.next();
-      if (isSameProduct(productName, currentOrder)) {
-        return currentOrder;
-      }
+  public Map<Order, Price> getOrders() {
+    return this.orders;
+  }
+
+  @Override
+  public void addOrderToCart(Order order) {
+    Price price = getPrice(order);
+    ProductDTO productDTO = getProductDetails(order);
+
+    order.setProduct(fillByProductDetails(productDTO));
+    orders.put(order, price);
+  }
+
+  private Price getPrice(Order order) {
+    Price price;
+    if (isSpecialPrice(order)) {
+      price = SpecialPrice.builder()
+          .id(order.getProduct().getId())
+          .amount(order.getQuantity())
+          .currency(order.getProduct().getCurrency())
+          .price(order.getProduct().getUnitPrice())
+          .build();
     }
+
     return null;
   }
 
-  private boolean isSameProduct(String productName, Order currentOrder) {
-    return productName.equals(currentOrder.getProductName());
+  private boolean isSpecialPrice(Order order) {
+    return order.getProduct().isMultipricing();
   }
 
+  private Product fillByProductDetails(ProductDTO productDTO) {
 
+    return DefaultProductMapper.map(productDTO);
+  }
+
+  private ProductDTO getProductDetails(Order newOrder) {
+    ProductDTO productDTO;
+    for (Iterator<ProductDTO> i =  productService.getProducts().iterator(); i.hasNext(); ) {
+      productDTO = i.next();
+      if (productDTO.getItem().equals(newOrder.getProduct().getItem())) {
+        return productDTO;
+      }
+    }
+
+    return null;
+
+  }
+
+  @Override
+  public void removeOrderFromCart(Order order) {
+    orders.remove(order);
+  }
 }

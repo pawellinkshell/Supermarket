@@ -6,7 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <div class="container">
     <h2>
         <span class="glyphicon glyphicon-shopping-cart" style="color: darkkhaki"></span> &nbsp;
@@ -26,58 +25,34 @@
                 </thead>
                 <tbody>
                 <%--PRODUCTS--%>
-                <tr>
-                    <td class="col-sm-8 col-md-6">
-                        <div class="media">
-                            <a class="thumbnail pull-left" href="#"> <img class="media-object"
-                                                                          src="http://via.placeholder.com/72x72?text=${productDTO}"
-                                                                          style="width: 72px; height: 72px;">
-                            </a>
-                            <div class="media-body">
-                                <h4 class="media-heading"><a href="#">Product name</a></h4>
+
+                <c:forEach var="cart" items="${carts}">
+                    <tr>
+                        <td class="col-sm-8 col-md-6">
+                            <div class="media">
+                                <a class="thumbnail pull-left" href="#"> <img class="media-object"
+                                                                              src="http://via.placeholder.com/72x72?text=${cart.product.item}"
+                                                                              style="width: 72px; height: 72px;">
+                                </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading"><a href="#">${cart.product.item}</a></h4>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                    <td class="col-sm-1 col-md-1" style="text-align: center">
-                        <input type="email" class="form-control" id="exampleInputEmail1" value="3">
-                    </td>
-                    <td class="col-sm-1 col-md-1 text-center"><strong><span
-                            class="glyphicon glyphicon-eur"></span>4.87</strong></td>
-                    <td class="col-sm-1 col-md-1 text-center"><strong><span
-                            class="glyphicon glyphicon-eur"></span>14.61</strong></td>
-                    <td class="col-sm-1 col-md-1">
-                        <button type="button" class="btn btn-danger">
-                            <span class="glyphicon glyphicon-remove"></span> Remove
-                        </button>
-                    </td>
-                </tr>
-                <%--END OF PRODUCTS--%>
-                <%--PRODUCTS--%>
-                <tr>
-                    <td class="col-md-6">
-                        <div class="media">
-                            <a class="thumbnail pull-left" href="#"> <img class="media-object"
-                                                                          src="http://via.placeholder.com/72x72?text=${productDTO}"
-                                                                          style="width: 72px; height: 72px;">
-                            </a>
-                            <div class="media-body">
-                                <h4 class="media-heading"><a href="#">Product name</a></h4>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="col-md-1" style="text-align: center">
-                        <input type="email" class="form-control" id="exampleInputEmail1" value="2">
-                    </td>
-                    <td class="col-md-1 text-center"><strong><span
-                            class="glyphicon glyphicon-eur"></span>4.99</strong></td>
-                    <td class="col-md-1 text-center"><strong><span
-                            class="glyphicon glyphicon-eur"></span>9.98</strong></td>
-                    <td class="col-md-1">
-                        <button type="button" class="btn btn-danger">
-                            <span class="glyphicon glyphicon-remove"></span> Remove
-                        </button>
-                    </td>
-                </tr>
+                        </td>
+                        <td class="col-sm-1 col-md-1" style="text-align: center">
+                            <input type="email" class="form-control" id="exampleInputEmail1" value="${cart.quantity}">
+                        </td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong><span
+                                class="glyphicon glyphicon-eur"></span>${cart.product.unitPrice}</strong></td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong><span
+                                class="glyphicon glyphicon-eur"></span>14.61</strong></td>
+                        <td class="col-sm-1 col-md-1">
+                            <button type="button" class="btn btn-danger">
+                                <span class="glyphicon glyphicon-remove"></span> Remove
+                            </button>
+                        </td>
+                    </tr>
+                </c:forEach>
                 <%--END OF PRODUCTS--%>
                 <tr>
                     <td>  </td>
