@@ -1,7 +1,6 @@
 package pl.koszela.jan.service;
 
-import java.util.Map;
-import pl.koszela.jan.domain.Price;
+import java.util.List;
 import pl.koszela.jan.domain.impl.Order;
 
 /**
@@ -11,7 +10,7 @@ import pl.koszela.jan.domain.impl.Order;
  */
 public interface CartService {
 
-  Map<Order, Price> getOrders();
+  List<Order> getOrders();
 
   void addOrderToCart(Order newOrder);
 
