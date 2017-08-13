@@ -38,16 +38,23 @@ public class DefaultOrderService implements OrderService {
 
   @Override
   public boolean createOrder(Order order) {
-    return this.orders.add(order);
+    if(order.getQuantity() > 0) {
+      return this.orders.add(order);
+    }
+
+    return false;
   }
 
   @Override
   public void updateOrder(Order newOrder) {
     Order foundOrder = findOrderByName(newOrder.getProductName());
     if (foundOrder != null) {
-      orders.set(getIdFromOrders(foundOrder), newOrder);
+      if(newOrder.getQuantity() > 0) {
+        orders.remove(getIdFromOrders(foundOrder));
+      } else {
+        orders.set(getIdFromOrders(foundOrder), newOrder);
+      }
     }
-
   }
 
   private int getIdFromOrders(Order order) {
