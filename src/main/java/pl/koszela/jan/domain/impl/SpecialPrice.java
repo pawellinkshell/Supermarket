@@ -11,14 +11,14 @@ public class SpecialPrice implements Price {
 
   private int id;
   private int amount;
-  private double price;
+  private double unit;
   private String currency;
 
 
-  public SpecialPrice(int id, int amount, double price, String currency) {
+  public SpecialPrice(int id, int amount, double unit, String currency) {
     this.id = id;
     this.amount = amount;
-    this.price = price;
+    this.unit = unit;
     this.currency = currency;
   }
 
@@ -34,8 +34,8 @@ public class SpecialPrice implements Price {
     return this.amount;
   }
 
-  public double getPrice() {
-    return this.price;
+  public double getUnit() {
+    return this.unit;
   }
 
   public String getCurrency() {
@@ -50,8 +50,8 @@ public class SpecialPrice implements Price {
     this.amount = amount;
   }
 
-  public void setPrice(double price) {
-    this.price = price;
+  public void setUnit(double price) {
+    this.unit = price;
   }
 
   public void setCurrency(String currency) {
@@ -95,7 +95,7 @@ public class SpecialPrice implements Price {
     public String toString() {
       return "pl.koszela.jan.domain.impl.SpecialPrice.SpecialPriceBuilder(id=" + this.id
           + ", amount="
-          + this.amount + ", price=" + this.price + ", currency=" + this.currency + ")";
+          + this.amount + ", unit=" + this.price + ", currency=" + this.currency + ")";
     }
   }
 }

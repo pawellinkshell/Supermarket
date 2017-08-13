@@ -16,7 +16,7 @@ public class NormalPriceMapper {
   public static PriceDTO map(Price price) {
     NormalPriceDTO dto = new NormalPriceDTO();
     dto.setId(price.getId());
-    dto.setPrice(price.getPrice());
+    dto.setPrice(price.getUnit());
 
     return dto;
   }

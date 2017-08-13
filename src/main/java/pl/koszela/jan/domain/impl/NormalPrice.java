@@ -10,15 +10,15 @@ import pl.koszela.jan.domain.Price;
 public class NormalPrice implements Price {
 
   private int id;
-  private double price;
+  private double unit;
   private String currency;
 
   public NormalPrice() {
   }
 
-  NormalPrice(int id, double price, String currency) {
+  NormalPrice(int id, double unit, String currency) {
     this.id = id;
-    this.price = price;
+    this.unit = unit;
     this.currency = currency;
   }
 
@@ -30,8 +30,8 @@ public class NormalPrice implements Price {
     return this.id;
   }
 
-  public double getPrice() {
-    return this.price;
+  public double getUnit() {
+    return this.unit;
   }
 
   public String getCurrency() {
@@ -42,8 +42,8 @@ public class NormalPrice implements Price {
     this.id = id;
   }
 
-  public void setPrice(double price) {
-    this.price = price;
+  public void setUnit(double price) {
+    this.unit = price;
   }
 
   public void setCurrency(String currency) {
@@ -51,8 +51,8 @@ public class NormalPrice implements Price {
   }
 
   public String toString() {
-    return "pl.koszela.jan.domain.impl.NormalPrice(id=" + this.getId() + ", price=" + this
-        .getPrice() + ", currency=" + this.getCurrency() + ")";
+    return "NormalPrice(id=" + this.getId() + ", unit=" + this
+        .getUnit() + ", currency=" + this.getCurrency() + ")";
   }
 
   public static class NormalPriceBuilder {
@@ -84,7 +84,7 @@ public class NormalPrice implements Price {
     }
 
     public String toString() {
-      return "pl.koszela.jan.domain.impl.NormalPrice.NormalPriceBuilder(id=" + this.id + ", price="
+      return "pl.koszela.jan.domain.impl.NormalPrice.NormalPriceBuilder(id=" + this.id + ", unit="
           + this.price + ", currency=" + this.currency + ")";
     }
   }

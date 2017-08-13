@@ -15,7 +15,7 @@ public interface Price {
 
   void setCurrency(final String currency);
 
-  double getPrice();
+  double getUnit();
 
-  void setPrice(final double price);
+  void setUnit(final double price);
 }
