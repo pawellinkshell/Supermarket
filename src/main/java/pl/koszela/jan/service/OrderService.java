@@ -11,7 +11,7 @@ public interface OrderService {
 
   Order findOrderByName(String productName);
 
-  void createOrder(Order order);
+  boolean createOrder(Order order);
 
   void updateOrder(Order order);
 

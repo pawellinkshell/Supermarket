@@ -37,8 +37,8 @@ public class DefaultOrderService implements OrderService {
   }
 
   @Override
-  public void createOrder(Order order) {
-    this.orders.add(order);
+  public boolean createOrder(Order order) {
+    return this.orders.add(order);
   }
 
   @Override
@@ -65,6 +65,8 @@ public class DefaultOrderService implements OrderService {
     Order foundOrder = findOrderByName(order.getProductName());
     if (foundOrder != null) {
       orders.remove(getIdFromOrders(foundOrder));
+
+      return true;
     }
     return false;
   }
