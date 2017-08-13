@@ -1,10 +1,6 @@
 package pl.koszela.jan.domain.impl;
 
-import java.util.Objects;
-import org.springframework.beans.factory.annotation.Autowired;
 import pl.koszela.jan.domain.Price;
-import pl.koszela.jan.persistence.dto.PriceDTO;
-import pl.koszela.jan.service.PriceService;
 
 /**
  * Created on 12.08.2017.
@@ -14,22 +10,34 @@ import pl.koszela.jan.service.PriceService;
 public class Order {
 
   private Product product;
-  private Price price;
+  private Price stockPrice;
   private int quantity;
+  private Price totalPrice;
+  private boolean specialOffer;
 
 
   public Order(Product product, int quantity) {
     this.product = product;
     this.quantity = quantity;
-    this.price = null;
+    this.stockPrice = null;
+    this.totalPrice = null;
+    this.specialOffer = false;
   }
 
   public Product getProduct() {
     return this.product;
   }
 
-  public Price getPrice() {
-    return price;
+  public Price getStockPrice() {
+    return stockPrice;
+  }
+
+  public Price getTotalPrice() {
+    return totalPrice;
+  }
+
+  public void setTotalPrice(Price totalPrice) {
+    this.totalPrice = totalPrice;
   }
 
   public int getQuantity() {
@@ -40,37 +48,30 @@ public class Order {
     this.product = productName;
   }
 
-  public void setPrice(Price price) {
-    this.price = price;
+  public void setStockPrice(Price stockPrice) {
+    this.stockPrice = stockPrice;
   }
 
   public void setQuantity(int quantity) {
     this.quantity = quantity;
   }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Order order = (Order) o;
-    return Objects.equals(product, order.product);
+  public boolean isSpecialOffer() {
+    return specialOffer;
   }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(product, quantity);
+  public void setSpecialOffer(boolean specialOffer) {
+    this.specialOffer = specialOffer;
   }
 
   @Override
   public String toString() {
     return "Order{" +
         "product=" + product +
-        ", price=" + price +
+        ", stockPrice=" + stockPrice +
         ", quantity=" + quantity +
+        ", totalPrice=" + totalPrice +
+        ", specialOffer=" + specialOffer +
         '}';
   }
 }

@@ -11,6 +11,7 @@ import pl.koszela.jan.domain.impl.Order;
 import pl.koszela.jan.domain.impl.Product;
 import pl.koszela.jan.domain.impl.SpecialPrice;
 import pl.koszela.jan.persistence.dto.PriceDTO;
+import pl.koszela.jan.persistence.dto.impl.SpecialPriceDTO;
 import pl.koszela.jan.service.OrderService;
 import pl.koszela.jan.service.PriceService;
 
@@ -49,39 +50,64 @@ public class DefaultOrderService implements OrderService {
   @Override
   public boolean createOrder(Order order) {
     if (order.getQuantity() > 0) {
-      order.setPrice(calculatePrice(order.getProduct(), order.getQuantity()));
+      order.setStockPrice(getStockPrice(order.getProduct()));
+
+      Price totalPrice = calculateTotalPrice(order.getProduct(), order.getQuantity());
+      order.setTotalPrice(totalPrice);
+
+      if(totalPrice instanceof SpecialPrice){
+        order.setSpecialOffer(true);
+      }
 
       return this.orders.add(order);
+
+    } else {
+      orders.remove(getIdFromOrders(order));
     }
 
     return false;
   }
 
-  private Price calculatePrice(Product product, int quantity) {
+  private Price calculateTotalPrice(Product product, int quantity) {
+    Price price = getSpecialPrice(product, quantity);
+
+    if (price == null) {
+      price = getStockPrice(product);
+      price.setUnit(price.getUnit() * quantity);
+    }
+
+    return price;
+  }
+
+  private Price getSpecialPrice(Product product, int quantity) {
     Price price = null;
 
-    if (product.isMultipricing()) {
-      for (PriceDTO dto : priceService.getSpecialPrices()) {
-        if (dto.getId() == product.getId()) {
-          price = SpecialPrice.builder()
-              .id(dto.getId())
-              .amount(quantity)
-              .price(dto.getPrice())
-              .currency(dto.getCurrency())
-              .build();
-          break;
-        }
+    for (SpecialPriceDTO dto : priceService.getSpecialPrices()) {
+      if (dto.getId() == product.getId() &&
+          dto.getAmount() == quantity) {
+        price = SpecialPrice.builder()
+            .id(dto.getId())
+            .amount(dto.getAmount())
+            .price(dto.getPrice())
+            .currency(dto.getCurrency())
+            .build();
+        break;
       }
-    } else {
-      for (PriceDTO dto : priceService.getNormalPrices()) {
-        if (dto.getId() == product.getId()) {
-          price = NormalPrice.builder()
-              .id(dto.getId())
-              .price(dto.getPrice() * quantity)
-              .currency(dto.getCurrency())
-              .build();
-          break;
-        }
+    }
+    return price;
+  }
+
+  private Price getStockPrice(Product product) {
+    Price price = null;
+
+    for (PriceDTO dto : priceService.getNormalPrices()) {
+      if (dto.getId() == product.getId()) {
+        price = NormalPrice.builder()
+            .id(dto.getId())
+            .price(dto.getPrice())
+            .currency(dto.getCurrency())
+            .build();
+        break;
       }
     }
     return price;
