@@ -2,9 +2,8 @@ package pl.koszela.jan.service.impl;
 
 import java.util.List;
 import org.springframework.stereotype.Service;
-import pl.koszela.jan.domain.Price;
 import pl.koszela.jan.persistence.converter.JsonConverter;
-import pl.koszela.jan.persistence.dto.ProductDTO;
+import pl.koszela.jan.persistence.dto.PriceDTO;
 import pl.koszela.jan.service.PriceService;
 
 /**
@@ -27,7 +26,12 @@ public class DefaultPriceService implements PriceService {
   }
 
   @Override
-  public List<Price> getPrices() {
+  public List<PriceDTO> getNormalPrices() {
+    return converter.getNormalPriceList();
+  }
+
+  @Override
+  public List<PriceDTO> getSpecialPrices() {
     return converter.getSpecialPriceList();
   }
 }
