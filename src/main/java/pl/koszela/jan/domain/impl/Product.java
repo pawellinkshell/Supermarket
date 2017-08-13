@@ -45,6 +45,15 @@ public class Product {
     this.multipricing = multipricing;
   }
 
+  @Override
+  public String toString() {
+    return "Product{" +
+        "id=" + id +
+        ", name='" + name + '\'' +
+        ", multipricing=" + multipricing +
+        '}';
+  }
+
   public static class ProductBuilder {
 
     private int id;

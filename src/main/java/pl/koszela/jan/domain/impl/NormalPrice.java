@@ -13,6 +13,9 @@ public class NormalPrice implements Price {
   private double price;
   private String currency;
 
+  public NormalPrice() {
+  }
+
   NormalPrice(int id, double price, String currency) {
     this.id = id;
     this.price = price;

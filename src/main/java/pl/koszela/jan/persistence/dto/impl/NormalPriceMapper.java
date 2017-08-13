@@ -3,6 +3,7 @@ package pl.koszela.jan.persistence.dto.impl;
 import java.util.ArrayList;
 import java.util.List;
 import pl.koszela.jan.domain.Price;
+import pl.koszela.jan.domain.impl.NormalPrice;
 import pl.koszela.jan.persistence.dto.PriceDTO;
 
 /**
@@ -20,6 +21,14 @@ public class NormalPriceMapper {
     return dto;
   }
 
+  public static Price map(PriceDTO dto) {
+    return NormalPrice.builder()
+        .id(dto.getId())
+        .price(dto.getPrice())
+        .currency(dto.getCurrency())
+        .build();
+  }
+
   public static List<PriceDTO> map(List<Price> prices) {
     List<PriceDTO> dtos = new ArrayList<PriceDTO>();
 
@@ -28,5 +37,16 @@ public class NormalPriceMapper {
     }
 
     return dtos;
+  }
+
+
+  public static List<Price> productMap(List<PriceDTO> dtos) {
+    List<Price> prices = new ArrayList<Price>();
+
+    for (PriceDTO dto : dtos) {
+      prices.add(map(dto));
+    }
+
+    return prices;
   }
 }
