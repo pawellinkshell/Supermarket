@@ -1,6 +1,7 @@
 package pl.koszela.jan.service;
 
 import java.util.List;
+import pl.koszela.jan.domain.impl.Product;
 import pl.koszela.jan.persistence.dto.ProductDTO;
 
 /**
@@ -10,5 +11,9 @@ import pl.koszela.jan.persistence.dto.ProductDTO;
  */
 public interface ProductService {
 
-  List<ProductDTO> getProducts();
+  List<Product> getProducts();
+
+  Product getProductById(int id);
+
+  Product getProductByName(String productName);
 }
