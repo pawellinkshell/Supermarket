@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import pl.koszela.jan.constans.SupermarketAttributeConstans;
 import pl.koszela.jan.domain.impl.Order;
-import pl.koszela.jan.domain.impl.Product;
 import pl.koszela.jan.service.CartService;
 import pl.koszela.jan.service.OrderService;
 import pl.koszela.jan.service.ProductService;
@@ -45,9 +44,9 @@ public class BaseController {
         SupermarketAttributeConstans.SERVLET_NAME.getValue());
     model.addAttribute(SupermarketAttributeConstans.ADD_DOMAIN_NAME.getKey(),
         SupermarketAttributeConstans.ADD_DOMAIN_NAME.getValue());
-    model.addAttribute("productsDTO",
+    model.addAttribute(SupermarketAttributeConstans.PRODUCTS.getKey(),
         productService.getProducts());
-    model.addAttribute("carts",
+    model.addAttribute(SupermarketAttributeConstans.CART.getKey(),
         cartService.getOrders());
     model.addAttribute("message", "Welcome");
     model.addAttribute("counter", ++counter);
@@ -86,9 +85,9 @@ public class BaseController {
         SupermarketAttributeConstans.SERVLET_NAME.getValue());
     model.addAttribute(SupermarketAttributeConstans.ADD_DOMAIN_NAME.getKey(),
         SupermarketAttributeConstans.ADD_DOMAIN_NAME.getValue());
-    model.addAttribute("productsDTO",
+    model.addAttribute(SupermarketAttributeConstans.PRODUCTS.getKey(),
         productService.getProducts());
-    model.addAttribute("carts",
+    model.addAttribute(SupermarketAttributeConstans.CART.getKey(),
         cartService.getOrders());
 
     model.addAttribute("message", "Welcome " + name);
@@ -98,29 +97,5 @@ public class BaseController {
     return VIEW_INDEX;
 
   }
-
-//  @RequestMapping(value = "/add", method = RequestMethod.GET)
-//  public String addName(@PathVariable String name, ModelMap model,
-//      @RequestParam(value = "product", required = false) String product,
-//      @RequestParam(value = "quantity", required = false) String quantity) {
-//
-//
-//
-////    Order order = Order.builder()
-////        .productName(product)
-////        .quantity(quantity)
-////        .build();
-////
-////    Cart cart = Cart.builder()
-////        .productName(product)
-////        .quantity(quantity)
-////        .build();
-//
-//    model.addAttribute("message", "Welcome " + name);
-//    model.addAttribute("counter", ++counter);
-//    LOGGER.debug("[welcomeName] counter : {}", counter);
-//    return VIEW_INDEX;
-//
-//  }
 
 }

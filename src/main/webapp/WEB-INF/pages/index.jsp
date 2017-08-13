@@ -49,7 +49,7 @@
 
 <h3>Message : ${message}</h3>
 <h3>Counter : ${counter}</h3>
-<h3>Products : ${products}  </h3>
+<h3>Products :   </h3>
 
 <%@include file="products.jspf" %>
 
