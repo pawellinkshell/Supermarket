@@ -2,7 +2,7 @@ package pl.koszela.jan.persistence.dto.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import pl.koszela.jan.domain.Product;
+import pl.koszela.jan.domain.impl.Product;
 import pl.koszela.jan.persistence.dto.ProductDTO;
 
 /**
@@ -21,6 +21,16 @@ public class DefaultProductMapper {
     dto.setMultipricing(product.isMultipricing());
 
     return dto;
+  }
+
+  public static Product map(ProductDTO dto) {
+    return Product.builder()
+        .id(dto.getId())
+        .item(dto.getItem())
+        .unitPrice(dto.getUnitPrice())
+        .currency(dto.getCurrency())
+        .multipricing(dto.isMultipricing())
+        .build();
   }
 
   public static List<ProductDTO> map(List<Product> products) {
