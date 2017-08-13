@@ -50,9 +50,9 @@ public class DefaultOrderService implements OrderService {
     Order foundOrder = findOrderByName(newOrder.getProductName());
     if (foundOrder != null) {
       if(newOrder.getQuantity() > 0) {
-        orders.remove(getIdFromOrders(foundOrder));
-      } else {
         orders.set(getIdFromOrders(foundOrder), newOrder);
+      } else {
+        orders.remove(getIdFromOrders(foundOrder));
       }
     }
   }
