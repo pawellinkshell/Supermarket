@@ -1,16 +1,10 @@
 package pl.koszela.jan.service.impl;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.koszela.jan.domain.Price;
 import pl.koszela.jan.domain.impl.Order;
-import pl.koszela.jan.domain.impl.Product;
-import pl.koszela.jan.persistence.dto.ProductDTO;
-import pl.koszela.jan.persistence.dto.impl.DefaultProductMapper;
 import pl.koszela.jan.service.CartService;
 import pl.koszela.jan.service.ProductService;
 
@@ -22,17 +16,17 @@ import pl.koszela.jan.service.ProductService;
 @Service("cartService")
 public class DefaultCartService implements CartService {
 
-  private static List<Order> orders;
+  private static Set<Order> orders;
 
   @Autowired
   private ProductService productService;
 
   public DefaultCartService() {
-    this.orders = new ArrayList<>();
+    this.orders = new HashSet<>();
   }
 
   @Override
-  public List<Order> getOrders() {
+  public Set<Order> getOrders() {
     return this.orders;
   }
 

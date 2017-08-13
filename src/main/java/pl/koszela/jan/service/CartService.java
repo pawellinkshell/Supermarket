@@ -1,6 +1,6 @@
 package pl.koszela.jan.service;
 
-import java.util.List;
+import java.util.Set;
 import pl.koszela.jan.domain.impl.Order;
 
 /**
@@ -10,7 +10,7 @@ import pl.koszela.jan.domain.impl.Order;
  */
 public interface CartService {
 
-  List<Order> getOrders();
+  Set<Order> getOrders();
 
   void addOrderToCart(Order newOrder);
 
