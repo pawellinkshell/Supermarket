@@ -1,4 +1,4 @@
-package pl.koszela.jan.persistence.dao;
+package pl.koszela.jan.persistence.dao.impl;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
@@ -11,8 +11,9 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.test.context.ActiveProfiles;
+import pl.koszela.jan.persistence.converter.JsonConverter;
+import pl.koszela.jan.persistence.dao.ProductDAO;
 import pl.koszela.jan.persistence.dto.ProductDTO;
-import pl.koszela.jan.persistence.dto.impl.DefaultProductDTO;
 
 /**
  * Created on 11.08.2017.
@@ -21,17 +22,9 @@ import pl.koszela.jan.persistence.dto.impl.DefaultProductDTO;
  */
 @ActiveProfiles("test")
 @RunWith(MockitoJUnitRunner.class)
-public class DefaultProductDAOTest {
+public class DefaultProductDAOIntegrationTest {
 
-  public static final int ID = 1;
-  public static final String ITEM = "Civic";
-  public static final int UNIT_PRICE = 72;
-  public static final String CURRENCY = "EUR";
-  public static final boolean MULTIPRICING = true;
-
-  public static final int SIZE = 15;
-  public static final String PLN_CURRENCY = "PLN";
-
+  public static final String SRC_MAIN_RESOURCES_SAMPLE = "src\\main\\resources\\sample\\";
   @Mock
   private ProductDAO givenProductDAO;
 
@@ -42,7 +35,7 @@ public class DefaultProductDAOTest {
   @Test
   public void shouldGetAllItems() {
     //given
-    List<ProductDTO> expectedList = getProducts();
+    List<ProductDTO> expectedList = getProductListFromJson();
 
     // when
     when(givenProductDAO.getAllItems()).thenReturn(expectedList);
@@ -63,6 +56,7 @@ public class DefaultProductDAOTest {
     assertThat(givenProductDAO.getItemsByMultipricing(true)).hasSize(expectedList.size());
   }
 
+
   @Test
   public void shouldGetItemsWhichHaveCurrencyInEuro() {
     //given
@@ -75,35 +69,19 @@ public class DefaultProductDAOTest {
     assertThat(givenProductDAO.getItemsByMultipricing(true)).hasSize(expectedList.size());
   }
 
-  private List<ProductDTO> getProductsWithEURCurrency() {
+  private List<ProductDTO> getProductListFromJson() {
     List<ProductDTO> expected = Lists.newArrayList();
 
-    for (int i = 0; i < SIZE; i++) {
-      expected.add(
-          createProductDTO(i, ITEM + "_" + i, UNIT_PRICE, (i % 2 == 0) ? CURRENCY : PLN_CURRENCY,
-              MULTIPRICING));
-    }
+    JsonConverter converter = new JsonConverter(SRC_MAIN_RESOURCES_SAMPLE);
+    converter.convert();
 
-    for (int i = 0; i < expected.size(); i++) {
-      if (isPLNCurrency(expected, i)) {
-        expected.remove(i);
-      }
-    }
+    expected.addAll(converter.getProductList());
 
     return expected;
   }
 
-  private boolean isPLNCurrency(List<ProductDTO> expected, int i) {
-    return expected.get(i).getCurrency() == PLN_CURRENCY;
-  }
-
   private List<ProductDTO> getProductsWithMultipricing() {
-    List<ProductDTO> expected = Lists.newArrayList();
-
-    for (int i = 0; i < SIZE; i++) {
-      expected.add(
-          createProductDTO(i, ITEM + "_" + i, UNIT_PRICE, CURRENCY, (i % 2 == 0) ? true : false));
-    }
+    List<ProductDTO> expected = getProductListFromJson();
 
     for (int i = 0; i < expected.size(); i++) {
       if (hasNotItemMultipricing(expected, i)) {
@@ -119,25 +97,19 @@ public class DefaultProductDAOTest {
     return expected.get(i).isMultipricing() == false;
   }
 
-  private List<ProductDTO> getProducts() {
-    List<ProductDTO> expected = Lists.newArrayList();
+  private List<ProductDTO> getProductsWithEURCurrency() {
+    List<ProductDTO> expected = getProductListFromJson();
 
-    for (int i = 0; i < SIZE; i++) {
-      expected.add(createProductDTO(i, ITEM + "_" + i, UNIT_PRICE, CURRENCY, MULTIPRICING));
+    for (int i = 0; i < expected.size(); i++) {
+      if (isCurrencyDifferentThanEUR(expected, i)) {
+        expected.remove(i);
+      }
     }
 
     return expected;
   }
 
-  private ProductDTO createProductDTO(int id, String item, int unitPrice, String currency,
-      boolean multipricing) {
-    DefaultProductDTO productDTO = new DefaultProductDTO();
-    productDTO.setId(id);
-    productDTO.setItem(item);
-    productDTO.setUnitPrice(unitPrice);
-    productDTO.setCurrency(currency);
-    productDTO.setMultipricing(multipricing);
-
-    return productDTO;
+  private boolean isCurrencyDifferentThanEUR(List<ProductDTO> expected, int i) {
+    return !expected.get(i).getCurrency().equals("EUR");
   }
 }
