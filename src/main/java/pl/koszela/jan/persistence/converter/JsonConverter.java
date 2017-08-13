@@ -9,7 +9,6 @@ import java.util.List;
 import pl.koszela.jan.persistence.dto.ProductDTO;
 import pl.koszela.jan.persistence.dto.SpecialPriceDTO;
 import pl.koszela.jan.persistence.dto.impl.DefaultProductDTO;
-import pl.koszela.jan.persistence.dto.impl.DefaultProductListDTO;
 import pl.koszela.jan.persistence.dto.impl.DefaultSpecialPriceDTO;
 
 /**
@@ -39,7 +38,7 @@ public class JsonConverter {
   private void convertProducts() {
     String current = null;
     try {
-      current = new java.io.File( "." ).getCanonicalPath();
+      current = new java.io.File(".").getCanonicalPath();
     } catch (IOException e) {
       e.printStackTrace();
     }

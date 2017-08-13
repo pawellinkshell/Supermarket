@@ -1,6 +1,6 @@
 package pl.koszela.jan.service;
 
-import pl.koszela.jan.domain.Order;
+import pl.koszela.jan.domain.impl.Order;
 
 /**
  * Created on 12.08.2017.

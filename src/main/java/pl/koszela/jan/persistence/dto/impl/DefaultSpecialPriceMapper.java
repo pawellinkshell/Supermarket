@@ -2,7 +2,7 @@ package pl.koszela.jan.persistence.dto.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import pl.koszela.jan.domain.SpecialPrice;
+import pl.koszela.jan.domain.impl.SpecialPrice;
 import pl.koszela.jan.persistence.dto.SpecialPriceDTO;
 
 /**

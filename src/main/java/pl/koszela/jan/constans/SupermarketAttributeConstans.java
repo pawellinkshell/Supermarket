@@ -14,5 +14,9 @@ public class SupermarketAttributeConstans {
       "servletPath", "Supermarket");
   public static final Map.Entry<String, String> ADD_DOMAIN_NAME = new SimpleEntry<>(
       "addDomain", "add");
+  public static final Map.Entry<String, String> PRODUCTS_LIST = new SimpleEntry<>(
+      "productsDTO", "");
+  public static final Map.Entry<String, String> CART = new SimpleEntry<>(
+      "carts", "");
 
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import org.springframework.stereotype.Service;
-import pl.koszela.jan.domain.Order;
+import pl.koszela.jan.domain.impl.Order;
 import pl.koszela.jan.service.OrderService;
 
 /**
@@ -33,7 +33,7 @@ public class DefaultOrderService implements OrderService {
   }
 
   private boolean isSameProduct(String productName, Order currentOrder) {
-    return productName.equals(currentOrder.getProductName());
+    return productName.equals(currentOrder.getProduct());
   }
 
   @Override
@@ -47,7 +47,7 @@ public class DefaultOrderService implements OrderService {
 
   @Override
   public void updateOrder(Order newOrder) {
-    Order foundOrder = findOrderByName(newOrder.getProductName());
+    Order foundOrder = findOrderByName(newOrder.getProduct().getItem());
     if (foundOrder != null) {
       if(newOrder.getQuantity() > 0) {
         orders.set(getIdFromOrders(foundOrder), newOrder);
@@ -69,7 +69,7 @@ public class DefaultOrderService implements OrderService {
 
   @Override
   public boolean removeOrder(Order order) {
-    Order foundOrder = findOrderByName(order.getProductName());
+    Order foundOrder = findOrderByName(order.getProduct().getItem());
     if (foundOrder != null) {
       orders.remove(getIdFromOrders(foundOrder));
 

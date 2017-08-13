@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.test.context.ActiveProfiles;
-import pl.koszela.jan.domain.Order;
+import pl.koszela.jan.domain.impl.Order;
 
 /**
  * Created on 13.08.2017.
@@ -32,10 +32,10 @@ public class DefaultOrderServiceTest {
     Order givenOrder = getDummyOrder();
 
     //when
-    when(sut.findOrderByName(givenOrder.getProductName())).thenReturn(null);
+    when(sut.findOrderByName(givenOrder.getProduct().getItem())).thenReturn(null);
 
     //then
-    assertThat(sut.findOrderByName(givenOrder.getProductName())).isNull();
+    assertThat(sut.findOrderByName(givenOrder.getProduct().getItem())).isNull();
 
   }
 
@@ -46,10 +46,10 @@ public class DefaultOrderServiceTest {
 
     //when
     sut.createOrder(givenOrder);
-    when(sut.findOrderByName(givenOrder.getProductName())).thenReturn(givenOrder);
+    when(sut.findOrderByName(givenOrder.getProduct().getItem())).thenReturn(givenOrder);
 
     //then
-    assertThat(sut.findOrderByName(givenOrder.getProductName())).isEqualTo(givenOrder);
+    assertThat(sut.findOrderByName(givenOrder.getProduct().getItem())).isEqualTo(givenOrder);
   }
 
   @Test
@@ -59,10 +59,10 @@ public class DefaultOrderServiceTest {
 
     //when
     sut.createOrder(givenOrder);
-    when(sut.findOrderByName(givenOrder.getProductName())).thenReturn(givenOrder);
+    when(sut.findOrderByName(givenOrder.getProduct().getItem())).thenReturn(givenOrder);
 
     //then
-    assertThat(sut.findOrderByName(givenOrder.getProductName()))
+    assertThat(sut.findOrderByName(givenOrder.getProduct().getItem()))
         .isNotNull()
         .isEqualTo(givenOrder);
   }
@@ -77,12 +77,12 @@ public class DefaultOrderServiceTest {
     //when
     sut.createOrder(givenOrder);
     sut.updateOrder(givenUpdatedOrder);
-    when(sut.findOrderByName(givenOrder.getProductName()))
+    when(sut.findOrderByName(givenOrder.getProduct().getItem()))
         .thenReturn(givenUpdatedOrder);
 
 
     //then
-    assertThat(sut.findOrderByName(givenOrder.getProductName()))
+    assertThat(sut.findOrderByName(givenOrder.getProduct().getItem()))
         .isEqualTo(givenUpdatedOrder);
 
   }
