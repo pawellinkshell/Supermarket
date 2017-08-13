@@ -9,6 +9,7 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.test.context.ActiveProfiles;
 import pl.koszela.jan.domain.impl.Order;
+import pl.koszela.jan.domain.impl.Product;
 
 /**
  * Created on 13.08.2017.
@@ -23,7 +24,13 @@ public class DefaultOrderServiceTest {
   private DefaultOrderService sut;
 
   private Order getDummyOrder() {
-    return new Order("Prius", 2);
+    return new Order(
+        Product.builder()
+          .id(1)
+          .name("Prius")
+          .multipricing(false)
+        .build(),
+        2) ;
   }
 
   @Test
@@ -32,10 +39,10 @@ public class DefaultOrderServiceTest {
     Order givenOrder = getDummyOrder();
 
     //when
-    when(sut.findOrderByName(givenOrder.getProduct().getItem())).thenReturn(null);
+    when(sut.findOrderByName(givenOrder.getProduct().getName())).thenReturn(null);
 
     //then
-    assertThat(sut.findOrderByName(givenOrder.getProduct().getItem())).isNull();
+    assertThat(sut.findOrderByName(givenOrder.getProduct().getName())).isNull();
 
   }
 
@@ -46,10 +53,10 @@ public class DefaultOrderServiceTest {
 
     //when
     sut.createOrder(givenOrder);
-    when(sut.findOrderByName(givenOrder.getProduct().getItem())).thenReturn(givenOrder);
+    when(sut.findOrderByName(givenOrder.getProduct().getName())).thenReturn(givenOrder);
 
     //then
-    assertThat(sut.findOrderByName(givenOrder.getProduct().getItem())).isEqualTo(givenOrder);
+    assertThat(sut.findOrderByName(givenOrder.getProduct().getName())).isEqualTo(givenOrder);
   }
 
   @Test
@@ -59,10 +66,10 @@ public class DefaultOrderServiceTest {
 
     //when
     sut.createOrder(givenOrder);
-    when(sut.findOrderByName(givenOrder.getProduct().getItem())).thenReturn(givenOrder);
+    when(sut.findOrderByName(givenOrder.getProduct().getName())).thenReturn(givenOrder);
 
     //then
-    assertThat(sut.findOrderByName(givenOrder.getProduct().getItem()))
+    assertThat(sut.findOrderByName(givenOrder.getProduct().getName()))
         .isNotNull()
         .isEqualTo(givenOrder);
   }
@@ -77,12 +84,12 @@ public class DefaultOrderServiceTest {
     //when
     sut.createOrder(givenOrder);
     sut.updateOrder(givenUpdatedOrder);
-    when(sut.findOrderByName(givenOrder.getProduct().getItem()))
+    when(sut.findOrderByName(givenOrder.getProduct().getName()))
         .thenReturn(givenUpdatedOrder);
 
 
     //then
-    assertThat(sut.findOrderByName(givenOrder.getProduct().getItem()))
+    assertThat(sut.findOrderByName(givenOrder.getProduct().getName()))
         .isEqualTo(givenUpdatedOrder);
 
   }

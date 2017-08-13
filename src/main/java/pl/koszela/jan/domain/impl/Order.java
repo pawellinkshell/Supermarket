@@ -68,7 +68,8 @@ public class Order {
   @Override
   public String toString() {
     return "Order{" +
-        "productName='" + product + '\'' +
+        "product=" + product +
+        ", price=" + price +
         ", quantity=" + quantity +
         '}';
   }
