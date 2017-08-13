@@ -45,11 +45,15 @@
 </html>
 <html>
 <body>
-<h1>Maven + Spring MVC - Supermarket with Checkout mechanism Web Project Example</h1>
 
-<h3>Message : ${message}</h3>
-<h3>Counter : ${counter}</h3>
-<h3>Products :   </h3>
+<%@include file="menu.jspf" %>
+<div class="container" style="padding-top: 50px">
+    <h1>Maven + Spring MVC - Supermarket with Checkout mechanism Web Project Example</h1>
+    <h3>Message : ${message}</h3>
+    <h3>Counter : ${counter}</h3>
+    <h3>Products :   </h3>
+</div>
+
 
 <%@include file="products.jspf" %>
 
