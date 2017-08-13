@@ -7,9 +7,9 @@ import java.io.Reader;
 import java.util.Arrays;
 import java.util.List;
 import pl.koszela.jan.persistence.dto.ProductDTO;
-import pl.koszela.jan.persistence.dto.SpecialPriceDTO;
+import pl.koszela.jan.persistence.dto.PriceDTO;
+import pl.koszela.jan.persistence.dto.impl.DefaultPriceDTO;
 import pl.koszela.jan.persistence.dto.impl.DefaultProductDTO;
-import pl.koszela.jan.persistence.dto.impl.DefaultSpecialPriceDTO;
 
 /**
  * Created on 10.08.2017.
@@ -24,7 +24,7 @@ public class JsonConverter {
   public String resourcesSamplePath = "src\\main\\resources\\sample\\";
 
   private DefaultProductDTO[] productDTOS;
-  private DefaultSpecialPriceDTO[] specialPriceDTOS;
+  private DefaultPriceDTO[] specialPriceDTOS;
 
   public JsonConverter(String resourcePath) {
     this.resourcesSamplePath = resourcePath;
@@ -60,7 +60,7 @@ public class JsonConverter {
     try (Reader reader = new FileReader(resourcesSamplePath + SPECIAL_PRICES_FILE)) {
 
       // Convert JSON to Java Object
-      specialPriceDTOS = GSON.fromJson(reader, DefaultSpecialPriceDTO[].class);
+      specialPriceDTOS = GSON.fromJson(reader, DefaultPriceDTO[].class);
 
     } catch (IOException e) {
       e.printStackTrace();
@@ -75,11 +75,11 @@ public class JsonConverter {
     return Arrays.asList(this.productDTOS);
   }
 
-  public SpecialPriceDTO[] getSpecialPriceArray() {
+  public PriceDTO[] getSpecialPriceArray() {
     return this.specialPriceDTOS;
   }
 
-  public List<SpecialPriceDTO> getSpecialPriceList() {
+  public List<PriceDTO> getSpecialPriceList() {
     return Arrays.asList(this.specialPriceDTOS);
   }
 

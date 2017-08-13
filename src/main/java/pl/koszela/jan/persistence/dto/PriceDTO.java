@@ -5,7 +5,7 @@ package pl.koszela.jan.persistence.dto;
  *
  * @author Jan Koszela
  */
-public interface SpecialPriceDTO {
+public interface PriceDTO {
 
   int getId();
 
