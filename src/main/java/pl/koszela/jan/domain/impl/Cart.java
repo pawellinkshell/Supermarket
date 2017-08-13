@@ -1,4 +1,4 @@
-package pl.koszela.jan.domain;
+package pl.koszela.jan.domain.impl;
 
 /**
  * Created on 12.08.2017.

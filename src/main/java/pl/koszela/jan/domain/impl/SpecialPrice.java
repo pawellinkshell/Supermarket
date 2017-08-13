@@ -1,20 +1,25 @@
-package pl.koszela.jan.domain;
+package pl.koszela.jan.domain.impl;
+
+import pl.koszela.jan.domain.Price;
 
 /**
  * Created on 11.08.2017.
  *
  * @author Jan Koszela
  */
-public class SpecialPrice {
+public class SpecialPrice implements Price {
 
   private int id;
   private int amount;
   private double price;
+  private String currency;
 
-  SpecialPrice(int id, int amount, double price) {
+
+  public SpecialPrice(int id, int amount, double price, String currency) {
     this.id = id;
     this.amount = amount;
     this.price = price;
+    this.currency = currency;
   }
 
   public static SpecialPriceBuilder builder() {
@@ -33,6 +38,10 @@ public class SpecialPrice {
     return this.price;
   }
 
+  public String getCurrency() {
+    return this.currency;
+  }
+
   public void setId(int id) {
     this.id = id;
   }
@@ -45,11 +54,16 @@ public class SpecialPrice {
     this.price = price;
   }
 
+  public void setCurrency(String currency) {
+    this.currency = currency;
+  }
+
   public static class SpecialPriceBuilder {
 
     private int id;
     private int amount;
     private double price;
+    private String currency;
 
     SpecialPriceBuilder() {
     }
@@ -69,13 +83,19 @@ public class SpecialPrice {
       return this;
     }
 
+    public SpecialPrice.SpecialPriceBuilder currency(String currency) {
+      this.currency = currency;
+      return this;
+    }
+
     public SpecialPrice build() {
-      return new SpecialPrice(id, amount, price);
+      return new SpecialPrice(id, amount, price, currency);
     }
 
     public String toString() {
-      return "pl.koszela.jan.domain.SpecialPrice.SpecialPriceBuilder(id=" + this.id + ", amount="
-          + this.amount + ", price=" + this.price + ")";
+      return "pl.koszela.jan.domain.impl.SpecialPrice.SpecialPriceBuilder(id=" + this.id
+          + ", amount="
+          + this.amount + ", price=" + this.price + ", currency=" + this.currency + ")";
     }
   }
 }

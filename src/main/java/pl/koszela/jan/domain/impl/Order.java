@@ -1,4 +1,4 @@
-package pl.koszela.jan.domain;
+package pl.koszela.jan.domain.impl;
 
 import java.util.Objects;
 

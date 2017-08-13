@@ -1,4 +1,4 @@
-package pl.koszela.jan.domain;
+package pl.koszela.jan.domain.impl;
 
 /**
  * Created on 11.08.2017.
@@ -117,7 +117,7 @@ public class Product {
     }
 
     public String toString() {
-      return "pl.koszela.jan.domain.Product.ProductBuilder(id=" + this.id + ", item=" + this.item
+      return "pl.koszela.jan.domain.impl.Product.ProductBuilder(id=" + this.id + ", item=" + this.item
           + ", unitPrice=" + this.unitPrice + ", currency=" + this.currency + ", multipricing="
           + this.multipricing + ")";
     }
