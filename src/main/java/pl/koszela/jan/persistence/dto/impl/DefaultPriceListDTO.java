@@ -11,22 +11,23 @@ import pl.koszela.jan.persistence.dto.PriceListDTO;
  */
 public class DefaultPriceListDTO implements PriceListDTO {
 
-  private List<PriceDTO> specialPrices;
+  private List<PriceDTO> priceDTOS;
 
   @Override
   public List<PriceDTO> getPrices() {
-    return this.specialPrices;
+    return this.priceDTOS;
   }
 
   @Override
-  public void setSpecialPrices(List<PriceDTO> specialPrices) {
-    this.specialPrices = specialPrices;
+  public void setPrices(List<PriceDTO> specialPrices) {
+    this.priceDTOS = specialPrices;
   }
+
 
   @Override
   public String toString() {
     return "DefaultPriceListDTO{\n" +
-        "specialPrices=" + specialPrices +
+        "priceDTOS=" + priceDTOS +
         "\n}";
   }
 }

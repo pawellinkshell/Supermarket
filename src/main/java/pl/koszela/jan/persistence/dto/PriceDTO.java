@@ -11,11 +11,11 @@ public interface PriceDTO {
 
   void setId(final int id);
 
-  int getAmount();
-
-  void setAmount(final int amount);
-
   double getPrice();
 
   void setPrice(final double price);
+
+  String getCurrency();
+
+  void setCurrency(final String currency);
 }

@@ -29,7 +29,7 @@
   </bean>
 
   <bean id="specialPriceDTO"
-    class="pl.koszela.jan.persistence.dto.impl.DefaultSpecialPriceDTO"
+    class="pl.koszela.jan.persistence.dto.impl.DefaultPriceDTO"
     scope="prototype">
 
   </bean>

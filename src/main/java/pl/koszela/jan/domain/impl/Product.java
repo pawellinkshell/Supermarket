@@ -8,16 +8,12 @@ package pl.koszela.jan.domain.impl;
 public class Product {
 
   private int id;
-  private String item;
-  private double unitPrice;
-  private String currency;
+  private String name;
   private boolean multipricing;
 
-  Product(int id, String item, double unitPrice, String currency, boolean multipricing) {
+  Product(int id, String name, boolean multipricing) {
     this.id = id;
-    this.item = item;
-    this.unitPrice = unitPrice;
-    this.currency = currency;
+    this.name = name;
     this.multipricing = multipricing;
   }
 
@@ -25,51 +21,24 @@ public class Product {
     return new ProductBuilder();
   }
 
-  @Override
-  public String toString() {
-    return "Product{" +
-        "id=" + id +
-        ", item='" + item + '\'' +
-        ", unitPrice=" + unitPrice +
-        ", currency='" + currency + '\'' +
-        ", multipricing=" + multipricing +
-        '}';
-  }
-
   public int getId() {
     return this.id;
   }
 
-  public String getItem() {
-    return this.item;
-  }
-
-  public double getUnitPrice() {
-    return this.unitPrice;
-  }
-
-  public String getCurrency() {
-    return this.currency;
+  public String getName() {
+    return this.name;
   }
 
   public boolean isMultipricing() {
-    return this.multipricing;
+    return multipricing;
   }
 
   public void setId(int id) {
     this.id = id;
   }
 
-  public void setItem(String item) {
-    this.item = item;
-  }
-
-  public void setUnitPrice(double unitPrice) {
-    this.unitPrice = unitPrice;
-  }
-
-  public void setCurrency(String currency) {
-    this.currency = currency;
+  public void setName(String name) {
+    this.name = name;
   }
 
   public void setMultipricing(boolean multipricing) {
@@ -79,9 +48,7 @@ public class Product {
   public static class ProductBuilder {
 
     private int id;
-    private String item;
-    private double unitPrice;
-    private String currency;
+    private String name;
     private boolean multipricing;
 
     ProductBuilder() {
@@ -92,18 +59,8 @@ public class Product {
       return this;
     }
 
-    public Product.ProductBuilder item(String item) {
-      this.item = item;
-      return this;
-    }
-
-    public Product.ProductBuilder unitPrice(double unitPrice) {
-      this.unitPrice = unitPrice;
-      return this;
-    }
-
-    public Product.ProductBuilder currency(String currency) {
-      this.currency = currency;
+    public Product.ProductBuilder name(String name) {
+      this.name = name;
       return this;
     }
 
@@ -113,13 +70,13 @@ public class Product {
     }
 
     public Product build() {
-      return new Product(id, item, unitPrice, currency, multipricing);
+      return new Product(id, name, multipricing);
     }
 
     public String toString() {
-      return "pl.koszela.jan.domain.impl.Product.ProductBuilder(id=" + this.id + ", item=" + this.item
-          + ", unitPrice=" + this.unitPrice + ", currency=" + this.currency + ", multipricing="
-          + this.multipricing + ")";
+      return "pl.koszela.jan.domain.impl.Product.ProductBuilder(id=" + this.id + ", name="
+          + this.name
+          + ", multipricing=" + this.multipricing + ")";
     }
   }
 }

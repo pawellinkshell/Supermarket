@@ -12,10 +12,10 @@ public class DefaultPriceDTO implements PriceDTO {
 
   @SerializedName("id")
   private int id;
-  @SerializedName("amount")
-  private int amount;
   @SerializedName("price")
   private double price;
+  @SerializedName("currency")
+  private String currency;
 
   @Override
   public int getId() {
@@ -25,16 +25,6 @@ public class DefaultPriceDTO implements PriceDTO {
   @Override
   public void setId(int id) {
     this.id = id;
-  }
-
-  @Override
-  public int getAmount() {
-    return this.amount;
-  }
-
-  @Override
-  public void setAmount(int amount) {
-    this.amount = amount;
   }
 
   @Override
@@ -48,11 +38,13 @@ public class DefaultPriceDTO implements PriceDTO {
   }
 
   @Override
-  public String toString() {
-    return "\nDefaultPriceDTO{" +
-        "id=" + id +
-        ", amount=" + amount +
-        ", price=" + price +
-        '}';
+  public String getCurrency() {
+    return this.currency;
   }
+
+  @Override
+  public void setCurrency(String currency) {
+    this.currency = currency;
+  }
+
 }

@@ -2,7 +2,7 @@ package pl.koszela.jan.persistence.dto.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import pl.koszela.jan.domain.impl.SpecialPrice;
+import pl.koszela.jan.domain.Price;
 import pl.koszela.jan.persistence.dto.PriceDTO;
 
 /**
@@ -12,20 +12,19 @@ import pl.koszela.jan.persistence.dto.PriceDTO;
  */
 public class DefaultPriceMapper {
 
-  public static PriceDTO map(SpecialPrice specialPrice) {
-    DefaultPriceDTO dto =  new DefaultPriceDTO();
-    dto.setId(specialPrice.getId());
-    dto.setAmount(specialPrice.getAmount());
-    dto.setPrice(specialPrice.getPrice());
+  public static PriceDTO map(Price price) {
+    DefaultPriceDTO dto = new DefaultPriceDTO();
+    dto.setId(price.getId());
+    dto.setPrice(price.getPrice());
 
     return dto;
   }
 
-  public static List<PriceDTO> map(List<SpecialPrice> specialPrices) {
+  public static List<PriceDTO> map(List<Price> prices) {
     List<PriceDTO> dtos = new ArrayList<PriceDTO>();
 
-    for (SpecialPrice specialPrice : specialPrices) {
-      dtos.add(map(specialPrice));
+    for (Price price : prices) {
+      dtos.add(map(price));
     }
 
     return dtos;

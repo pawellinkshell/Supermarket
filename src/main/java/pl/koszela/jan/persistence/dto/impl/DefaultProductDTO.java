@@ -14,10 +14,6 @@ public class DefaultProductDTO implements ProductDTO {
   private int id;
   @SerializedName("item")
   private String item;
-  @SerializedName("unitPrice")
-  private double unitPrice;
-  @SerializedName("currency")
-  private String currency;
   @SerializedName("multipricing")
   private boolean multipricing;
 
@@ -42,26 +38,6 @@ public class DefaultProductDTO implements ProductDTO {
   }
 
   @Override
-  public double getUnitPrice() {
-    return this.unitPrice;
-  }
-
-  @Override
-  public void setUnitPrice(double unitPrice) {
-    this.unitPrice = unitPrice;
-  }
-
-  @Override
-  public String getCurrency() {
-    return this.currency;
-  }
-
-  @Override
-  public void setCurrency(String currency) {
-    this.currency = currency;
-  }
-
-  @Override
   public boolean isMultipricing() {
     return this.multipricing;
   }
@@ -73,11 +49,9 @@ public class DefaultProductDTO implements ProductDTO {
 
   @Override
   public String toString() {
-    return "\nDefaultProductDTO{" +
+    return "DefaultProductDTO{" +
         "id=" + id +
         ", item='" + item + '\'' +
-        ", unitPrice=" + unitPrice +
-        ", currency='" + currency + '\'' +
         ", multipricing=" + multipricing +
         '}';
   }

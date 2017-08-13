@@ -20,11 +20,13 @@ public class JsonConverter {
 
   public static final Gson GSON = new Gson();
   private static final String PRODUCT_FILE = "MOCK_DATA_Products.json";
+  private static final String NORMAL_PRICES_FILE = "MOCK_DATA_Prices.json";
   private static final String SPECIAL_PRICES_FILE = "MOCK_DATA_Special_Prices.json";
   public String resourcesSamplePath = "src\\main\\resources\\sample\\";
 
   private DefaultProductDTO[] productDTOS;
   private DefaultPriceDTO[] specialPriceDTOS;
+  private DefaultPriceDTO[] normalPriceDTOS;
 
   public JsonConverter(String resourcePath) {
     this.resourcesSamplePath = resourcePath;
@@ -32,6 +34,7 @@ public class JsonConverter {
 
   public void convert() {
     convertProducts();
+    convertNormalPrices();
     convertSpecialPrices();
   }
 
@@ -42,9 +45,6 @@ public class JsonConverter {
     } catch (IOException e) {
       e.printStackTrace();
     }
-//    System.out.println("Current dir:"+current);
-//    String currentDir = System.getProperty("user.dir");
-//    System.out.println("Current dir using System:" +currentDir);
 
     try (Reader reader = new FileReader(resourcesSamplePath + PRODUCT_FILE)) {
 
@@ -67,6 +67,17 @@ public class JsonConverter {
     }
   }
 
+  private void convertNormalPrices() {
+    try (Reader reader = new FileReader(resourcesSamplePath + NORMAL_PRICES_FILE)) {
+
+      // Convert JSON to Java Object
+      normalPriceDTOS = GSON.fromJson(reader, DefaultPriceDTO[].class);
+
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
   public ProductDTO[] getProductArray() {
     return this.productDTOS;
   }
@@ -83,4 +94,11 @@ public class JsonConverter {
     return Arrays.asList(this.specialPriceDTOS);
   }
 
+  public List<PriceDTO> getNormalPriceList() {
+    return Arrays.asList(normalPriceDTOS);
+  }
+
+  public PriceDTO[] getNormalPriceArray() {
+    return this.normalPriceDTOS;
+  }
 }

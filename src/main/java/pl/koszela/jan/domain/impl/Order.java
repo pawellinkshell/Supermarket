@@ -1,6 +1,10 @@
 package pl.koszela.jan.domain.impl;
 
 import java.util.Objects;
+import org.springframework.beans.factory.annotation.Autowired;
+import pl.koszela.jan.domain.Price;
+import pl.koszela.jan.persistence.dto.PriceDTO;
+import pl.koszela.jan.service.PriceService;
 
 /**
  * Created on 12.08.2017.
@@ -10,18 +14,22 @@ import java.util.Objects;
 public class Order {
 
   private Product product;
+  private Price price;
   private int quantity;
 
-  public Order(String productName, int quantity) {
-    this.product = Product.builder()
-        .item(productName)
-        .build();
-    this.quantity = quantity;
-  }
 
+  public Order(Product product, int quantity) {
+    this.product = product;
+    this.quantity = quantity;
+    this.price = null;
+  }
 
   public Product getProduct() {
     return this.product;
+  }
+
+  public Price getPrice() {
+    return price;
   }
 
   public int getQuantity() {
@@ -30,6 +38,10 @@ public class Order {
 
   public void setProduct(Product productName) {
     this.product = productName;
+  }
+
+  public void setPrice(Price price) {
+    this.price = price;
   }
 
   public void setQuantity(int quantity) {

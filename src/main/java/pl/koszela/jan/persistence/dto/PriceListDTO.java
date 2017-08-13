@@ -11,5 +11,5 @@ public interface PriceListDTO {
 
   List<PriceDTO> getPrices();
 
-  void setPrices(List<PriceDTO> specialPrices);
+  void setPrices(List<PriceDTO> prices);
 }
