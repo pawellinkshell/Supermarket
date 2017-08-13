@@ -9,25 +9,27 @@ import java.util.Objects;
  */
 public class Order {
 
-  private String productName;
+  private Product product;
   private int quantity;
 
   public Order(String productName, int quantity) {
-    this.productName = productName;
+    this.product = Product.builder()
+        .item(productName)
+        .build();
     this.quantity = quantity;
   }
 
 
-  public String getProductName() {
-    return this.productName;
+  public Product getProduct() {
+    return this.product;
   }
 
   public int getQuantity() {
     return this.quantity;
   }
 
-  public void setProductName(String productName) {
-    this.productName = productName;
+  public void setProduct(Product productName) {
+    this.product = productName;
   }
 
   public void setQuantity(int quantity) {
@@ -43,11 +45,19 @@ public class Order {
       return false;
     }
     Order order = (Order) o;
-    return Objects.equals(productName, order.productName);
+    return Objects.equals(product, order.product);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(productName, quantity);
+    return Objects.hash(product, quantity);
+  }
+
+  @Override
+  public String toString() {
+    return "Order{" +
+        "productName='" + product + '\'' +
+        ", quantity=" + quantity +
+        '}';
   }
 }
