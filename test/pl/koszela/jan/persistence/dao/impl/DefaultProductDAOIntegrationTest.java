@@ -57,18 +57,6 @@ public class DefaultProductDAOIntegrationTest {
   }
 
 
-  @Test
-  public void shouldGetItemsWhichHaveCurrencyInEuro() {
-    //given
-    List<ProductDTO> expectedList = getProductsWithEURCurrency();
-
-    // when
-    when(givenProductDAO.getItemsByMultipricing(true)).thenReturn(expectedList);
-
-    // then
-    assertThat(givenProductDAO.getItemsByMultipricing(true)).hasSize(expectedList.size());
-  }
-
   private List<ProductDTO> getProductListFromJson() {
     List<ProductDTO> expected = Lists.newArrayList();
 
@@ -97,19 +85,4 @@ public class DefaultProductDAOIntegrationTest {
     return expected.get(i).isMultipricing() == false;
   }
 
-  private List<ProductDTO> getProductsWithEURCurrency() {
-    List<ProductDTO> expected = getProductListFromJson();
-
-    for (int i = 0; i < expected.size(); i++) {
-      if (isCurrencyDifferentThanEUR(expected, i)) {
-        expected.remove(i);
-      }
-    }
-
-    return expected;
-  }
-
-  private boolean isCurrencyDifferentThanEUR(List<ProductDTO> expected, int i) {
-    return !expected.get(i).getCurrency().equals("EUR");
-  }
 }

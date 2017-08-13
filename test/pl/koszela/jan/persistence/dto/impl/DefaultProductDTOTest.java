@@ -38,8 +38,6 @@ public class DefaultProductDTOTest {
     DefaultProductDTO productDTO = new DefaultProductDTO();
     productDTO.setId(id);
     productDTO.setItem(item);
-    productDTO.setUnitPrice(unitPrice);
-    productDTO.setCurrency(currency);
     productDTO.setMultipricing(multipricing);
 
     return productDTO;
@@ -53,16 +51,6 @@ public class DefaultProductDTOTest {
   @Test
   public void shouldGetItem() {
     assertThat(givenProductDTO.getItem()).isEqualTo(ITEM);
-  }
-
-  @Test
-  public void shouldGetUnitPrice() {
-    assertThat(givenProductDTO.getUnitPrice()).isEqualTo(UNIT_PRICE);
-  }
-
-  @Test
-  public void shouldGetCurrency() {
-    assertThat(givenProductDTO.getCurrency()).isEqualTo(CURRENCY);
   }
 
   @Test

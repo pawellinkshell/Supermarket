@@ -64,40 +64,6 @@ public class DefaultProductDAOTest {
     assertThat(givenProductDAO.getItemsByMultipricing(true)).hasSize(expectedList.size());
   }
 
-  @Test
-  public void shouldGetItemsWhichHaveCurrencyInEuro() {
-    //given
-    List<ProductDTO> expectedList = getProductsWithEURCurrency();
-
-    // when
-    when(givenProductDAO.getItemsByMultipricing(true)).thenReturn(expectedList);
-
-    // then
-    assertThat(givenProductDAO.getItemsByMultipricing(true)).hasSize(expectedList.size());
-  }
-
-  private List<ProductDTO> getProductsWithEURCurrency() {
-    List<ProductDTO> expected = Lists.newArrayList();
-
-    for (int i = 0; i < SIZE; i++) {
-      expected.add(
-          createProductDTO(i, ITEM + "_" + i, UNIT_PRICE, (i % 2 == 0) ? CURRENCY : PLN_CURRENCY,
-              MULTIPRICING));
-    }
-
-    for (int i = 0; i < expected.size(); i++) {
-      if (isPLNCurrency(expected, i)) {
-        expected.remove(i);
-      }
-    }
-
-    return expected;
-  }
-
-  private boolean isPLNCurrency(List<ProductDTO> expected, int i) {
-    return expected.get(i).getCurrency() == PLN_CURRENCY;
-  }
-
   private List<ProductDTO> getProductsWithMultipricing() {
     List<ProductDTO> expected = Lists.newArrayList();
 
@@ -135,8 +101,6 @@ public class DefaultProductDAOTest {
     DefaultProductDTO productDTO = new DefaultProductDTO();
     productDTO.setId(id);
     productDTO.setItem(item);
-    productDTO.setUnitPrice(unitPrice);
-    productDTO.setCurrency(currency);
     productDTO.setMultipricing(multipricing);
 
     return productDTO;
