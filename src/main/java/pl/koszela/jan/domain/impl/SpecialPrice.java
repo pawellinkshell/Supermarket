@@ -58,6 +58,16 @@ public class SpecialPrice implements Price {
     this.currency = currency;
   }
 
+  @Override
+  public String toString() {
+    return "SpecialPrice{" +
+        "id=" + id +
+        ", amount=" + amount +
+        ", unit=" + unit +
+        ", currency='" + currency + '\'' +
+        '}';
+  }
+
   public static class SpecialPriceBuilder {
 
     private int id;

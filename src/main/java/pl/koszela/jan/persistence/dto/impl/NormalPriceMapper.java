@@ -13,7 +13,7 @@ import pl.koszela.jan.persistence.dto.PriceDTO;
  */
 public class NormalPriceMapper {
 
-  public static PriceDTO map(Price price) {
+  public static NormalPriceDTO map(Price price) {
     NormalPriceDTO dto = new NormalPriceDTO();
     dto.setId(price.getId());
     dto.setPrice(price.getUnit());
@@ -21,7 +21,7 @@ public class NormalPriceMapper {
     return dto;
   }
 
-  public static Price map(PriceDTO dto) {
+  public static Price map(NormalPriceDTO dto) {
     return NormalPrice.builder()
         .id(dto.getId())
         .price(dto.getPrice())
@@ -29,8 +29,8 @@ public class NormalPriceMapper {
         .build();
   }
 
-  public static List<PriceDTO> map(List<Price> prices) {
-    List<PriceDTO> dtos = new ArrayList<PriceDTO>();
+  public static List<NormalPriceDTO> map(List<Price> prices) {
+    List<NormalPriceDTO> dtos = new ArrayList<NormalPriceDTO>();
 
     for (Price price : prices) {
       dtos.add(map(price));
@@ -40,10 +40,10 @@ public class NormalPriceMapper {
   }
 
 
-  public static List<Price> productMap(List<PriceDTO> dtos) {
+  public static List<Price> productMap(List<NormalPriceDTO> dtos) {
     List<Price> prices = new ArrayList<Price>();
 
-    for (PriceDTO dto : dtos) {
+    for (NormalPriceDTO dto : dtos) {
       prices.add(map(dto));
     }
 

@@ -92,11 +92,11 @@ public class JsonConverter {
     return this.specialPriceDTOS;
   }
 
-  public List<PriceDTO> getSpecialPriceList() {
+  public List<SpecialPriceDTO> getSpecialPriceList() {
     return Arrays.asList(this.specialPriceDTOS);
   }
 
-  public List<PriceDTO> getNormalPriceList() {
+  public List<NormalPriceDTO> getNormalPriceList() {
     return Arrays.asList(normalPriceDTOS);
   }
 
