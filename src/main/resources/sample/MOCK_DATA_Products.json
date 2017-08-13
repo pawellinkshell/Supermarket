@@ -2,106 +2,76 @@
   {
     "id": 1,
     "item": "Civic",
-    "unitPrice": 72,
-    "currency": "EUR",
     "isMultipricing": true
   },
   {
     "id": 2,
     "item": "Prius",
-    "unitPrice": 81,
-    "currency": "EUR",
     "isMultipricing": false
   },
   {
     "id": 3,
     "item": "Z4 M",
-    "unitPrice": 61,
-    "currency": "EUR",
     "isMultipricing": true
   },
   {
     "id": 4,
     "item": "Jimmy",
-    "unitPrice": 34,
-    "currency": "EUR",
     "isMultipricing": true
   },
   {
     "id": 5,
     "item": "Edge",
-    "unitPrice": 2,
-    "currency": "EUR",
     "isMultipricing": true
   },
   {
     "id": 6,
     "item": "200",
-    "unitPrice": 93,
-    "currency": "EUR",
     "isMultipricing": false
   },
   {
     "id": 7,
     "item": "Lancer",
-    "unitPrice": 9,
-    "currency": "EUR",
     "isMultipricing": true
   },
   {
     "id": 8,
     "item": "62",
-    "unitPrice": 74,
-    "currency": "EUR",
     "isMultipricing": true
   },
   {
     "id": 9,
     "item": "Sephia",
-    "unitPrice": 18,
-    "currency": "EUR",
     "isMultipricing": false
   },
   {
     "id": 10,
     "item": "Cutlass Supreme",
-    "unitPrice": 28,
-    "currency": "EUR",
     "isMultipricing": true
   },
   {
     "id": 11,
     "item": "Somerset",
-    "unitPrice": 52,
-    "currency": "EUR",
     "isMultipricing": false
   },
   {
     "id": 12,
     "item": "Expedition",
-    "unitPrice": 90,
-    "currency": "EUR",
     "isMultipricing": true
   },
   {
     "id": 13,
     "item": "Freelander",
-    "unitPrice": 11,
-    "currency": "EUR",
     "isMultipricing": false
   },
   {
     "id": 14,
     "item": "Express 2500",
-    "unitPrice": 22,
-    "currency": "EUR",
     "isMultipricing": true
   },
   {
     "id": 15,
     "item": "Tribute",
-    "unitPrice": 33,
-    "currency": "EUR",
     "isMultipricing": false
   }
 ]
