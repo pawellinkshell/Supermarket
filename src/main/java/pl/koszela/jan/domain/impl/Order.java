@@ -1,5 +1,6 @@
 package pl.koszela.jan.domain.impl;
 
+import java.util.Objects;
 import pl.koszela.jan.domain.Price;
 
 /**
@@ -73,5 +74,25 @@ public class Order {
         ", totalPrice=" + totalPrice +
         ", specialOffer=" + specialOffer +
         '}';
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Order order = (Order) o;
+    return Objects.equals(product, order.product);
+  }
+
+  @Override
+  public int hashCode() {
+    int prime = 13;
+
+    int result = prime + product.getId() + product.getName().hashCode();
+    return result;
   }
 }

@@ -1,12 +1,10 @@
 package pl.koszela.jan.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.koszela.jan.domain.Price;
 import pl.koszela.jan.domain.impl.Cart;
 import pl.koszela.jan.domain.impl.Order;
 import pl.koszela.jan.service.CartService;
-import pl.koszela.jan.service.ProductService;
 
 /**
  * Created on 13.08.2017.

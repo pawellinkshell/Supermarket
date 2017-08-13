@@ -1,6 +1,7 @@
 package pl.koszela.jan.domain.impl;
 
-import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.Set;
 import pl.koszela.jan.domain.Price;
 
@@ -14,14 +15,35 @@ public class Cart {
   private Set<Order> orders;
 
   public Cart() {
-    this.orders = new HashSet<>();
+    this.orders = new LinkedHashSet<>();
   }
 
   public Set<Order> getOrders() {
     return this.orders;
   }
+
   public void add(Order order) {
-    orders.add(order);
+    if (order.getQuantity() > 0) {
+
+      if (orders.contains(order)){
+        removeOrder(order);
+      }
+      orders.add(order);
+
+    } else {
+      if (orders.contains(order)) {
+        removeOrder(order);
+      }
+    }
+  }
+
+  private void removeOrder(Order order) {
+    for (Iterator<Order> i = this.orders.iterator(); i.hasNext(); ) {
+      if (i.next().getProduct() == order.getProduct()) {
+        i.remove();
+        break;
+      }
+    }
   }
 
   public void remove(Order order) {

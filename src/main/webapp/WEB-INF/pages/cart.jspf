@@ -84,6 +84,7 @@
                             ${cart.price.unit}
                         </strong></h3>
                     </td>
+                    <td>  </td>
                 </tr>
                 <tr>
                     <td>  </td>
