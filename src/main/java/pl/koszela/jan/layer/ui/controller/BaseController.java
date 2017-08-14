@@ -77,12 +77,12 @@ public class BaseController {
 
     if (name.equals(PathConstans.REMOVE_ACTION.getValue())) {
       if (product != null) {
-        DefaultOrderDTO foundOrderDTO = orderService.findOrderByName(product);
+        DefaultOrderDTO foundOrderDTO = orderService.getOrderByName(product);
         cartService.removeOrder(foundOrderDTO);
       }
     } else if (name.equals(PathConstans.ADD_ACTION.getValue())) {
       if (product != null) {
-        DefaultOrderDTO foundOrderDTO = orderService.findOrderByName(product);
+        DefaultOrderDTO foundOrderDTO = orderService.getOrderByName(product);
 
         DefaultOrderDTO newOrderDTO = null;
         if (foundOrderDTO == null) {
@@ -136,7 +136,7 @@ public class BaseController {
 
     if (name.equals(PathConstans.REMOVE_ACTION.getValue())) {
       if (product != null) {
-        DefaultOrderDTO foundOrderDTO = orderService.findOrderByName(product);
+        DefaultOrderDTO foundOrderDTO = orderService.getOrderByName(product);
         if (foundOrderDTO != null) {
           orderService.removeOrder(foundOrderDTO);
           cartService.removeOrder(foundOrderDTO);
@@ -144,7 +144,7 @@ public class BaseController {
       }
     } else if (name.equals(PathConstans.ADD_ACTION.getValue())) {
       if (product != null) {
-        DefaultOrderDTO foundOrderDTO = orderService.findOrderByName(product);
+        DefaultOrderDTO foundOrderDTO = orderService.getOrderByName(product);
 
         DefaultOrderDTO newOrderDTO = null;
         if (foundOrderDTO == null) {

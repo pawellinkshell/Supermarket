@@ -1,6 +1,6 @@
 package pl.koszela.jan.layer.service;
 
-import pl.koszela.jan.layer.facade.dto.impl.DefaultOrderDTO;
+import pl.koszela.jan.layer.model.domain.impl.Order;
 
 /**
  * Created on 12.08.2017.
@@ -9,12 +9,12 @@ import pl.koszela.jan.layer.facade.dto.impl.DefaultOrderDTO;
  */
 public interface OrderService {
 
-  DefaultOrderDTO findOrderByName(String productName);
+  Order getOrderByName(String productName);
 
-  boolean createOrder(DefaultOrderDTO orderDTO);
+  boolean createOrder(Order orderDTO);
 
-  void updateOrder(DefaultOrderDTO orderDTO);
+  boolean updateOrder(Order orderDTO);
 
-  boolean removeOrder(DefaultOrderDTO removedOrderDTO);
+  boolean removeOrder(Order removedOrderDTO);
 
 }
