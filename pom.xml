@@ -6,7 +6,7 @@
 	<groupId>pl.koszela.jan</groupId>
 	<artifactId>Supermarket</artifactId>
 	<packaging>war</packaging>
-	<version>0.1.0</version>
+	<version>0.1.1</version>
 
 	<name>Supermarket Maven Webapp</name>
 	<url>http://maven.apache.org</url>
