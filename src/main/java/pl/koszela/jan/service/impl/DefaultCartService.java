@@ -14,29 +14,29 @@ import pl.koszela.jan.service.CartService;
 @Service("cartService")
 public class DefaultCartService implements CartService {
 
-  private static CartDAO cartDAO;
+  private static CartDAO cart;
 
   public DefaultCartService() {
-    this.cartDAO = new CartDAO();
+    this.cart = new CartDAO();
   }
 
   @Override
   public CartDAO getCart() {
-    return this.cartDAO;
+    return this.cart;
   }
 
   @Override
   public void addOrder(OrderDTO orderDTO) {
-    cartDAO.add(orderDTO);
+    cart.add(orderDTO);
   }
 
   @Override
   public void removeOrder(OrderDTO orderDTO) {
-    cartDAO.remove(orderDTO);
+    cart.remove(orderDTO);
   }
 
   @Override
   public Price getCartPrice() {
-    return cartDAO.getPrice();
+    return cart.getPrice();
   }
 }
