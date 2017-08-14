@@ -14,13 +14,13 @@ import pl.koszela.jan.persistence.converter.Converter;
  *
  * @author Jan Koszela
  */
-public class JsonConverter implements Converter{
+public class JsonConverter implements Converter {
 
   public static final Gson GSON = new Gson();
   private static final String PRODUCT_FILE = "sample/MOCK_DATA_Products.json";
   private static final String NORMAL_PRICES_FILE = "sample/MOCK_DATA_Prices.json";
   private static final String SPECIAL_PRICES_FILE = "sample/MOCK_DATA_Special_Prices.json";
-  public static String resourcesSamplePath;
+  public static String resourcesSamplePath = null;
 
   public JsonConverter() {
     this.resourcesSamplePath = getClass().getClassLoader().getResource("/").getPath();
