@@ -1,10 +1,12 @@
 package pl.koszela.jan.service.impl;
 
+import java.util.Arrays;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.koszela.jan.persistence.converter.JsonConverter;
-import pl.koszela.jan.persistence.dto.impl.NormalPriceDTO;
-import pl.koszela.jan.persistence.dto.impl.SpecialPriceDTO;
+import pl.koszela.jan.domain.impl.NormalPrice;
+import pl.koszela.jan.domain.impl.SpecialPrice;
+import pl.koszela.jan.service.ModelService;
 import pl.koszela.jan.service.PriceService;
 
 /**
@@ -15,24 +17,16 @@ import pl.koszela.jan.service.PriceService;
 @Service("priceService")
 public class DefaultPriceService implements PriceService {
 
-  private JsonConverter converter;
+  @Autowired
+  private ModelService modelService;
 
-  public DefaultPriceService() {
-    this.converter = new JsonConverter(getSampleDataPath());
-    converter.convert();
-  }
-
-  private String getSampleDataPath() {
-    return getClass().getClassLoader().getResource("/").getPath() + "sample/";
+  @Override
+  public List<NormalPrice> getNormalPrices() {
+    return Arrays.asList(modelService.getNormalPrices());
   }
 
   @Override
-  public List<NormalPriceDTO> getNormalPrices() {
-    return converter.getNormalPriceList();
-  }
-
-  @Override
-  public List<SpecialPriceDTO> getSpecialPrices() {
-    return converter.getSpecialPriceList();
+  public List<SpecialPrice> getSpecialPrices() {
+    return Arrays.asList(modelService.getSpecialPrices());
   }
 }

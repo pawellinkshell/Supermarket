@@ -2,15 +2,12 @@ package pl.koszela.jan.service.impl;
 
 import java.util.HashMap;
 import java.util.Map;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Service;
 import pl.koszela.jan.domain.Price;
 import pl.koszela.jan.domain.impl.Product;
-import pl.koszela.jan.persistence.converter.JsonConverter;
+import pl.koszela.jan.persistence.converter.impl.JsonConverter;
 import pl.koszela.jan.persistence.dto.impl.DefaultProductMapper;
 import pl.koszela.jan.persistence.dto.impl.NormalPriceMapper;
-import pl.koszela.jan.service.PriceService;
 import pl.koszela.jan.service.ProductService;
 
 /**
@@ -27,27 +24,27 @@ public class DefaultProductService implements ProductService {
 
   public DefaultProductService() {
     converter = new JsonConverter(getSampleDataPath());
-    converter.convert();
+//    converter.convert();
 
     products = new HashMap<>();
 
-    for (Product product : DefaultProductMapper
-        .productMap(converter
-            .getProductList())) {
-      products.put(product,
-          getStockPrice(
-              product.getId()));
-    }
+//    for (Product product : DefaultProductMapper
+//        .productMap(converter
+//            .getProductList())) {
+//      products.put(product,
+//          getStockPrice(
+//              product.getId()));
+//    }
 
   }
 
   private Price getStockPrice(int id) {
-    for (Price price : NormalPriceMapper
-        .productMap(converter.getNormalPriceList())) {
-      if (price.getId() == id) {
-        return price;
-      }
-    }
+//    for (Price price : NormalPriceMapper
+//        .productMap(converter.getNormalPriceList())) {
+//      if (price.getId() == id) {
+//        return price;
+//      }
+//    }
     return null;
   }
 

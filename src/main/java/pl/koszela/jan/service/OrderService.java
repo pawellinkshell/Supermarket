@@ -1,7 +1,6 @@
 package pl.koszela.jan.service;
 
-import pl.koszela.jan.domain.impl.Order;
-import pl.koszela.jan.domain.impl.Product;
+import pl.koszela.jan.persistence.dto.impl.OrderDTO;
 
 /**
  * Created on 12.08.2017.
@@ -10,12 +9,12 @@ import pl.koszela.jan.domain.impl.Product;
  */
 public interface OrderService {
 
-  Order findOrderByName(String productName);
+  OrderDTO findOrderByName(String productName);
 
-  boolean createOrder(Order order);
+  boolean createOrder(OrderDTO orderDTO);
 
-  void updateOrder(Order order);
+  void updateOrder(OrderDTO orderDTO);
 
-  boolean removeOrder(Order removedOrder);
+  boolean removeOrder(OrderDTO removedOrderDTO);
 
 }

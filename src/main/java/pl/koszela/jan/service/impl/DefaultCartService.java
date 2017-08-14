@@ -2,8 +2,8 @@ package pl.koszela.jan.service.impl;
 
 import org.springframework.stereotype.Service;
 import pl.koszela.jan.domain.Price;
-import pl.koszela.jan.domain.impl.Cart;
-import pl.koszela.jan.domain.impl.Order;
+import pl.koszela.jan.persistence.dao.impl.CartDAO;
+import pl.koszela.jan.persistence.dto.impl.OrderDTO;
 import pl.koszela.jan.service.CartService;
 
 /**
@@ -14,29 +14,29 @@ import pl.koszela.jan.service.CartService;
 @Service("cartService")
 public class DefaultCartService implements CartService {
 
-  private static Cart cart;
+  private static CartDAO cartDAO;
 
   public DefaultCartService() {
-    this.cart = new Cart();
+    this.cartDAO = new CartDAO();
   }
 
   @Override
-  public Cart getCart() {
-    return this.cart;
+  public CartDAO getCart() {
+    return this.cartDAO;
   }
 
   @Override
-  public void addOrder(Order order) {
-    cart.add(order);
+  public void addOrder(OrderDTO orderDTO) {
+    cartDAO.add(orderDTO);
   }
 
   @Override
-  public void removeOrder(Order order) {
-    cart.remove(order);
+  public void removeOrder(OrderDTO orderDTO) {
+    cartDAO.remove(orderDTO);
   }
 
   @Override
   public Price getCartPrice() {
-    return cart.getPrice();
+    return cartDAO.getPrice();
   }
 }

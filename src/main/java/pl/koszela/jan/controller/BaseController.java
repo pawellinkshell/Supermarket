@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import pl.koszela.jan.constans.AttributeConstans;
 import pl.koszela.jan.constans.PathConstans;
-import pl.koszela.jan.domain.impl.Order;
+import pl.koszela.jan.persistence.dto.impl.OrderDTO;
 import pl.koszela.jan.service.CartService;
 import pl.koszela.jan.service.OrderService;
 import pl.koszela.jan.service.ProductService;
@@ -77,29 +77,29 @@ public class BaseController {
 
     if (name.equals(PathConstans.REMOVE_ACTION.getValue())) {
       if (product != null) {
-        Order foundOrder = orderService.findOrderByName(product);
-        cartService.removeOrder(foundOrder);
+        OrderDTO foundOrderDTO = orderService.findOrderByName(product);
+        cartService.removeOrder(foundOrderDTO);
       }
     } else if (name.equals(PathConstans.ADD_ACTION.getValue())) {
       if (product != null) {
-        Order foundOrder = orderService.findOrderByName(product);
+        OrderDTO foundOrderDTO = orderService.findOrderByName(product);
 
-        Order newOrder = null;
-        if (foundOrder == null) {
-          newOrder = new Order(
+        OrderDTO newOrderDTO = null;
+        if (foundOrderDTO == null) {
+          newOrderDTO = new OrderDTO(
               productService.getProductByName(product), Integer.valueOf(quantity));
-          orderService.createOrder(newOrder);
+          orderService.createOrder(newOrderDTO);
         } else {
-          if (foundOrder.getQuantity() != Integer.valueOf(quantity)) {
-            newOrder = new Order(productService.getProductByName(product),
+          if (foundOrderDTO.getQuantity() != Integer.valueOf(quantity)) {
+            newOrderDTO = new OrderDTO(productService.getProductByName(product),
                 Integer.valueOf(quantity));
-            orderService.updateOrder(newOrder);
+            orderService.updateOrder(newOrderDTO);
           } else {
-            newOrder = foundOrder;
+            newOrderDTO = foundOrderDTO;
           }
         }
 
-        cartService.addOrder(newOrder);
+        cartService.addOrder(newOrderDTO);
       }
     }
 
@@ -136,32 +136,32 @@ public class BaseController {
 
     if (name.equals(PathConstans.REMOVE_ACTION.getValue())) {
       if (product != null) {
-        Order foundOrder = orderService.findOrderByName(product);
-        if (foundOrder != null) {
-          orderService.removeOrder(foundOrder);
-          cartService.removeOrder(foundOrder);
+        OrderDTO foundOrderDTO = orderService.findOrderByName(product);
+        if (foundOrderDTO != null) {
+          orderService.removeOrder(foundOrderDTO);
+          cartService.removeOrder(foundOrderDTO);
         }
       }
     } else if (name.equals(PathConstans.ADD_ACTION.getValue())) {
       if (product != null) {
-        Order foundOrder = orderService.findOrderByName(product);
+        OrderDTO foundOrderDTO = orderService.findOrderByName(product);
 
-        Order newOrder = null;
-        if (foundOrder == null) {
-          newOrder = new Order(
+        OrderDTO newOrderDTO = null;
+        if (foundOrderDTO == null) {
+          newOrderDTO = new OrderDTO(
               productService.getProductByName(product), Integer.valueOf(quantity));
-          orderService.createOrder(newOrder);
+          orderService.createOrder(newOrderDTO);
         } else {
-          if (foundOrder.getQuantity() != Integer.valueOf(quantity)) {
-            newOrder = new Order(productService.getProductByName(product),
+          if (foundOrderDTO.getQuantity() != Integer.valueOf(quantity)) {
+            newOrderDTO = new OrderDTO(productService.getProductByName(product),
                 Integer.valueOf(quantity));
-            orderService.updateOrder(newOrder);
+            orderService.updateOrder(newOrderDTO);
           } else {
-            newOrder = foundOrder;
+            newOrderDTO = foundOrderDTO;
           }
         }
 
-        cartService.addOrder(newOrder);
+        cartService.addOrder(newOrderDTO);
       }
     }
 

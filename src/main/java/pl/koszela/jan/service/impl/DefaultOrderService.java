@@ -6,12 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.koszela.jan.domain.Price;
-import pl.koszela.jan.domain.impl.NormalPrice;
-import pl.koszela.jan.domain.impl.Order;
+import pl.koszela.jan.persistence.dto.impl.OrderDTO;
 import pl.koszela.jan.domain.impl.Product;
 import pl.koszela.jan.domain.impl.SpecialPrice;
-import pl.koszela.jan.persistence.dto.PriceDTO;
-import pl.koszela.jan.persistence.dto.impl.SpecialPriceDTO;
 import pl.koszela.jan.service.OrderService;
 import pl.koszela.jan.service.PriceService;
 
@@ -23,49 +20,49 @@ import pl.koszela.jan.service.PriceService;
 @Service("orderService")
 public class DefaultOrderService implements OrderService {
 
-  private static List<Order> orders;
+  private static List<OrderDTO> orderDTOS;
 
   @Autowired
   PriceService priceService;
 
   public DefaultOrderService() {
-    this.orders = new ArrayList<>();
+    this.orderDTOS = new ArrayList<>();
   }
 
   @Override
-  public Order findOrderByName(String productName) {
-    for (Iterator<Order> i = orders.iterator(); i.hasNext(); ) {
-      Order currentOrder = i.next();
-      if (isSameProduct(productName, currentOrder)) {
-        return currentOrder;
+  public OrderDTO findOrderByName(String productName) {
+    for (Iterator<OrderDTO> i = orderDTOS.iterator(); i.hasNext(); ) {
+      OrderDTO currentOrderDTO = i.next();
+      if (isSameProduct(productName, currentOrderDTO)) {
+        return currentOrderDTO;
       }
     }
     return null;
   }
 
-  private boolean isSameProduct(String productName, Order currentOrder) {
-    return productName.equals(currentOrder.getProduct().getName());
+  private boolean isSameProduct(String productName, OrderDTO currentOrderDTO) {
+    return productName.equals(currentOrderDTO.getProduct().getName());
   }
 
   @Override
-  public boolean createOrder(Order order) {
-    if (order.getQuantity() > 0) {
-      order.setStockPrice(getStockPrice(order.getProduct()));
+  public boolean createOrder(OrderDTO orderDTO) {
+    if (orderDTO.getQuantity() > 0) {
+      orderDTO.setStockPrice(getStockPrice(orderDTO.getProduct()));
 
-      Price totalPrice = calculateTotalPrice(order.getProduct(), order.getQuantity());
-      order.setTotalPrice(totalPrice);
+      Price totalPrice = calculateTotalPrice(orderDTO.getProduct(), orderDTO.getQuantity());
+      orderDTO.setTotalPrice(totalPrice);
 
       if (totalPrice instanceof SpecialPrice) {
-        order.setSpecialOffer(true);
+        orderDTO.setSpecialOffer(true);
       }
 
-      return this.orders.add(order);
+      return this.orderDTOS.add(orderDTO);
 
     } else {
 
-      int idFromOrders = getIdFromOrders(order);
+      int idFromOrders = getIdFromOrders(orderDTO);
       if (idFromOrders > Integer.MIN_VALUE) {
-        orders.remove(idFromOrders);
+        orderDTOS.remove(idFromOrders);
       }
     }
 
@@ -86,57 +83,53 @@ public class DefaultOrderService implements OrderService {
   private Price getSpecialPrice(Product product, int quantity) {
     Price price = null;
 
-    for (SpecialPriceDTO dto : priceService.getSpecialPrices()) {
-      if (dto.getId() == product.getId() &&
-          dto.getAmount() == quantity) {
-        price = SpecialPrice.builder()
-            .id(dto.getId())
-            .amount(dto.getAmount())
-            .price(dto.getPrice())
-            .currency(dto.getCurrency())
-            .build();
-        break;
-      }
-    }
+//    for (SpecialPriceDTO dto : priceService.getSpecialPrices()) {
+//      if (dto.getId() == product.getId() &&
+//          dto.getAmount() == quantity) {
+//        price = new SpecialPrice(dto.getId(),
+//            dto.getAmount(),
+//            dto.getPrice(),
+//            dto.getCurrency());
+//        break;
+//      }
+//    }
     return price;
   }
 
   private Price getStockPrice(Product product) {
     Price price = null;
 
-    for (PriceDTO dto : priceService.getNormalPrices()) {
-      if (dto.getId() == product.getId()) {
-        price = NormalPrice.builder()
-            .id(dto.getId())
-            .price(dto.getPrice())
-            .currency(dto.getCurrency())
-            .build();
-        break;
-      }
-    }
+//    for (PriceDTO dto : priceService.getNormalPrices()) {
+//      if (dto.getId() == product.getId()) {
+//        price = new NormalPrice(dto.getId(),
+//            dto.getPrice(),
+//            dto.getCurrency());
+//        break;
+//      }
+//    }
     return price;
   }
 
   @Override
-  public void updateOrder(Order newOrder) {
-    Order foundOrder = findOrderByName(newOrder.getProduct().getName());
-    if (foundOrder != null) {
-      int idFromOrders = getIdFromOrders(foundOrder);
+  public void updateOrder(OrderDTO newOrderDTO) {
+    OrderDTO foundOrderDTO = findOrderByName(newOrderDTO.getProduct().getName());
+    if (foundOrderDTO != null) {
+      int idFromOrders = getIdFromOrders(foundOrderDTO);
 
-      newOrder.setStockPrice(getStockPrice(newOrder.getProduct()));
+      newOrderDTO.setStockPrice(getStockPrice(newOrderDTO.getProduct()));
 
-      Price totalPrice = calculateTotalPrice(newOrder.getProduct(), newOrder.getQuantity());
-      newOrder.setTotalPrice(totalPrice);
+      Price totalPrice = calculateTotalPrice(newOrderDTO.getProduct(), newOrderDTO.getQuantity());
+      newOrderDTO.setTotalPrice(totalPrice);
 
       if (totalPrice instanceof SpecialPrice) {
-        newOrder.setSpecialOffer(true);
+        newOrderDTO.setSpecialOffer(true);
       }
 
       if (isOutOfArray(idFromOrders)) {
-        if (newOrder.getQuantity() > 0) {
-          orders.set(idFromOrders, newOrder);
+        if (newOrderDTO.getQuantity() > 0) {
+          orderDTOS.set(idFromOrders, newOrderDTO);
         } else {
-          orders.remove(idFromOrders);
+          orderDTOS.remove(idFromOrders);
         }
       }
 
@@ -147,9 +140,9 @@ public class DefaultOrderService implements OrderService {
     return idFromOrders > Integer.MIN_VALUE;
   }
 
-  private int getIdFromOrders(Order order) {
-    for (int i = 0; i < orders.size(); i++) {
-      if (orders.get(i).equals(order)) {
+  private int getIdFromOrders(OrderDTO orderDTO) {
+    for (int i = 0; i < orderDTOS.size(); i++) {
+      if (orderDTOS.get(i).equals(orderDTO)) {
         return i;
       }
     }
@@ -158,10 +151,10 @@ public class DefaultOrderService implements OrderService {
   }
 
   @Override
-  public boolean removeOrder(Order order) {
-    Order foundOrder = findOrderByName(order.getProduct().getName());
-    if (foundOrder != null) {
-      orders.remove(getIdFromOrders(foundOrder));
+  public boolean removeOrder(OrderDTO orderDTO) {
+    OrderDTO foundOrderDTO = findOrderByName(orderDTO.getProduct().getName());
+    if (foundOrderDTO != null) {
+      orderDTOS.remove(getIdFromOrders(foundOrderDTO));
 
       return true;
     }
