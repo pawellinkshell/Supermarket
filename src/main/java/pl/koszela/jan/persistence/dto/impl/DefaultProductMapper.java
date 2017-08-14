@@ -13,7 +13,7 @@ import pl.koszela.jan.persistence.dto.ProductDTO;
 public class DefaultProductMapper {
 
   public static ProductDTO map(Product product) {
-    DefaultProductDTO dto =  new DefaultProductDTO();
+    DefaultProductDTO dto = new DefaultProductDTO();
     dto.setId(product.getId());
     dto.setItem(product.getName());
     dto.setMultipricing(product.isMultipricing());
@@ -22,11 +22,7 @@ public class DefaultProductMapper {
   }
 
   public static Product map(ProductDTO dto) {
-    return Product.builder()
-        .id(dto.getId())
-        .name(dto.getItem())
-        .multipricing(dto.isMultipricing())
-        .build();
+    return new Product(dto.getId(), dto.getItem(), dto.isMultipricing());
   }
 
   public static List<ProductDTO> map(List<Product> products) {

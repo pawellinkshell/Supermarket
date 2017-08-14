@@ -1,6 +1,6 @@
 package pl.koszela.jan.persistence.dto.impl;
 
-import com.google.gson.annotations.SerializedName;
+import java.io.Serializable;
 import pl.koszela.jan.persistence.dto.ProductDTO;
 
 /**
@@ -8,13 +8,10 @@ import pl.koszela.jan.persistence.dto.ProductDTO;
  *
  * @author Jan Koszela
  */
-public class DefaultProductDTO implements ProductDTO {
+public class DefaultProductDTO implements ProductDTO, Serializable {
 
-  @SerializedName("id")
   private int id;
-  @SerializedName("item")
   private String item;
-  @SerializedName("multipricing")
   private boolean multipricing;
 
   @Override
