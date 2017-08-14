@@ -1,8 +1,8 @@
 package pl.koszela.jan.layer.service;
 
 import pl.koszela.jan.layer.model.domain.Price;
-import pl.koszela.jan.layer.service.dao.impl.DefaultCartDAO;
-import pl.koszela.jan.layer.facade.dto.impl.DefaultOrderDTO;
+import pl.koszela.jan.layer.model.domain.impl.Order;
+import pl.koszela.jan.layer.service.dao.CartDAO;
 
 /**
  * Created on 13.08.2017.
@@ -11,11 +11,11 @@ import pl.koszela.jan.layer.facade.dto.impl.DefaultOrderDTO;
  */
 public interface CartService {
 
-  DefaultCartDAO getCart();
+  CartDAO getCart();
 
-  void addOrder(DefaultOrderDTO newOrderDTO);
+  void addToCart(Order order);
 
-  void removeOrder(DefaultOrderDTO orderDTO);
+  void removeOrderFromCart(Order order);
 
-  Price getCartPrice();
+  Price getPriceCart();
 }

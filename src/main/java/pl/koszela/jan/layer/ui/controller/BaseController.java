@@ -78,7 +78,7 @@ public class BaseController {
     if (name.equals(PathConstans.REMOVE_ACTION.getValue())) {
       if (product != null) {
         DefaultOrderDTO foundOrderDTO = orderService.getOrderByName(product);
-        cartService.removeOrder(foundOrderDTO);
+        cartService.removeOrderFromCart(foundOrderDTO);
       }
     } else if (name.equals(PathConstans.ADD_ACTION.getValue())) {
       if (product != null) {
@@ -99,7 +99,7 @@ public class BaseController {
           }
         }
 
-        cartService.addOrder(newOrderDTO);
+        cartService.addToCart(newOrderDTO);
       }
     }
 
@@ -139,7 +139,7 @@ public class BaseController {
         DefaultOrderDTO foundOrderDTO = orderService.getOrderByName(product);
         if (foundOrderDTO != null) {
           orderService.removeOrder(foundOrderDTO);
-          cartService.removeOrder(foundOrderDTO);
+          cartService.removeOrderFromCart(foundOrderDTO);
         }
       }
     } else if (name.equals(PathConstans.ADD_ACTION.getValue())) {
@@ -161,7 +161,7 @@ public class BaseController {
           }
         }
 
-        cartService.addOrder(newOrderDTO);
+        cartService.addToCart(newOrderDTO);
       }
     }
 
