@@ -1,10 +1,13 @@
 package pl.koszela.jan.layer.service.dao.impl;
 
 import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.List;
+import org.springframework.stereotype.Component;
 import pl.koszela.jan.layer.model.domain.Price;
 import pl.koszela.jan.layer.facade.dto.impl.DefaultOrderDTO;
+import pl.koszela.jan.layer.model.domain.impl.Cart;
+import pl.koszela.jan.layer.model.domain.impl.Order;
+import pl.koszela.jan.layer.model.domain.impl.StockPrice;
 import pl.koszela.jan.layer.service.dao.CartDAO;
 
 /**
@@ -12,59 +15,73 @@ import pl.koszela.jan.layer.service.dao.CartDAO;
  *
  * @author Jan Koszela
  */
+@Component("cartDAO")
 public class DefaultCartDAO implements CartDAO {
 
-  private Set<DefaultOrderDTO> orders;
+  private Cart cart;
 
   public DefaultCartDAO() {
-    this.orders = new LinkedHashSet<>();
+    this.cart = new Cart();
   }
 
-  public Set<DefaultOrderDTO> getOrders() {
-    return this.orders;
+  @Override
+  public List<Order> getOrdersFromCart() {
+    return this.cart.getOrders();
   }
 
-  public void add(DefaultOrderDTO orderDTO) {
-    if (orderDTO.getQuantity() > 0) {
+  @Override
+  public boolean add(Order order) {
+    setCartCurrency(order);
+    removeOrderIfExists(order);
 
-      if (orders.contains(orderDTO)){
-        removeOrder(orderDTO);
-      }
-      orders.add(orderDTO);
-
+    if (isValidQuantity(order)) {
+      return this.cart.addOrder(order);
     } else {
-      if (orders.contains(orderDTO)) {
-        removeOrder(orderDTO);
-      }
+      return false;
     }
   }
 
-  private void removeOrder(DefaultOrderDTO orderDTO) {
-    for (Iterator<DefaultOrderDTO> i = this.orders.iterator(); i.hasNext(); ) {
-      if (i.next().getProduct() == orderDTO.getProduct()) {
+  private void setCartCurrency(Order order) {
+    if (this.cart.getCurrency() != null) {
+      this.cart.setCurrency(order.getStockPrice().getCurrency());
+    }
+  }
+
+  private void removeOrderIfExists(Order order) {
+    if (isOrderExistsInCart(order)) {
+      removeOrder(order);
+    }
+  }
+
+  private boolean isOrderExistsInCart(Order order) {
+    return this.cart.getOrders().contains(order);
+  }
+
+  private boolean isValidQuantity(Order order) {
+    return order.getQuantity() > 0;
+  }
+
+  @Override
+  public boolean removeOrder(Order order) {
+    for (Iterator<Order> i = this.cart.getOrders().iterator(); i.hasNext(); ) {
+      if (i.next().getItem() == order.getItem()) {
         i.remove();
-        break;
+        return true;
       }
     }
+
+    return false;
   }
 
-  public void remove(DefaultOrderDTO orderDTO) {
-    orders.remove(orderDTO);
-  }
-
+  @Override
   public Price getPrice() {
-//    Price totalPrice = new StockPrice();
-//    for (DefaultOrderDTO order : orders) {
-//      totalPrice.setUnit(totalPrice.getUnit() + order.getTotalPrice().getUnit());
-//    }
-//    return totalPrice;
-    return null;
+    return new StockPrice(0, this.cart.getPrice(), this.cart.getCurrency());
   }
 
   @Override
   public String toString() {
     return "DefaultCartDAO{" +
-        "orders=" + orders +
+        "cart=" + cart +
         '}';
   }
 }
