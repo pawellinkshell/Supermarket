@@ -1,7 +1,5 @@
 package pl.koszela.jan.persistence.dto;
 
-import java.util.Currency;
-
 /**
  * Created on 09.08.2017.
  *

@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.koszela.jan.domain.Price;
-import pl.koszela.jan.persistence.dto.impl.OrderDTO;
+import pl.koszela.jan.persistence.dto.impl.DefaultOrderDTO;
 import pl.koszela.jan.domain.impl.Product;
 import pl.koszela.jan.domain.impl.SpecialPrice;
 import pl.koszela.jan.service.OrderService;
@@ -20,7 +20,7 @@ import pl.koszela.jan.service.PriceService;
 @Service("orderService")
 public class DefaultOrderService implements OrderService {
 
-  private static List<OrderDTO> orderDTOS;
+  private static List<DefaultOrderDTO> orderDTOS;
 
   @Autowired
   PriceService priceService;
@@ -30,9 +30,9 @@ public class DefaultOrderService implements OrderService {
   }
 
   @Override
-  public OrderDTO findOrderByName(String productName) {
-    for (Iterator<OrderDTO> i = orderDTOS.iterator(); i.hasNext(); ) {
-      OrderDTO currentOrderDTO = i.next();
+  public DefaultOrderDTO findOrderByName(String productName) {
+    for (Iterator<DefaultOrderDTO> i = orderDTOS.iterator(); i.hasNext(); ) {
+      DefaultOrderDTO currentOrderDTO = i.next();
       if (isSameProduct(productName, currentOrderDTO)) {
         return currentOrderDTO;
       }
@@ -40,12 +40,12 @@ public class DefaultOrderService implements OrderService {
     return null;
   }
 
-  private boolean isSameProduct(String productName, OrderDTO currentOrderDTO) {
+  private boolean isSameProduct(String productName, DefaultOrderDTO currentOrderDTO) {
     return productName.equals(currentOrderDTO.getProduct().getName());
   }
 
   @Override
-  public boolean createOrder(OrderDTO orderDTO) {
+  public boolean createOrder(DefaultOrderDTO orderDTO) {
     if (orderDTO.getQuantity() > 0) {
       orderDTO.setStockPrice(getStockPrice(orderDTO.getProduct()));
 
@@ -111,8 +111,8 @@ public class DefaultOrderService implements OrderService {
   }
 
   @Override
-  public void updateOrder(OrderDTO newOrderDTO) {
-    OrderDTO foundOrderDTO = findOrderByName(newOrderDTO.getProduct().getName());
+  public void updateOrder(DefaultOrderDTO newOrderDTO) {
+    DefaultOrderDTO foundOrderDTO = findOrderByName(newOrderDTO.getProduct().getName());
     if (foundOrderDTO != null) {
       int idFromOrders = getIdFromOrders(foundOrderDTO);
 
@@ -140,7 +140,7 @@ public class DefaultOrderService implements OrderService {
     return idFromOrders > Integer.MIN_VALUE;
   }
 
-  private int getIdFromOrders(OrderDTO orderDTO) {
+  private int getIdFromOrders(DefaultOrderDTO orderDTO) {
     for (int i = 0; i < orderDTOS.size(); i++) {
       if (orderDTOS.get(i).equals(orderDTO)) {
         return i;
@@ -151,8 +151,8 @@ public class DefaultOrderService implements OrderService {
   }
 
   @Override
-  public boolean removeOrder(OrderDTO orderDTO) {
-    OrderDTO foundOrderDTO = findOrderByName(orderDTO.getProduct().getName());
+  public boolean removeOrder(DefaultOrderDTO orderDTO) {
+    DefaultOrderDTO foundOrderDTO = findOrderByName(orderDTO.getProduct().getName());
     if (foundOrderDTO != null) {
       orderDTOS.remove(getIdFromOrders(foundOrderDTO));
 

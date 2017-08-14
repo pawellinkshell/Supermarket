@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import pl.koszela.jan.domain.Price;
-import pl.koszela.jan.persistence.dto.impl.OrderDTO;
+import pl.koszela.jan.persistence.dto.impl.DefaultOrderDTO;
 
 /**
  * Created on 12.08.2017.
@@ -13,17 +13,17 @@ import pl.koszela.jan.persistence.dto.impl.OrderDTO;
  */
 public class CartDAO {
 
-  private Set<OrderDTO> orders;
+  private Set<DefaultOrderDTO> orders;
 
   public CartDAO() {
     this.orders = new LinkedHashSet<>();
   }
 
-  public Set<OrderDTO> getOrders() {
+  public Set<DefaultOrderDTO> getOrders() {
     return this.orders;
   }
 
-  public void add(OrderDTO orderDTO) {
+  public void add(DefaultOrderDTO orderDTO) {
     if (orderDTO.getQuantity() > 0) {
 
       if (orders.contains(orderDTO)){
@@ -38,8 +38,8 @@ public class CartDAO {
     }
   }
 
-  private void removeOrder(OrderDTO orderDTO) {
-    for (Iterator<OrderDTO> i = this.orders.iterator(); i.hasNext(); ) {
+  private void removeOrder(DefaultOrderDTO orderDTO) {
+    for (Iterator<DefaultOrderDTO> i = this.orders.iterator(); i.hasNext(); ) {
       if (i.next().getProduct() == orderDTO.getProduct()) {
         i.remove();
         break;
@@ -47,13 +47,13 @@ public class CartDAO {
     }
   }
 
-  public void remove(OrderDTO orderDTO) {
+  public void remove(DefaultOrderDTO orderDTO) {
     orders.remove(orderDTO);
   }
 
   public Price getPrice() {
 //    Price totalPrice = new NormalPrice();
-//    for (OrderDTO order : orders) {
+//    for (DefaultOrderDTO order : orders) {
 //      totalPrice.setUnit(totalPrice.getUnit() + order.getTotalPrice().getUnit());
 //    }
 //    return totalPrice;

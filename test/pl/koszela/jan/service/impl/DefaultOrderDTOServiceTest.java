@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.test.context.ActiveProfiles;
-import pl.koszela.jan.persistence.dto.impl.OrderDTO;
+import pl.koszela.jan.persistence.dto.impl.DefaultOrderDTO;
 import pl.koszela.jan.domain.impl.Product;
 
 /**
@@ -23,14 +23,14 @@ public class DefaultOrderDTOServiceTest {
   @Mock
   private DefaultOrderService sut;
 
-  private OrderDTO getDummyOrder() {
-    return new OrderDTO(new Product(1, "Prius", false), 2);
+  private DefaultOrderDTO getDummyOrder() {
+    return new DefaultOrderDTO(new Product(1, "Prius", false), 2);
   }
 
   @Test
   public void shouldReturnNullIfOrdersEmpty() {
     //given
-    OrderDTO givenOrderDTO = getDummyOrder();
+    DefaultOrderDTO givenOrderDTO = getDummyOrder();
 
     //when
     when(sut.findOrderByName(givenOrderDTO.getProduct().getName())).thenReturn(null);
@@ -43,7 +43,7 @@ public class DefaultOrderDTOServiceTest {
   @Test
   public void shouldReturnOrderByGivenProductName() {
     //given
-    OrderDTO givenOrderDTO = getDummyOrder();
+    DefaultOrderDTO givenOrderDTO = getDummyOrder();
 
     //when
     sut.createOrder(givenOrderDTO);
@@ -56,7 +56,7 @@ public class DefaultOrderDTOServiceTest {
   @Test
   public void shouldCreateOrder() {
     //given
-    OrderDTO givenOrderDTO = getDummyOrder();
+    DefaultOrderDTO givenOrderDTO = getDummyOrder();
 
     //when
     sut.createOrder(givenOrderDTO);
@@ -71,8 +71,8 @@ public class DefaultOrderDTOServiceTest {
   @Test
   public void shouldSameOrderBeUpdatedByQuantity() {
     //given
-    OrderDTO givenOrderDTO = getDummyOrder();
-    OrderDTO givenUpdatedOrderDTO = getDummyOrder();
+    DefaultOrderDTO givenOrderDTO = getDummyOrder();
+    DefaultOrderDTO givenUpdatedOrderDTO = getDummyOrder();
     givenUpdatedOrderDTO.setQuantity(3);
 
     //when

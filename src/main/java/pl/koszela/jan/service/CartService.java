@@ -1,7 +1,7 @@
 package pl.koszela.jan.service;
 
 import pl.koszela.jan.domain.Price;
-import pl.koszela.jan.persistence.dto.impl.OrderDTO;
+import pl.koszela.jan.persistence.dto.impl.DefaultOrderDTO;
 import pl.koszela.jan.persistence.dao.impl.CartDAO;
 
 /**
@@ -13,9 +13,9 @@ public interface CartService {
 
   CartDAO getCart();
 
-  void addOrder(OrderDTO newOrderDTO);
+  void addOrder(DefaultOrderDTO newOrderDTO);
 
-  void removeOrder(OrderDTO orderDTO);
+  void removeOrder(DefaultOrderDTO orderDTO);
 
   Price getCartPrice();
 }

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import pl.koszela.jan.constans.AttributeConstans;
 import pl.koszela.jan.constans.PathConstans;
-import pl.koszela.jan.persistence.dto.impl.OrderDTO;
+import pl.koszela.jan.persistence.dto.impl.DefaultOrderDTO;
 import pl.koszela.jan.service.CartService;
 import pl.koszela.jan.service.OrderService;
 import pl.koszela.jan.service.ProductService;
@@ -77,21 +77,21 @@ public class BaseController {
 
     if (name.equals(PathConstans.REMOVE_ACTION.getValue())) {
       if (product != null) {
-        OrderDTO foundOrderDTO = orderService.findOrderByName(product);
+        DefaultOrderDTO foundOrderDTO = orderService.findOrderByName(product);
         cartService.removeOrder(foundOrderDTO);
       }
     } else if (name.equals(PathConstans.ADD_ACTION.getValue())) {
       if (product != null) {
-        OrderDTO foundOrderDTO = orderService.findOrderByName(product);
+        DefaultOrderDTO foundOrderDTO = orderService.findOrderByName(product);
 
-        OrderDTO newOrderDTO = null;
+        DefaultOrderDTO newOrderDTO = null;
         if (foundOrderDTO == null) {
-          newOrderDTO = new OrderDTO(
+          newOrderDTO = new DefaultOrderDTO(
               productService.getProductByName(product), Integer.valueOf(quantity));
           orderService.createOrder(newOrderDTO);
         } else {
           if (foundOrderDTO.getQuantity() != Integer.valueOf(quantity)) {
-            newOrderDTO = new OrderDTO(productService.getProductByName(product),
+            newOrderDTO = new DefaultOrderDTO(productService.getProductByName(product),
                 Integer.valueOf(quantity));
             orderService.updateOrder(newOrderDTO);
           } else {
@@ -136,7 +136,7 @@ public class BaseController {
 
     if (name.equals(PathConstans.REMOVE_ACTION.getValue())) {
       if (product != null) {
-        OrderDTO foundOrderDTO = orderService.findOrderByName(product);
+        DefaultOrderDTO foundOrderDTO = orderService.findOrderByName(product);
         if (foundOrderDTO != null) {
           orderService.removeOrder(foundOrderDTO);
           cartService.removeOrder(foundOrderDTO);
@@ -144,16 +144,16 @@ public class BaseController {
       }
     } else if (name.equals(PathConstans.ADD_ACTION.getValue())) {
       if (product != null) {
-        OrderDTO foundOrderDTO = orderService.findOrderByName(product);
+        DefaultOrderDTO foundOrderDTO = orderService.findOrderByName(product);
 
-        OrderDTO newOrderDTO = null;
+        DefaultOrderDTO newOrderDTO = null;
         if (foundOrderDTO == null) {
-          newOrderDTO = new OrderDTO(
+          newOrderDTO = new DefaultOrderDTO(
               productService.getProductByName(product), Integer.valueOf(quantity));
           orderService.createOrder(newOrderDTO);
         } else {
           if (foundOrderDTO.getQuantity() != Integer.valueOf(quantity)) {
-            newOrderDTO = new OrderDTO(productService.getProductByName(product),
+            newOrderDTO = new DefaultOrderDTO(productService.getProductByName(product),
                 Integer.valueOf(quantity));
             orderService.updateOrder(newOrderDTO);
           } else {

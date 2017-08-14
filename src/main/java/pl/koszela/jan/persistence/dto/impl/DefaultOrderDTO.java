@@ -1,24 +1,25 @@
 package pl.koszela.jan.persistence.dto.impl;
 
 import java.util.Objects;
-import pl.koszela.jan.domain.Price;
-import pl.koszela.jan.domain.impl.Product;
+import pl.koszela.jan.persistence.dto.OrderDTO;
+import pl.koszela.jan.persistence.dto.PriceDTO;
+import pl.koszela.jan.persistence.dto.ProductDTO;
 
 /**
  * Created on 12.08.2017.
  *
  * @author Jan Koszela
  */
-public class OrderDTO {
+public class DefaultOrderDTO implements OrderDTO {
 
-  private Product product;
-  private Price stockPrice;
+  private ProductDTO product;
+  private PriceDTO stockPrice;
   private int quantity;
-  private Price totalPrice;
+  private PriceDTO totalPrice;
   private boolean specialOffer;
 
 
-  public OrderDTO(Product product, int quantity) {
+  public DefaultOrderDTO(ProductDTO product, int quantity) {
     this.product = product;
     this.quantity = quantity;
     this.stockPrice = null;
@@ -26,49 +27,59 @@ public class OrderDTO {
     this.specialOffer = false;
   }
 
-  public Product getProduct() {
+  @Override
+  public ProductDTO getProduct() {
     return this.product;
   }
 
-  public Price getStockPrice() {
-    return stockPrice;
+  @Override
+  public PriceDTO getStockPrice() {
+    return this.stockPrice;
   }
 
-  public Price getTotalPrice() {
-    return totalPrice;
+  @Override
+  public PriceDTO getTotalPrice() {
+    return this.totalPrice;
   }
 
-  public void setTotalPrice(Price totalPrice) {
+  @Override
+  public void setTotalPrice(PriceDTO totalPrice) {
     this.totalPrice = totalPrice;
   }
 
+  @Override
   public int getQuantity() {
     return this.quantity;
   }
 
-  public void setProduct(Product productName) {
+  @Override
+  public void setProduct(ProductDTO productName) {
     this.product = productName;
   }
 
-  public void setStockPrice(Price stockPrice) {
+  @Override
+  public void setStockPrice(PriceDTO stockPrice) {
     this.stockPrice = stockPrice;
   }
 
+  @Override
   public void setQuantity(int quantity) {
     this.quantity = quantity;
   }
 
+  @Override
   public boolean isSpecialOffer() {
-    return specialOffer;
+    return this.specialOffer;
   }
 
+  @Override
   public void setSpecialOffer(boolean specialOffer) {
     this.specialOffer = specialOffer;
   }
 
   @Override
   public String toString() {
-    return "OrderDTO{" +
+    return "DefaultOrderDTO{" +
         "product=" + product +
         ", stockPrice=" + stockPrice +
         ", quantity=" + quantity +
@@ -85,7 +96,7 @@ public class OrderDTO {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    OrderDTO orderDTO = (OrderDTO) o;
+    DefaultOrderDTO orderDTO = (DefaultOrderDTO) o;
     return Objects.equals(product, orderDTO.product);
   }
 
@@ -93,7 +104,7 @@ public class OrderDTO {
   public int hashCode() {
     int prime = 13;
 
-    int result = prime + product.getId() + product.getName().hashCode();
+    int result = prime + product.getId() + product.getItem().hashCode();
     return result;
   }
 }
