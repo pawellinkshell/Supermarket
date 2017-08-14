@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Service;
 import pl.koszela.jan.layer.model.domain.Price;
 import pl.koszela.jan.layer.model.domain.impl.Item;
@@ -17,6 +18,7 @@ import pl.koszela.jan.layer.service.ProductService;
  * @author Jan Koszela
  */
 @Service("productService")
+@DependsOn("modelService")
 public class DefaultProductService implements ProductService {
 
   private Map<Item, Price> products;
