@@ -8,8 +8,9 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.test.context.ActiveProfiles;
-import pl.koszela.jan.persistence.dto.impl.DefaultOrderDTO;
-import pl.koszela.jan.domain.impl.Product;
+import pl.koszela.jan.layer.service.impl.DefaultOrderService;
+import pl.koszela.jan.layer.facade.dto.impl.DefaultOrderDTO;
+import pl.koszela.jan.layer.model.domain.impl.Product;
 
 /**
  * Created on 13.08.2017.

@@ -11,9 +11,9 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.test.context.ActiveProfiles;
-import pl.koszela.jan.persistence.dao.ProductDAO;
-import pl.koszela.jan.persistence.dto.ProductDTO;
-import pl.koszela.jan.persistence.dto.impl.DefaultProductDTO;
+import pl.koszela.jan.layer.service.dao.ProductDAO;
+import pl.koszela.jan.layer.facade.dto.ProductDTO;
+import pl.koszela.jan.layer.facade.dto.impl.DefaultProductDTO;
 
 /**
  * Created on 11.08.2017.

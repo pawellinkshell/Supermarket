@@ -5,11 +5,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.test.context.ActiveProfiles;
-import pl.koszela.jan.persistence.dto.ProductDTO;
-import pl.koszela.jan.persistence.dto.impl.DefaultProductDTO;
+import pl.koszela.jan.layer.facade.dto.ProductDTO;
+import pl.koszela.jan.layer.facade.dto.impl.DefaultProductDTO;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.mockito.Mockito.when;
 
 /**
  * Created on 10.08.2017.

@@ -23,13 +23,13 @@
   </bean>
 
   <bean id="productDTO"
-    class="pl.koszela.jan.persistence.dto.impl.DefaultProductDTO"
+    class="pl.koszela.jan.layer.facade.dto.impl.DefaultProductDTO"
     scope="prototype">
 
   </bean>
 
   <bean id="specialPriceDTO"
-    class="pl.koszela.jan.persistence.dto.impl.NormalPriceDTO"
+    class="pl.koszela.jan.layer.facade.dto.impl.NormalPriceDTO"
     scope="prototype">
 
   </bean>

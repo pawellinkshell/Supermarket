@@ -11,9 +11,9 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.test.context.ActiveProfiles;
-import pl.koszela.jan.persistence.converter.JsonConverter;
-import pl.koszela.jan.persistence.dao.ProductDAO;
-import pl.koszela.jan.persistence.dto.ProductDTO;
+import pl.koszela.jan.layer.model.converter.impl.JsonConverter;
+import pl.koszela.jan.layer.service.dao.ProductDAO;
+import pl.koszela.jan.layer.facade.dto.ProductDTO;
 
 /**
  * Created on 11.08.2017.
@@ -61,9 +61,8 @@ public class DefaultProductDAOIntegrationTest {
     List<ProductDTO> expected = Lists.newArrayList();
 
     JsonConverter converter = new JsonConverter(SRC_MAIN_RESOURCES_SAMPLE);
-    converter.convert();
 
-    expected.addAll(converter.getProductList());
+//    expected.addAll(converter.getProductList());
 
     return expected;
   }
