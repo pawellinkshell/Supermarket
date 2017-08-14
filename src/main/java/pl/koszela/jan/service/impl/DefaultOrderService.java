@@ -44,7 +44,7 @@ public class DefaultOrderService implements OrderService {
   }
 
   private boolean isSameProduct(String productName, Order currentOrder) {
-    return productName.equals(currentOrder.getProduct());
+    return productName.equals(currentOrder.getProduct().getName());
   }
 
   @Override
