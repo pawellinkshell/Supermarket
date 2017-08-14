@@ -3,7 +3,7 @@ package pl.koszela.jan.layer.facade.dto.impl;
 import java.util.ArrayList;
 import java.util.List;
 import pl.koszela.jan.layer.model.domain.Price;
-import pl.koszela.jan.layer.model.domain.impl.NormalPrice;
+import pl.koszela.jan.layer.model.domain.impl.StockPrice;
 
 /**
  * Created on 11.08.2017.
@@ -21,7 +21,7 @@ public class NormalPriceMapper {
   }
 
   public static Price map(NormalPriceDTO dto) {
-    return new NormalPrice(dto.getId(),
+    return new StockPrice(dto.getId(),
         dto.getPrice(),
         dto.getCurrency());
   }

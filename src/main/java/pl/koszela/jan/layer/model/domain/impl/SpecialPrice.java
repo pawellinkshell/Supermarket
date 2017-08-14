@@ -26,36 +26,43 @@ public class SpecialPrice implements Price {
     this.currency = currency;
   }
 
+  @Override
   public int getId() {
     return this.id;
+  }
+
+  @Override
+  public double getUnit() {
+    return this.unit;
+  }
+
+  @Override
+  public String getCurrency() {
+    return this.currency;
+  }
+
+  @Override
+  public void setId(int id) {
+    this.id = id;
+  }
+
+
+  @Override
+  public void setUnit(double price) {
+    this.unit = price;
+  }
+
+  @Override
+  public void setCurrency(String currency) {
+    this.currency = currency;
   }
 
   public int getAmount() {
     return this.amount;
   }
 
-  public double getUnit() {
-    return this.unit;
-  }
-
-  public String getCurrency() {
-    return this.currency;
-  }
-
-  public void setId(int id) {
-    this.id = id;
-  }
-
   public void setAmount(int amount) {
     this.amount = amount;
-  }
-
-  public void setUnit(double price) {
-    this.unit = price;
-  }
-
-  public void setCurrency(String currency) {
-    this.currency = currency;
   }
 
   @Override

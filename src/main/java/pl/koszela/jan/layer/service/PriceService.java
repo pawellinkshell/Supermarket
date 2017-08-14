@@ -1,7 +1,7 @@
 package pl.koszela.jan.layer.service;
 
 import java.util.List;
-import pl.koszela.jan.layer.model.domain.impl.NormalPrice;
+import pl.koszela.jan.layer.model.domain.impl.StockPrice;
 import pl.koszela.jan.layer.model.domain.impl.SpecialPrice;
 
 /**
@@ -11,7 +11,7 @@ import pl.koszela.jan.layer.model.domain.impl.SpecialPrice;
  */
 public interface PriceService {
 
-  List<NormalPrice> getNormalPrices();
+  List<StockPrice> getNormalPrices();
 
   List<SpecialPrice> getSpecialPrices();
 

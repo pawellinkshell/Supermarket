@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.koszela.jan.layer.model.domain.impl.NormalPrice;
+import pl.koszela.jan.layer.model.domain.impl.StockPrice;
 import pl.koszela.jan.layer.model.domain.impl.SpecialPrice;
 import pl.koszela.jan.layer.model.service.ModelService;
 import pl.koszela.jan.layer.service.PriceService;
@@ -21,8 +21,8 @@ public class DefaultPriceService implements PriceService {
   private ModelService modelService;
 
   @Override
-  public List<NormalPrice> getNormalPrices() {
-    return Arrays.asList(modelService.getNormalPrices());
+  public List<StockPrice> getNormalPrices() {
+    return Arrays.asList(modelService.getStockPrices());
   }
 
   @Override

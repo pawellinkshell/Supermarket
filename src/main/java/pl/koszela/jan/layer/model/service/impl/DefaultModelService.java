@@ -1,7 +1,7 @@
 package pl.koszela.jan.layer.model.service.impl;
 
 import org.springframework.stereotype.Service;
-import pl.koszela.jan.layer.model.domain.impl.NormalPrice;
+import pl.koszela.jan.layer.model.domain.impl.StockPrice;
 import pl.koszela.jan.layer.model.domain.impl.Item;
 import pl.koszela.jan.layer.model.domain.impl.SpecialPrice;
 import pl.koszela.jan.layer.model.converter.Converter;
@@ -28,7 +28,7 @@ public class DefaultModelService implements ModelService {
   }
 
   @Override
-  public NormalPrice[] getNormalPrices() {
+  public StockPrice[] getStockPrices() {
     return this.converter.convertNormalPrices();
   }
 

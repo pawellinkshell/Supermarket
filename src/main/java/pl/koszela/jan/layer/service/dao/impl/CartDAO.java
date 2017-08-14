@@ -52,7 +52,7 @@ public class CartDAO {
   }
 
   public Price getPrice() {
-//    Price totalPrice = new NormalPrice();
+//    Price totalPrice = new StockPrice();
 //    for (DefaultOrderDTO order : orders) {
 //      totalPrice.setUnit(totalPrice.getUnit() + order.getTotalPrice().getUnit());
 //    }

@@ -8,7 +8,7 @@ import pl.koszela.jan.layer.model.domain.Price;
  *
  * @author Jan Koszela
  */
-public class NormalPrice implements Price {
+public class StockPrice implements Price {
 
   @SerializedName("id")
   private int id;
@@ -17,39 +17,45 @@ public class NormalPrice implements Price {
   @SerializedName("currency")
   private String currency;
 
-  public NormalPrice(int id, double unit, String currency) {
+  public StockPrice(int id, double unit, String currency) {
     this.id = id;
     this.unit = unit;
     this.currency = currency;
   }
 
+  @Override
   public int getId() {
     return this.id;
   }
 
+  @Override
   public double getUnit() {
     return this.unit;
   }
 
+  @Override
   public String getCurrency() {
     return this.currency;
   }
 
+  @Override
   public void setId(int id) {
     this.id = id;
   }
 
+  @Override
   public void setUnit(double price) {
     this.unit = price;
   }
 
+  @Override
   public void setCurrency(String currency) {
     this.currency = currency;
   }
 
   @Override
   public String toString() {
-    return "NormalPrice{" +
+    return "StockPrice{" +
         "id=" + id +
         ", unit=" + unit +
         ", currency='" + currency + '\'' +

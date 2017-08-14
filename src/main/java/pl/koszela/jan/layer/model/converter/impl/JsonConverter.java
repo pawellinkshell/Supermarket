@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 import pl.koszela.jan.layer.model.domain.impl.Item;
-import pl.koszela.jan.layer.model.domain.impl.NormalPrice;
+import pl.koszela.jan.layer.model.domain.impl.StockPrice;
 import pl.koszela.jan.layer.model.domain.impl.SpecialPrice;
 import pl.koszela.jan.layer.model.converter.Converter;
 
@@ -58,18 +58,18 @@ public class JsonConverter implements Converter {
     return specialPrices;
   }
 
-  public NormalPrice[] convertNormalPrices() {
-    NormalPrice[] normalPrices = null;
+  public StockPrice[] convertNormalPrices() {
+    StockPrice[] stockPrices = null;
     try (Reader reader = new FileReader(this.resourcesSamplePath + this.NORMAL_PRICES_FILE)) {
 
       // Convert JSON to Java Object
-      normalPrices = GSON.fromJson(reader, NormalPrice[].class);
+      stockPrices = GSON.fromJson(reader, StockPrice[].class);
 
     } catch (IOException e) {
       e.printStackTrace();
     }
 
-    return normalPrices;
+    return stockPrices;
   }
 
 }

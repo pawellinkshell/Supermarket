@@ -1,7 +1,7 @@
 package pl.koszela.jan.layer.model.service;
 
+import pl.koszela.jan.layer.model.domain.Price;
 import pl.koszela.jan.layer.model.domain.impl.Item;
-import pl.koszela.jan.layer.model.domain.impl.NormalPrice;
 import pl.koszela.jan.layer.model.domain.impl.SpecialPrice;
 
 /**
@@ -13,7 +13,7 @@ public interface ModelService {
 
   Item[] getItems();
 
-  NormalPrice[] getNormalPrices();
+  Price[] getStockPrices();
 
   SpecialPrice[] getSpecialPrices();
 }
