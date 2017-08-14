@@ -1,5 +1,6 @@
 package pl.koszela.jan.domain.impl;
 
+import com.google.gson.annotations.SerializedName;
 import pl.koszela.jan.domain.Price;
 
 /**
@@ -9,21 +10,20 @@ import pl.koszela.jan.domain.Price;
  */
 public class SpecialPrice implements Price {
 
+  @SerializedName("id")
   private int id;
+  @SerializedName("amount")
   private int amount;
+  @SerializedName("unit")
   private double unit;
+  @SerializedName("currency")
   private String currency;
-
 
   public SpecialPrice(int id, int amount, double unit, String currency) {
     this.id = id;
     this.amount = amount;
     this.unit = unit;
     this.currency = currency;
-  }
-
-  public static SpecialPriceBuilder builder() {
-    return new SpecialPriceBuilder();
   }
 
   public int getId() {
@@ -66,46 +66,5 @@ public class SpecialPrice implements Price {
         ", unit=" + unit +
         ", currency='" + currency + '\'' +
         '}';
-  }
-
-  public static class SpecialPriceBuilder {
-
-    private int id;
-    private int amount;
-    private double price;
-    private String currency;
-
-    SpecialPriceBuilder() {
-    }
-
-    public SpecialPrice.SpecialPriceBuilder id(int id) {
-      this.id = id;
-      return this;
-    }
-
-    public SpecialPrice.SpecialPriceBuilder amount(int amount) {
-      this.amount = amount;
-      return this;
-    }
-
-    public SpecialPrice.SpecialPriceBuilder price(double price) {
-      this.price = price;
-      return this;
-    }
-
-    public SpecialPrice.SpecialPriceBuilder currency(String currency) {
-      this.currency = currency;
-      return this;
-    }
-
-    public SpecialPrice build() {
-      return new SpecialPrice(id, amount, price, currency);
-    }
-
-    public String toString() {
-      return "pl.koszela.jan.domain.impl.SpecialPrice.SpecialPriceBuilder(id=" + this.id
-          + ", amount="
-          + this.amount + ", unit=" + this.price + ", currency=" + this.currency + ")";
-    }
   }
 }
