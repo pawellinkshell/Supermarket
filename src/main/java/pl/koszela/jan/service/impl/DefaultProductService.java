@@ -23,8 +23,6 @@ public class DefaultProductService implements ProductService {
 
   private Map<Product, Price> products;
 
-  @Autowired
-  private PriceService priceService;
   private final JsonConverter converter;
 
   public DefaultProductService() {

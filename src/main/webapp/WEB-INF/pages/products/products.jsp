@@ -8,8 +8,12 @@
 <!-- Start of products.jspf -->
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="container">
+    <h2>
+        <span class="glyphicon glyphicon-tag" style="color: darkkhaki"></span> &nbsp;
+        <ins>Product lists</ins>
+    </h2>
     <div class="row">
-        <c:forEach var="product" items="${products}">
+        <c:forEach var="product" items="${productItems}">
             <div class="col-md-4">
                 <div class="thumbnail">
                     <img src="http://via.placeholder.com/300x200?text=${product.key.name}"
@@ -52,5 +56,4 @@
     </div>
 </div>
 
-<%@include file="products_modals.jspf" %>
 <!-- End of products.jspf -->
