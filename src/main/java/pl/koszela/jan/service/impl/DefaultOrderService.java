@@ -117,12 +117,20 @@ public class DefaultOrderService implements OrderService {
     return price;
   }
 
-
   @Override
   public void updateOrder(Order newOrder) {
     Order foundOrder = findOrderByName(newOrder.getProduct().getName());
     if (foundOrder != null) {
       int idFromOrders = getIdFromOrders(foundOrder);
+
+      newOrder.setStockPrice(getStockPrice(newOrder.getProduct()));
+
+      Price totalPrice = calculateTotalPrice(newOrder.getProduct(), newOrder.getQuantity());
+      newOrder.setTotalPrice(totalPrice);
+
+      if (totalPrice instanceof SpecialPrice) {
+        newOrder.setSpecialOffer(true);
+      }
 
       if (isOutOfArray(idFromOrders)) {
         if (newOrder.getQuantity() > 0) {

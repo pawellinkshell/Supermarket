@@ -142,6 +142,27 @@ public class BaseController {
           cartService.removeOrder(foundOrder);
         }
       }
+    } else if (name.equals(PathConstans.ADD_ACTION.getValue())) {
+      if (product != null) {
+        Order foundOrder = orderService.findOrderByName(product);
+
+        Order newOrder = null;
+        if (foundOrder == null) {
+          newOrder = new Order(
+              productService.getProductByName(product), Integer.valueOf(quantity));
+          orderService.createOrder(newOrder);
+        } else {
+          if (foundOrder.getQuantity() != Integer.valueOf(quantity)) {
+            newOrder = new Order(productService.getProductByName(product),
+                Integer.valueOf(quantity));
+            orderService.updateOrder(newOrder);
+          } else {
+            newOrder = foundOrder;
+          }
+        }
+
+        cartService.addOrder(newOrder);
+      }
     }
 
     model.addAllAttributes(modelAttributes);
