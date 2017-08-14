@@ -13,13 +13,10 @@ public class Item {
   private int id;
   @SerializedName("name")
   private String name;
-  @SerializedName("multipricing")
-  private boolean multipricing;
 
-  public Item(int id, String name, boolean multipricing) {
+  public Item(int id, String name) {
     this.id = id;
     this.name = name;
-    this.multipricing = multipricing;
   }
 
   public int getId() {
@@ -30,10 +27,6 @@ public class Item {
     return this.name;
   }
 
-  public boolean isMultipricing() {
-    return multipricing;
-  }
-
   public void setId(int id) {
     this.id = id;
   }
@@ -42,16 +35,11 @@ public class Item {
     this.name = name;
   }
 
-  public void setMultipricing(boolean multipricing) {
-    this.multipricing = multipricing;
-  }
-
   @Override
   public String toString() {
     return "Item{" +
         "id=" + id +
         ", name='" + name + '\'' +
-        ", multipricing=" + multipricing +
         '}';
   }
 }

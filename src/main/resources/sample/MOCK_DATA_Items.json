@@ -1,77 +1,62 @@
 [
   {
     "id": 1,
-    "item": "Civic",
-    "multipricing": true
+    "item": "Civic"
   },
   {
     "id": 2,
-    "item": "Prius",
-    "multipricing": false
+    "item": "Prius"
   },
   {
     "id": 3,
-    "item": "Z4 M",
-    "multipricing": true
+    "item": "Z4 M"
   },
   {
     "id": 4,
-    "item": "Jimmy",
-    "multipricing": true
+    "item": "Jimmy"
   },
   {
     "id": 5,
-    "item": "Edge",
-    "multipricing": true
+    "item": "Edge"
   },
   {
     "id": 6,
-    "item": "200",
-    "multipricing": false
+    "item": "200"
   },
   {
     "id": 7,
-    "item": "Lancer",
-    "multipricing": true
+    "item": "Lancer"
   },
   {
     "id": 8,
-    "item": "62",
-    "multipricing": true
+    "item": "62"
   },
   {
     "id": 9,
-    "item": "Sephia",
-    "multipricing": false
+    "item": "Sephia"
   },
   {
     "id": 10,
-    "item": "Cutlass Supreme",
-    "multipricing": true
+    "item": "Cutlass Supreme"
   },
   {
     "id": 11,
-    "item": "Somerset",
-    "multipricing": false
+    "item": "Somerset"
   },
   {
     "id": 12,
-    "item": "Expedition",
-    "multipricing": true
+    "item": "Expedition"
   },
   {
     "id": 13,
-    "item": "Freelander",
-    "multipricing": false
+    "item": "Freelander"
   },
   {
     "id": 14,
-    "item": "Express 2500",
-    "multipricing": true
+    "item": "Express 2500"
   },
   {
     "id": 15,
-    "item": "Tribute",
-    "multipricing": false
+    "item": "Tribute"
   }
 ]
