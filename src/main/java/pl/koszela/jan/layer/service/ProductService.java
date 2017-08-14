@@ -13,10 +13,14 @@ public interface ProductService {
 
   Map<Item, Price> getProducts();
 
-  Item getProductById(int id);
+  Item getProduct(int id);
 
-  Item getProductByName(String productName);
+  Item getProduct(String productName);
 
   Price getPrice(Item item);
+
+  Price getPrice(int id);
+
+  Price getPrice(String productName);
 
 }

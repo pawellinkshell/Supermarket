@@ -87,11 +87,11 @@ public class BaseController {
         DefaultOrderDTO newOrderDTO = null;
         if (foundOrderDTO == null) {
           newOrderDTO = new DefaultOrderDTO(
-              productService.getProductByName(product), Integer.valueOf(quantity));
+              productService.getProduct(product), Integer.valueOf(quantity));
           orderService.createOrder(newOrderDTO);
         } else {
           if (foundOrderDTO.getQuantity() != Integer.valueOf(quantity)) {
-            newOrderDTO = new DefaultOrderDTO(productService.getProductByName(product),
+            newOrderDTO = new DefaultOrderDTO(productService.getProduct(product),
                 Integer.valueOf(quantity));
             orderService.updateOrder(newOrderDTO);
           } else {
@@ -149,11 +149,11 @@ public class BaseController {
         DefaultOrderDTO newOrderDTO = null;
         if (foundOrderDTO == null) {
           newOrderDTO = new DefaultOrderDTO(
-              productService.getProductByName(product), Integer.valueOf(quantity));
+              productService.getProduct(product), Integer.valueOf(quantity));
           orderService.createOrder(newOrderDTO);
         } else {
           if (foundOrderDTO.getQuantity() != Integer.valueOf(quantity)) {
-            newOrderDTO = new DefaultOrderDTO(productService.getProductByName(product),
+            newOrderDTO = new DefaultOrderDTO(productService.getProduct(product),
                 Integer.valueOf(quantity));
             orderService.updateOrder(newOrderDTO);
           } else {
