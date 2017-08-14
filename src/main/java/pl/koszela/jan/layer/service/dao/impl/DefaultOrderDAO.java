@@ -55,13 +55,21 @@ public class DefaultOrderDAO implements OrderDAO {
 
   @Override
   public boolean removeOrder(int id) {
-    orders.remove(id);
-    return true;
+    try {
+      orders.remove(id);
+      return true;
+    } catch (RuntimeException exception) {
+      return false;
+    }
   }
 
   @Override
   public boolean updateOrder(int orderId, Order order) {
-    orders.set(orderId, order);
-    return true;
+    try {
+      orders.set(orderId, order);
+      return true;
+    } catch (RuntimeException exception) {
+      return false;
+    }
   }
 }
