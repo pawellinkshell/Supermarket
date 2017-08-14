@@ -1,5 +1,7 @@
 package pl.koszela.jan.layer.service.impl;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -112,4 +114,15 @@ public class DefaultProductService implements ProductService {
     }
     return null;
   }
+
+  @Override
+  public Price[] getStockPrices() {
+    return modelService.getStockPrices();
+  }
+
+  @Override
+  public List<Price> getListStockPrice() {
+    return Arrays.asList(modelService.getStockPrices());
+  }
+
 }

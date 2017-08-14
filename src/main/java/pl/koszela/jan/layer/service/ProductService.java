@@ -1,8 +1,10 @@
 package pl.koszela.jan.layer.service;
 
+import java.util.List;
 import java.util.Map;
 import pl.koszela.jan.layer.model.domain.Price;
 import pl.koszela.jan.layer.model.domain.impl.Item;
+import pl.koszela.jan.layer.model.domain.impl.SpecialPrice;
 
 /**
  * Created on 12.08.2017.
@@ -22,5 +24,9 @@ public interface ProductService {
   Price getPrice(int id);
 
   Price getPrice(String productName);
+
+  Price[] getStockPrices();
+
+  List<Price> getListStockPrice();
 
 }

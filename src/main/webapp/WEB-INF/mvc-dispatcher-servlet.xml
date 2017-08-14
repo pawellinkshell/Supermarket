@@ -22,18 +22,6 @@
     </property>
   </bean>
 
-  <bean id="productDTO"
-    class="pl.koszela.jan.layer.facade.dto.impl.DefaultProductDTO"
-    scope="prototype">
-
-  </bean>
-
-  <bean id="specialPriceDTO"
-    class="pl.koszela.jan.layer.facade.dto.impl.NormalPriceDTO"
-    scope="prototype">
-
-  </bean>
-
   <mvc:resources mapping="/resources/**" location="/resources/styles/css/"
     />
 
