@@ -10,7 +10,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.test.context.ActiveProfiles;
 import pl.koszela.jan.layer.service.impl.DefaultOrderService;
 import pl.koszela.jan.layer.facade.dto.impl.DefaultOrderDTO;
-import pl.koszela.jan.layer.model.domain.impl.Product;
+import pl.koszela.jan.layer.model.domain.impl.Item;
 
 /**
  * Created on 13.08.2017.
@@ -25,7 +25,7 @@ public class DefaultOrderDTOServiceTest {
   private DefaultOrderService sut;
 
   private DefaultOrderDTO getDummyOrder() {
-    return new DefaultOrderDTO(new Product(1, "Prius", false), 2);
+    return new DefaultOrderDTO(new Item(1, "Prius", false), 2);
   }
 
   @Test

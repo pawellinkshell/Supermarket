@@ -18,7 +18,7 @@ import static org.assertj.core.api.Assertions.*;
 
 @ActiveProfiles("test")
 @RunWith(MockitoJUnitRunner.class)
-public class DefaultProductDTOTest {
+public class DefaultItemDTOTest {
   public static final int ID = 1;
   public static final String ITEM = "Civic";
   public static final int UNIT_PRICE = 72;

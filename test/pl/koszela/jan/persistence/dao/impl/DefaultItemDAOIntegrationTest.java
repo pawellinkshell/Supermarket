@@ -22,7 +22,7 @@ import pl.koszela.jan.layer.facade.dto.ProductDTO;
  */
 @ActiveProfiles("test")
 @RunWith(MockitoJUnitRunner.class)
-public class DefaultProductDAOIntegrationTest {
+public class DefaultItemDAOIntegrationTest {
 
   public static final String SRC_MAIN_RESOURCES_SAMPLE = "src\\main\\resources\\sample\\";
   @Mock

@@ -2,7 +2,7 @@ package pl.koszela.jan.layer.service;
 
 import java.util.Map;
 import pl.koszela.jan.layer.model.domain.Price;
-import pl.koszela.jan.layer.model.domain.impl.Product;
+import pl.koszela.jan.layer.model.domain.impl.Item;
 
 /**
  * Created on 12.08.2017.
@@ -11,12 +11,12 @@ import pl.koszela.jan.layer.model.domain.impl.Product;
  */
 public interface ProductService {
 
-  Map<Product, Price> getProducts();
+  Map<Item, Price> getProducts();
 
-  Product getProductById(int id);
+  Item getProductById(int id);
 
-  Product getProductByName(String productName);
+  Item getProductByName(String productName);
 
-  Price getPrice(Product product);
+  Price getPrice(Item item);
 
 }

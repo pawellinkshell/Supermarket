@@ -2,7 +2,7 @@ package pl.koszela.jan.layer.model.service.impl;
 
 import org.springframework.stereotype.Service;
 import pl.koszela.jan.layer.model.domain.impl.NormalPrice;
-import pl.koszela.jan.layer.model.domain.impl.Product;
+import pl.koszela.jan.layer.model.domain.impl.Item;
 import pl.koszela.jan.layer.model.domain.impl.SpecialPrice;
 import pl.koszela.jan.layer.model.converter.Converter;
 import pl.koszela.jan.layer.model.converter.impl.JsonConverter;
@@ -23,8 +23,8 @@ public class DefaultModelService implements ModelService {
   }
 
   @Override
-  public Product[] getProducts() {
-    return this.converter.convertProducts();
+  public Item[] getItems() {
+    return this.converter.convertItems();
   }
 
   @Override

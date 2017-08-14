@@ -1,7 +1,7 @@
 package pl.koszela.jan.layer.model.converter;
 
+import pl.koszela.jan.layer.model.domain.impl.Item;
 import pl.koszela.jan.layer.model.domain.impl.NormalPrice;
-import pl.koszela.jan.layer.model.domain.impl.Product;
 import pl.koszela.jan.layer.model.domain.impl.SpecialPrice;
 
 /**
@@ -11,7 +11,7 @@ import pl.koszela.jan.layer.model.domain.impl.SpecialPrice;
  */
 public interface Converter {
 
-  Product[] convertProducts();
+  Item[] convertItems();
 
   SpecialPrice[] convertSpecialPrices();
 

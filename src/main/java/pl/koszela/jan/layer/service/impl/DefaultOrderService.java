@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.koszela.jan.layer.model.domain.Price;
-import pl.koszela.jan.layer.model.domain.impl.Product;
+import pl.koszela.jan.layer.model.domain.impl.Item;
 import pl.koszela.jan.layer.model.domain.impl.SpecialPrice;
 import pl.koszela.jan.layer.facade.dto.impl.DefaultOrderDTO;
 import pl.koszela.jan.layer.service.OrderService;
@@ -69,22 +69,22 @@ public class DefaultOrderService implements OrderService {
     return false;
   }
 
-  private Price calculateTotalPrice(Product product, int quantity) {
-    Price price = getSpecialPrice(product, quantity);
+  private Price calculateTotalPrice(Item item, int quantity) {
+    Price price = getSpecialPrice(item, quantity);
 
     if (price == null) {
-      price = getStockPrice(product);
+      price = getStockPrice(item);
       price.setUnit(price.getUnit() * quantity);
     }
 
     return price;
   }
 
-  private Price getSpecialPrice(Product product, int quantity) {
+  private Price getSpecialPrice(Item item, int quantity) {
     Price price = null;
 
 //    for (SpecialPriceDTO dto : priceService.getSpecialPrices()) {
-//      if (dto.getId() == product.getId() &&
+//      if (dto.getId() == item.getId() &&
 //          dto.getAmount() == quantity) {
 //        price = new SpecialPrice(dto.getId(),
 //            dto.getAmount(),
@@ -96,11 +96,11 @@ public class DefaultOrderService implements OrderService {
     return price;
   }
 
-  private Price getStockPrice(Product product) {
+  private Price getStockPrice(Item item) {
     Price price = null;
 
 //    for (PriceDTO dto : priceService.getNormalPrices()) {
-//      if (dto.getId() == product.getId()) {
+//      if (dto.getId() == item.getId()) {
 //        price = new NormalPrice(dto.getId(),
 //            dto.getPrice(),
 //            dto.getCurrency());

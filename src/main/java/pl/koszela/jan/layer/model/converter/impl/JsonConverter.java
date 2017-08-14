@@ -4,8 +4,8 @@ import com.google.gson.Gson;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import pl.koszela.jan.layer.model.domain.impl.Item;
 import pl.koszela.jan.layer.model.domain.impl.NormalPrice;
-import pl.koszela.jan.layer.model.domain.impl.Product;
 import pl.koszela.jan.layer.model.domain.impl.SpecialPrice;
 import pl.koszela.jan.layer.model.converter.Converter;
 
@@ -17,7 +17,7 @@ import pl.koszela.jan.layer.model.converter.Converter;
 public class JsonConverter implements Converter {
 
   public static final Gson GSON = new Gson();
-  private static final String PRODUCT_FILE = "sample/MOCK_DATA_Products.json";
+  private static final String PRODUCT_FILE = "sample/MOCK_DATA_Items.json";
   private static final String NORMAL_PRICES_FILE = "sample/MOCK_DATA_Prices.json";
   private static final String SPECIAL_PRICES_FILE = "sample/MOCK_DATA_Special_Prices.json";
   public static String resourcesSamplePath = null;
@@ -30,18 +30,18 @@ public class JsonConverter implements Converter {
     this.resourcesSamplePath = resourcePath;
   }
 
-  public Product[] convertProducts() {
-    Product[] products = null;
+  public Item[] convertItems() {
+    Item[] items = null;
     try (Reader reader = new FileReader(this.resourcesSamplePath + this.PRODUCT_FILE)) {
 
       // Convert JSON to Java Object
-      products = GSON.fromJson(reader, Product[].class);
+      items = GSON.fromJson(reader, Item[].class);
 
     } catch (IOException e) {
       e.printStackTrace();
     }
 
-    return products;
+    return items;
   }
 
   public SpecialPrice[] convertSpecialPrices() {

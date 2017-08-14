@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  *
  * @author Jan Koszela
  */
-public class Product {
+public class Item {
 
   @SerializedName("id")
   private int id;
@@ -16,7 +16,7 @@ public class Product {
   @SerializedName("multipricing")
   private boolean multipricing;
 
-  public Product(int id, String name, boolean multipricing) {
+  public Item(int id, String name, boolean multipricing) {
     this.id = id;
     this.name = name;
     this.multipricing = multipricing;
@@ -48,7 +48,7 @@ public class Product {
 
   @Override
   public String toString() {
-    return "Product{" +
+    return "Item{" +
         "id=" + id +
         ", name='" + name + '\'' +
         ", multipricing=" + multipricing +

@@ -2,7 +2,7 @@ package pl.koszela.jan.layer.facade.dto.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import pl.koszela.jan.layer.model.domain.impl.Product;
+import pl.koszela.jan.layer.model.domain.impl.Item;
 import pl.koszela.jan.layer.facade.dto.ProductDTO;
 
 /**
@@ -12,37 +12,37 @@ import pl.koszela.jan.layer.facade.dto.ProductDTO;
  */
 public class DefaultProductMapper {
 
-  public static ProductDTO map(Product product) {
+  public static ProductDTO map(Item item) {
     DefaultProductDTO dto = new DefaultProductDTO();
-    dto.setId(product.getId());
-    dto.setItem(product.getName());
-    dto.setMultipricing(product.isMultipricing());
+    dto.setId(item.getId());
+    dto.setItem(item.getName());
+    dto.setMultipricing(item.isMultipricing());
 
     return dto;
   }
 
-  public static Product map(ProductDTO dto) {
-    return new Product(dto.getId(), dto.getItem(), dto.isMultipricing());
+  public static Item map(ProductDTO dto) {
+    return new Item(dto.getId(), dto.getItem(), dto.isMultipricing());
   }
 
-  public static List<ProductDTO> map(List<Product> products) {
+  public static List<ProductDTO> map(List<Item> items) {
     List<ProductDTO> dtos = new ArrayList<ProductDTO>();
 
-    for (Product product : products) {
-      dtos.add(map(product));
+    for (Item item : items) {
+      dtos.add(map(item));
     }
 
     return dtos;
   }
 
-  public static List<Product> productMap(List<ProductDTO> dtos) {
-    List<Product> products = new ArrayList<Product>();
+  public static List<Item> productMap(List<ProductDTO> dtos) {
+    List<Item> items = new ArrayList<Item>();
 
     for (ProductDTO dto : dtos) {
-      products.add(map(dto));
+      items.add(map(dto));
     }
 
-    return products;
+    return items;
   }
 
 }

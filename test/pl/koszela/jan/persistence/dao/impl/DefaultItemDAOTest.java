@@ -22,7 +22,7 @@ import pl.koszela.jan.layer.facade.dto.impl.DefaultProductDTO;
  */
 @ActiveProfiles("test")
 @RunWith(MockitoJUnitRunner.class)
-public class DefaultProductDAOTest {
+public class DefaultItemDAOTest {
 
   public static final int ID = 1;
   public static final String ITEM = "Civic";
