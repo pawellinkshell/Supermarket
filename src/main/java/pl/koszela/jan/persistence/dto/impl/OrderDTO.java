@@ -1,14 +1,15 @@
-package pl.koszela.jan.domain.impl;
+package pl.koszela.jan.persistence.dto.impl;
 
 import java.util.Objects;
 import pl.koszela.jan.domain.Price;
+import pl.koszela.jan.domain.impl.Product;
 
 /**
  * Created on 12.08.2017.
  *
  * @author Jan Koszela
  */
-public class Order {
+public class OrderDTO {
 
   private Product product;
   private Price stockPrice;
@@ -17,7 +18,7 @@ public class Order {
   private boolean specialOffer;
 
 
-  public Order(Product product, int quantity) {
+  public OrderDTO(Product product, int quantity) {
     this.product = product;
     this.quantity = quantity;
     this.stockPrice = null;
@@ -67,7 +68,7 @@ public class Order {
 
   @Override
   public String toString() {
-    return "Order{" +
+    return "OrderDTO{" +
         "product=" + product +
         ", stockPrice=" + stockPrice +
         ", quantity=" + quantity +
@@ -84,8 +85,8 @@ public class Order {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Order order = (Order) o;
-    return Objects.equals(product, order.product);
+    OrderDTO orderDTO = (OrderDTO) o;
+    return Objects.equals(product, orderDTO.product);
   }
 
   @Override
