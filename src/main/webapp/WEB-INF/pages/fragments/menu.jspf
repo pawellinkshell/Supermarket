@@ -68,47 +68,66 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/${servletPath}">${servletPath}</a>
+            <a class="navbar-brand"
+               href="/${servletPath}">${servletPath}</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Category one <span
-                        class="sr-only">(current)</span></a></li>
-                <li><a href="#">Category two</a></li>
+                <c:set var="pageActive" scope="page" value="active"/>
+                <li
+                        <c:if test="${currentPath == products}">
+                            class="active"
+                        </c:if>
+                >
+                    <a href="${pageContext.request.contextPath}/${products}"> ${products}</a>
+                </li>
+                <li
+                        <c:if test="${currentPath == cart}">
+                            class="active"
+                        </c:if>
+                >
+                    <a href="${pageContext.request.contextPath}/${cart}"> ${cart} </a>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                        aria-expanded="false">
                         <span class="glyphicon glyphicon-shopping-cart"></span>
-                            ${fn:length(cart.orders)}- Items
+                        ${fn:length(cartItem.orders)}- Items
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-cart" role="menu">
-                        <c:forEach var="order" items="${cart.orders}">
+                        <c:forEach var="order" items="${cartItem.orders}">
+                            <%--<form action="/${servletPath}/${products}" method="get">--%>
                             <li>
-                            <span class="item">
-                                <span class="item-left">
-                                    <img src="http://via.placeholder.com/50x50?text=${order.product.name}"
-                                         alt=""/>
-                                    <span class="item-info">
-                                        <span>${order.product.name}</span>
-                                            ${order.totalPrice.unit} €
+                                <span class="item">
+                                    <span class="item-left">
+                                        <img src="http://via.placeholder.com/50x50?text=${order.product.name}"
+                                             alt=""/>
+                                        <span class="item-info">
+                                            <span>${order.product.name}</span>
+                                                ${order.totalPrice.unit} €
+                                        </span>
+                                    </span>
+                                    <span class="item-right">
+                                        <a class="btn btn-xs btn-danger pull-right"
+                                        href="${pageContext.request.contextPath}/${currentPath}/${removeAction}?product=${order.product.name}&quantity=0">x</a>
                                     </span>
                                 </span>
-                                <span class="item-right">
-                                    <button class="btn btn-xs btn-danger pull-right">x</button>
-                                </span>
-                            </span>
                             </li>
+                            <%--</form>--%>
                         </c:forEach>
                         <li class="divider"></li>
-                        <li><a class="text-center" href="">View Cart</a></li>
+                        <li><a class="text-center"
+                               href="${pageContext.request.contextPath}/${cart}">View Cart</a></li>
                     </ul>
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+
+<%@include file="../products/fragments/products_modals.jspf" %>

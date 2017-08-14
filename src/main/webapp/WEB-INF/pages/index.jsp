@@ -46,18 +46,19 @@
 <html>
 <body>
 
-<%@include file="menu.jspf" %>
+<%@include file="fragments/menu.jspf" %>
 <div class="container" style="padding-top: 50px">
-    <h1>Maven + Spring MVC - Supermarket with Checkout mechanism Web Project Example</h1>
-    <h3>Message : ${message}</h3>
-    <h3>Counter : ${counter}</h3>
-    <h3>Products :   </h3>
+    <h1>Maven + Spring MVC </h1>
+    <h2>Supermarket with Checkout mechanism Web Project Example</h2>
 </div>
 
+<c:if test="${currentPath == products}">
+    <%@include file="products/products.jsp" %>
+</c:if>
 
-<%@include file="products.jspf" %>
-
-<%@include file="cart.jspf" %>
+<c:if test="${currentPath == cart}">
+    <%@include file="cart/cart.jsp" %>
+</c:if>
 
 </body>
 </html>

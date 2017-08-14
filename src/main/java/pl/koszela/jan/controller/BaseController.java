@@ -1,5 +1,7 @@
 package pl.koszela.jan.controller;
 
+import java.util.HashMap;
+import java.util.Map;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,7 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import pl.koszela.jan.constans.SupermarketAttributeConstans;
+import pl.koszela.jan.constans.AttributeConstans;
+import pl.koszela.jan.constans.PathConstans;
 import pl.koszela.jan.domain.impl.Order;
 import pl.koszela.jan.service.CartService;
 import pl.koszela.jan.service.OrderService;
@@ -28,6 +31,8 @@ public class BaseController {
   private static final String VIEW_INDEX = "index";
   private final static org.slf4j.Logger LOGGER = LoggerFactory.getLogger(BaseController.class);
 
+  private static Map<String, Object> modelAttributes;
+
   @Autowired
   private ProductService productService;
 
@@ -37,17 +42,13 @@ public class BaseController {
   @Autowired
   private CartService cartService;
 
-  @RequestMapping(value = "/", method = RequestMethod.GET)
-  public String welcome(ModelMap model) {
+  @RequestMapping("/")
+  public String welcomePage(ModelMap model) {
+    setModelAttributes();
 
-    model.addAttribute(SupermarketAttributeConstans.SERVLET_NAME.getKey(),
-        SupermarketAttributeConstans.SERVLET_NAME.getValue());
-    model.addAttribute(SupermarketAttributeConstans.ADD_DOMAIN_NAME.getKey(),
-        SupermarketAttributeConstans.ADD_DOMAIN_NAME.getValue());
-    model.addAttribute(SupermarketAttributeConstans.PRODUCTS.getKey(),
-        productService.getProducts());
-    model.addAttribute(SupermarketAttributeConstans.CART.getKey(),
-        cartService.getCart());
+    model.addAllAttributes(modelAttributes);
+    model.addAttribute("currentPath", PathConstans.PRODUCTS_PATH);
+
     model.addAttribute("message", "Welcome");
     model.addAttribute("counter", ++counter);
     LOGGER.debug("[welcome] counter : {}", counter);
@@ -56,46 +57,125 @@ public class BaseController {
     return VIEW_INDEX;
   }
 
-  @RequestMapping(value = "/{name}", method = RequestMethod.GET)
-  public String welcomeName(@PathVariable String name, ModelMap model,
+  @RequestMapping("/" + PathConstans.PRODUCTS_PATH)
+  public String productsPage(ModelMap model) {
+
+    model.addAllAttributes(modelAttributes);
+
+    model.addAttribute("currentPath", PathConstans.PRODUCTS_PATH);
+    model.addAttribute("message", "Welcome ");
+    model.addAttribute("counter", ++counter);
+    LOGGER.debug("[welcomeName] counter : {}", counter);
+
+    return VIEW_INDEX;
+  }
+
+  @RequestMapping(value = "/" + PathConstans.PRODUCTS_PATH + "/{name}", method = RequestMethod.GET)
+  public String productsPageAddAction(@PathVariable String name, ModelMap model,
       @RequestParam(value = "product", required = false) String product,
       @RequestParam(value = "quantity", required = false) String quantity) {
 
-    if (product != null) {
-      Order foundOrder = orderService.findOrderByName(product);
-
-      Order newOrder = null;
-      if (foundOrder == null) {
-        newOrder = new Order(
-            productService.getProductByName(product), Integer.valueOf(quantity));
-        orderService.createOrder(newOrder);
-      } else {
-        if (foundOrder.getQuantity() != Integer.valueOf(quantity)) {
-          newOrder = new Order(productService.getProductByName(product), Integer.valueOf(quantity));
-          orderService.updateOrder(newOrder);
-        } else {
-          newOrder = foundOrder;
-        }
+    if (name.equals(PathConstans.REMOVE_ACTION.getValue())) {
+      if (product != null) {
+        Order foundOrder = orderService.findOrderByName(product);
+        cartService.removeOrder(foundOrder);
       }
+    } else if (name.equals(PathConstans.ADD_ACTION.getValue())) {
+      if (product != null) {
+        Order foundOrder = orderService.findOrderByName(product);
 
-      cartService.addOrder(newOrder);
+        Order newOrder = null;
+        if (foundOrder == null) {
+          newOrder = new Order(
+              productService.getProductByName(product), Integer.valueOf(quantity));
+          orderService.createOrder(newOrder);
+        } else {
+          if (foundOrder.getQuantity() != Integer.valueOf(quantity)) {
+            newOrder = new Order(productService.getProductByName(product),
+                Integer.valueOf(quantity));
+            orderService.updateOrder(newOrder);
+          } else {
+            newOrder = foundOrder;
+          }
+        }
+
+        cartService.addOrder(newOrder);
+      }
     }
 
-    model.addAttribute(SupermarketAttributeConstans.SERVLET_NAME.getKey(),
-        SupermarketAttributeConstans.SERVLET_NAME.getValue());
-    model.addAttribute(SupermarketAttributeConstans.ADD_DOMAIN_NAME.getKey(),
-        SupermarketAttributeConstans.ADD_DOMAIN_NAME.getValue());
-    model.addAttribute(SupermarketAttributeConstans.PRODUCTS.getKey(),
-        productService.getProducts());
-    model.addAttribute(SupermarketAttributeConstans.CART.getKey(),
-        cartService.getCart());
+    model.addAllAttributes(modelAttributes);
 
-    model.addAttribute("message", "Welcome " + name);
+    model.addAttribute("currentPath",
+        PathConstans.PRODUCTS_PATH);
+    model.addAttribute("message",
+        "Welcome ");
+    model.addAttribute("counter",
+        ++counter);
+    LOGGER.debug("[welcomeName] counter : {}", counter);
+
+    return VIEW_INDEX;
+
+  }
+
+  @RequestMapping("/" + PathConstans.CART_PATH)
+  public String cartPage(ModelMap model) {
+    model.addAllAttributes(modelAttributes);
+
+    model.addAttribute("currentPath", PathConstans.CART_PATH);
+    model.addAttribute("message", "Welcome ");
+    model.addAttribute("counter", ++counter);
+    LOGGER.debug("[welcomeName] counter : {}", counter);
+
+    return VIEW_INDEX;
+  }
+
+  @RequestMapping(value = "/" + PathConstans.CART_PATH + "/{name}", method = RequestMethod.GET)
+  public String cartPageAction(@PathVariable String name, ModelMap model,
+      @RequestParam(value = "product", required = false) String product,
+      @RequestParam(value = "quantity", required = false) String quantity) {
+
+    if (name.equals(PathConstans.REMOVE_ACTION.getValue())) {
+      if (product != null) {
+        Order foundOrder = orderService.findOrderByName(product);
+        if (foundOrder != null) {
+          orderService.removeOrder(foundOrder);
+          cartService.removeOrder(foundOrder);
+        }
+      }
+    }
+
+    model.addAllAttributes(modelAttributes);
+
+    model.addAttribute("currentPath", PathConstans.CART_PATH);
+    model.addAttribute("message", "Welcome ");
     model.addAttribute("counter", ++counter);
     LOGGER.debug("[welcomeName] counter : {}", counter);
 
     return VIEW_INDEX;
 
+  }
+
+  private void setModelAttributes() {
+    modelAttributes = new HashMap<>();
+
+    modelAttributes.put(AttributeConstans.CART.getKey(),
+        cartService.getCart());
+    modelAttributes.put(AttributeConstans.PRODUCTS.getKey(),
+        productService.getProducts());
+
+    // Path Constants
+    modelAttributes.put(PathConstans.SERVLET_NAME.getKey(),
+        PathConstans.SERVLET_NAME.getValue());
+    modelAttributes.put(PathConstans.PRODUCTS_PATH,
+        PathConstans.PRODUCTS_PATH);
+    modelAttributes.put(PathConstans.CART_PATH,
+        PathConstans.CART_PATH);
+
+    // Path action constants
+    modelAttributes.put(PathConstans.ADD_ACTION.getKey(),
+        PathConstans.ADD_ACTION.getValue());
+    modelAttributes.put(PathConstans.REMOVE_ACTION.getKey(),
+        PathConstans.REMOVE_ACTION.getValue());
   }
 
 }

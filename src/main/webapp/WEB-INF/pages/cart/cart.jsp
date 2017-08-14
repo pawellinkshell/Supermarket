@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Jan Koszela
@@ -26,20 +27,19 @@
                 </tr>
                 </thead>
                 <tbody>
-
+                <form action="/${servletPath}/${products}" method="get">
                 <%--PRODUCTS--%>
-                <c:forEach var="order" items="${cart.orders}">
-                <form action="/${servletPath}/${addDomain}" method="get">
-                    <input type="hidden" name="product" value="${order.product.name}" >
-                </br>
+                <c:forEach var="order" items="${cartItem.orders}">
+
+                    </br>
                     <tr>
                         <td class="col-sm-8 col-md-6">
                             <div class="media">
                                 <a class="thumbnail pull-left" href="#" data-toggle="modal"
                                    data-target="#product_view_${order.product.id}">
                                     <img class="media-object"
-                                      src="http://via.placeholder.com/72x72?text=${order.product.name}"
-                                      style="width: 72px; height: 72px;">
+                                         src="http://via.placeholder.com/72x72?text=${order.product.name}"
+                                         style="width: 72px; height: 72px;">
                                 </a>
                                 <div class="media-body">
                                     <h4 class="media-heading">
@@ -59,8 +59,9 @@
                             </strong>
                         </td>
                         <td class="col-sm-1 col-md-1" style="text-align: center">
+                            <input type="hidden" name="product" value="${order.product.name}" >
                             <input type="number" class="form-control"
-                                    value="${order.quantity}">
+                                   name="quantity" value="${order.quantity}">
                         </td>
                         <td class="col-sm-1 col-md-1 text-center">
                             <strong>
@@ -73,13 +74,20 @@
                             </strong>
                         </td>
                         <td class="col-sm-1 col-md-1">
-                            <button type="submit" class="btn btn-danger">
-                                <input type="hidden" name="quantity" value="0" >
+                            <a
+                                <%--type="submit" --%>
+                                    href="${pageContext.request.contextPath}/${currentPath}/${removeAction}?product=${order.product.name}&quantity=0"
+                                    class="btn btn-danger">
+                                    <%--<input type="hidden" name="product" value="${order.product.name}" >--%>
+                                    <%--<input type="hidden" name="quantity" value="0" >--%>
+                                    <%--<span class="btn btn-xs btn-danger pull-right">--%>
+
                                 <span class="glyphicon glyphicon-remove"></span> Remove
-                            </button>
+                                    <%--</span>--%>
+
+                            </a>
                         </td>
                     </tr>
-                </form>
                 </c:forEach>
 
                 <%--END OF PRODUCTS--%>
@@ -91,7 +99,7 @@
                     <td class="text-right">
                         <h3><strong>
                             <span class="glyphicon glyphicon-eur"></span>
-                            ${cart.price.unit}
+                            ${cartItem.price.unit}
                         </strong></h3>
                     </td>
                     <td>  </td>
@@ -101,17 +109,20 @@
                     <td>  </td>
                     <td>  </td>
                     <td>
-                        <button type="button" class="btn btn-default">
+                        <a class="btn btn-default"
+                           href="${pageContext.request.contextPath}/${products}">
                             <span class="glyphicon glyphicon-shopping-cart"></span> Continue
                             Shopping
-                        </button>
+                        </a>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-success">
+                        <a class="btn btn-success"
+                           href="${pageContext.request.contextPath}/${cart}">
                             Checkout <span class="glyphicon glyphicon-play"></span>
-                        </button>
+                        </a>
                     </td>
                 </tr>
+                    </form>
                 </tbody>
             </table>
         </div>
