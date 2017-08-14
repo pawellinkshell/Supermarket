@@ -2,7 +2,7 @@ package pl.koszela.jan.layer.service.impl;
 
 import org.springframework.stereotype.Service;
 import pl.koszela.jan.layer.model.domain.Price;
-import pl.koszela.jan.layer.service.dao.impl.CartDAO;
+import pl.koszela.jan.layer.service.dao.impl.DefaultCartDAO;
 import pl.koszela.jan.layer.facade.dto.impl.DefaultOrderDTO;
 import pl.koszela.jan.layer.service.CartService;
 
@@ -14,14 +14,14 @@ import pl.koszela.jan.layer.service.CartService;
 @Service("cartService")
 public class DefaultCartService implements CartService {
 
-  private static CartDAO cart;
+  private static DefaultCartDAO cart;
 
   public DefaultCartService() {
-    this.cart = new CartDAO();
+    this.cart = new DefaultCartDAO();
   }
 
   @Override
-  public CartDAO getCart() {
+  public DefaultCartDAO getCart() {
     return this.cart;
   }
 

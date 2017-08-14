@@ -5,17 +5,18 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 import pl.koszela.jan.layer.model.domain.Price;
 import pl.koszela.jan.layer.facade.dto.impl.DefaultOrderDTO;
+import pl.koszela.jan.layer.service.dao.CartDAO;
 
 /**
  * Created on 12.08.2017.
  *
  * @author Jan Koszela
  */
-public class CartDAO {
+public class DefaultCartDAO implements CartDAO {
 
   private Set<DefaultOrderDTO> orders;
 
-  public CartDAO() {
+  public DefaultCartDAO() {
     this.orders = new LinkedHashSet<>();
   }
 
@@ -62,7 +63,7 @@ public class CartDAO {
 
   @Override
   public String toString() {
-    return "CartDAO{" +
+    return "DefaultCartDAO{" +
         "orders=" + orders +
         '}';
   }
