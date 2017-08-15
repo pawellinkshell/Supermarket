@@ -11,9 +11,9 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.test.context.ActiveProfiles;
+import pl.koszela.jan.layer.facade.dto.ItemDTO;
 import pl.koszela.jan.layer.service.dao.ProductDAO;
-import pl.koszela.jan.layer.facade.dto.ProductDTO;
-import pl.koszela.jan.layer.facade.dto.impl.DefaultProductDTO;
+import pl.koszela.jan.layer.facade.dto.impl.DefaultItemDTO;
 
 /**
  * Created on 11.08.2017.
@@ -43,7 +43,7 @@ public class DefaultItemDAOTest {
   @Test
   public void shouldGetAllItems() {
     //given
-    List<ProductDTO> expectedList = getProducts();
+    List<ItemDTO> expectedList = getProducts();
 
     // when
     when(givenProductDAO.getAllItems()).thenReturn(expectedList);
@@ -55,7 +55,7 @@ public class DefaultItemDAOTest {
   @Test
   public void shouldGetItemsWhichContainsMultipricing() {
     //given
-    List<ProductDTO> expectedList = getProductsWithMultipricing();
+    List<ItemDTO> expectedList = getProductsWithMultipricing();
 
     // when
     when(givenProductDAO.getItemsByMultipricing(true)).thenReturn(expectedList);
@@ -64,8 +64,8 @@ public class DefaultItemDAOTest {
     assertThat(givenProductDAO.getItemsByMultipricing(true)).hasSize(expectedList.size());
   }
 
-  private List<ProductDTO> getProductsWithMultipricing() {
-    List<ProductDTO> expected = Lists.newArrayList();
+  private List<ItemDTO> getProductsWithMultipricing() {
+    List<ItemDTO> expected = Lists.newArrayList();
 
     for (int i = 0; i < SIZE; i++) {
       expected.add(
@@ -82,12 +82,12 @@ public class DefaultItemDAOTest {
     return expected;
   }
 
-  private boolean hasNotItemMultipricing(List<ProductDTO> expected, int i) {
+  private boolean hasNotItemMultipricing(List<ItemDTO> expected, int i) {
     return expected.get(i).isMultipricing() == false;
   }
 
-  private List<ProductDTO> getProducts() {
-    List<ProductDTO> expected = Lists.newArrayList();
+  private List<ItemDTO> getProducts() {
+    List<ItemDTO> expected = Lists.newArrayList();
 
     for (int i = 0; i < SIZE; i++) {
       expected.add(createProductDTO(i, ITEM + "_" + i, UNIT_PRICE, CURRENCY, MULTIPRICING));
@@ -96,9 +96,9 @@ public class DefaultItemDAOTest {
     return expected;
   }
 
-  private ProductDTO createProductDTO(int id, String item, int unitPrice, String currency,
+  private ItemDTO createProductDTO(int id, String item, int unitPrice, String currency,
       boolean multipricing) {
-    DefaultProductDTO productDTO = new DefaultProductDTO();
+    DefaultItemDTO productDTO = new DefaultItemDTO();
     productDTO.setId(id);
     productDTO.setItem(item);
     productDTO.setMultipricing(multipricing);

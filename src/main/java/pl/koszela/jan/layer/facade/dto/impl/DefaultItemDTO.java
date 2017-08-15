@@ -1,14 +1,14 @@
 package pl.koszela.jan.layer.facade.dto.impl;
 
 import java.io.Serializable;
-import pl.koszela.jan.layer.facade.dto.ProductDTO;
+import pl.koszela.jan.layer.facade.dto.ItemDTO;
 
 /**
  * Created on 09.08.2017.
  *
  * @author Jan Koszela
  */
-public class DefaultProductDTO implements ProductDTO, Serializable {
+public class DefaultItemDTO implements ItemDTO, Serializable {
 
   private int id;
   private String item;
@@ -46,7 +46,7 @@ public class DefaultProductDTO implements ProductDTO, Serializable {
 
   @Override
   public String toString() {
-    return "DefaultProductDTO{" +
+    return "DefaultItemDTO{" +
         "id=" + id +
         ", item='" + item + '\'' +
         ", multipricing=" + multipricing +

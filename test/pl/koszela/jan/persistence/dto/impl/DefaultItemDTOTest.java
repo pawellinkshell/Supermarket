@@ -5,8 +5,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.test.context.ActiveProfiles;
-import pl.koszela.jan.layer.facade.dto.ProductDTO;
-import pl.koszela.jan.layer.facade.dto.impl.DefaultProductDTO;
+import pl.koszela.jan.layer.facade.dto.ItemDTO;
+import pl.koszela.jan.layer.facade.dto.impl.DefaultItemDTO;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -25,16 +25,16 @@ public class DefaultItemDTOTest {
   public static final String CURRENCY = "EUR";
   public static final boolean MULTIPRICING = true;
 
-  private ProductDTO givenProductDTO;
+  private ItemDTO givenItemDTO;
 
   @Before
   public void setUp(){
-    givenProductDTO = createProductDTO(ID, ITEM, UNIT_PRICE, CURRENCY, MULTIPRICING);
+    givenItemDTO = createProductDTO(ID, ITEM, UNIT_PRICE, CURRENCY, MULTIPRICING);
   }
 
-  private ProductDTO createProductDTO(int id, String item, int unitPrice, String currency,
+  private ItemDTO createProductDTO(int id, String item, int unitPrice, String currency,
       boolean multipricing) {
-    DefaultProductDTO productDTO = new DefaultProductDTO();
+    DefaultItemDTO productDTO = new DefaultItemDTO();
     productDTO.setId(id);
     productDTO.setItem(item);
     productDTO.setMultipricing(multipricing);
@@ -44,21 +44,21 @@ public class DefaultItemDTOTest {
 
   @Test
   public void shouldGetId() {
-    assertThat(givenProductDTO.getId()).isEqualTo(ID);
+    assertThat(givenItemDTO.getId()).isEqualTo(ID);
   }
 
   @Test
   public void shouldGetItem() {
-    assertThat(givenProductDTO.getItem()).isEqualTo(ITEM);
+    assertThat(givenItemDTO.getItem()).isEqualTo(ITEM);
   }
 
   @Test
   public void shouldGetMultipricing() {
-    assertThat(givenProductDTO.isMultipricing()).isEqualTo(MULTIPRICING);
+    assertThat(givenItemDTO.isMultipricing()).isEqualTo(MULTIPRICING);
   }
 
   @Test
   public void shouldBeNotNull() {
-    assertThat(givenProductDTO).isNotNull();
+    assertThat(givenItemDTO).isNotNull();
   }
 }

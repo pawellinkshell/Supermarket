@@ -7,7 +7,7 @@ package pl.koszela.jan.layer.facade.dto;
  */
 public interface OrderDTO {
 
-  ProductDTO getProduct();
+  ItemDTO getItem();
 
   PriceDTO getStockPrice();
 
@@ -17,7 +17,7 @@ public interface OrderDTO {
 
   int getQuantity();
 
-  void setProduct(ProductDTO productName);
+  void setItem(ItemDTO productName);
 
   void setStockPrice(PriceDTO stockPrice);
 

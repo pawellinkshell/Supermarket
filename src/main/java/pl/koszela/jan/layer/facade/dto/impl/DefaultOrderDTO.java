@@ -1,9 +1,9 @@
 package pl.koszela.jan.layer.facade.dto.impl;
 
 import java.util.Objects;
+import pl.koszela.jan.layer.facade.dto.ItemDTO;
 import pl.koszela.jan.layer.facade.dto.OrderDTO;
 import pl.koszela.jan.layer.facade.dto.PriceDTO;
-import pl.koszela.jan.layer.facade.dto.ProductDTO;
 
 /**
  * Created on 12.08.2017.
@@ -12,14 +12,13 @@ import pl.koszela.jan.layer.facade.dto.ProductDTO;
  */
 public class DefaultOrderDTO implements OrderDTO {
 
-  private ProductDTO product;
+  private ItemDTO product;
   private PriceDTO stockPrice;
   private int quantity;
   private PriceDTO totalPrice;
   private boolean specialOffer;
 
-
-  public DefaultOrderDTO(ProductDTO product, int quantity) {
+  public DefaultOrderDTO(ItemDTO product, int quantity) {
     this.product = product;
     this.quantity = quantity;
     this.stockPrice = null;
@@ -28,7 +27,7 @@ public class DefaultOrderDTO implements OrderDTO {
   }
 
   @Override
-  public ProductDTO getProduct() {
+  public ItemDTO getItem() {
     return this.product;
   }
 
@@ -53,7 +52,7 @@ public class DefaultOrderDTO implements OrderDTO {
   }
 
   @Override
-  public void setProduct(ProductDTO productName) {
+  public void setItem(ItemDTO productName) {
     this.product = productName;
   }
 

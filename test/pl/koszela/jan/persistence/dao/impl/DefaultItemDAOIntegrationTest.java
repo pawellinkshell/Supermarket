@@ -11,9 +11,9 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.test.context.ActiveProfiles;
+import pl.koszela.jan.layer.facade.dto.ItemDTO;
 import pl.koszela.jan.layer.model.converter.impl.JsonConverter;
 import pl.koszela.jan.layer.service.dao.ProductDAO;
-import pl.koszela.jan.layer.facade.dto.ProductDTO;
 
 /**
  * Created on 11.08.2017.
@@ -35,7 +35,7 @@ public class DefaultItemDAOIntegrationTest {
   @Test
   public void shouldGetAllItems() {
     //given
-    List<ProductDTO> expectedList = getProductListFromJson();
+    List<ItemDTO> expectedList = getProductListFromJson();
 
     // when
     when(givenProductDAO.getAllItems()).thenReturn(expectedList);
@@ -47,7 +47,7 @@ public class DefaultItemDAOIntegrationTest {
   @Test
   public void shouldGetItemsWhichContainsMultipricing() {
     //given
-    List<ProductDTO> expectedList = getProductsWithMultipricing();
+    List<ItemDTO> expectedList = getProductsWithMultipricing();
 
     // when
     when(givenProductDAO.getItemsByMultipricing(true)).thenReturn(expectedList);
@@ -57,8 +57,8 @@ public class DefaultItemDAOIntegrationTest {
   }
 
 
-  private List<ProductDTO> getProductListFromJson() {
-    List<ProductDTO> expected = Lists.newArrayList();
+  private List<ItemDTO> getProductListFromJson() {
+    List<ItemDTO> expected = Lists.newArrayList();
 
     JsonConverter converter = new JsonConverter(SRC_MAIN_RESOURCES_SAMPLE);
 
@@ -67,8 +67,8 @@ public class DefaultItemDAOIntegrationTest {
     return expected;
   }
 
-  private List<ProductDTO> getProductsWithMultipricing() {
-    List<ProductDTO> expected = getProductListFromJson();
+  private List<ItemDTO> getProductsWithMultipricing() {
+    List<ItemDTO> expected = getProductListFromJson();
 
     for (int i = 0; i < expected.size(); i++) {
       if (hasNotItemMultipricing(expected, i)) {
@@ -80,7 +80,7 @@ public class DefaultItemDAOIntegrationTest {
     return expected;
   }
 
-  private boolean hasNotItemMultipricing(List<ProductDTO> expected, int i) {
+  private boolean hasNotItemMultipricing(List<ItemDTO> expected, int i) {
     return expected.get(i).isMultipricing() == false;
   }
 

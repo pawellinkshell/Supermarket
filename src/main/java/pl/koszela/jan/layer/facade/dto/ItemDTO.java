@@ -5,7 +5,7 @@ package pl.koszela.jan.layer.facade.dto;
  *
  * @author Jan Koszela
  */
-public interface ProductDTO {
+public interface ItemDTO {
 
   int getId();
 

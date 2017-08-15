@@ -34,10 +34,10 @@ public class DefaultOrderDTOServiceTest {
     DefaultOrderDTO givenOrderDTO = getDummyOrder();
 
     //when
-    when(sut.getOrderByName(givenOrderDTO.getProduct().getName())).thenReturn(null);
+    when(sut.getOrderByName(givenOrderDTO.getItem().getName())).thenReturn(null);
 
     //then
-    assertThat(sut.getOrderByName(givenOrderDTO.getProduct().getName())).isNull();
+    assertThat(sut.getOrderByName(givenOrderDTO.getItem().getName())).isNull();
 
   }
 
@@ -48,10 +48,10 @@ public class DefaultOrderDTOServiceTest {
 
     //when
     sut.createOrder(givenOrderDTO);
-    when(sut.getOrderByName(givenOrderDTO.getProduct().getName())).thenReturn(givenOrderDTO);
+    when(sut.getOrderByName(givenOrderDTO.getItem().getName())).thenReturn(givenOrderDTO);
 
     //then
-    assertThat(sut.getOrderByName(givenOrderDTO.getProduct().getName())).isEqualTo(givenOrderDTO);
+    assertThat(sut.getOrderByName(givenOrderDTO.getItem().getName())).isEqualTo(givenOrderDTO);
   }
 
   @Test
@@ -61,10 +61,10 @@ public class DefaultOrderDTOServiceTest {
 
     //when
     sut.createOrder(givenOrderDTO);
-    when(sut.getOrderByName(givenOrderDTO.getProduct().getName())).thenReturn(givenOrderDTO);
+    when(sut.getOrderByName(givenOrderDTO.getItem().getName())).thenReturn(givenOrderDTO);
 
     //then
-    assertThat(sut.getOrderByName(givenOrderDTO.getProduct().getName()))
+    assertThat(sut.getOrderByName(givenOrderDTO.getItem().getName()))
         .isNotNull()
         .isEqualTo(givenOrderDTO);
   }
@@ -79,12 +79,12 @@ public class DefaultOrderDTOServiceTest {
     //when
     sut.createOrder(givenOrderDTO);
     sut.updateOrder(givenUpdatedOrderDTO);
-    when(sut.getOrderByName(givenOrderDTO.getProduct().getName()))
+    when(sut.getOrderByName(givenOrderDTO.getItem().getName()))
         .thenReturn(givenUpdatedOrderDTO);
 
 
     //then
-    assertThat(sut.getOrderByName(givenOrderDTO.getProduct().getName()))
+    assertThat(sut.getOrderByName(givenOrderDTO.getItem().getName()))
         .isEqualTo(givenUpdatedOrderDTO);
 
   }
