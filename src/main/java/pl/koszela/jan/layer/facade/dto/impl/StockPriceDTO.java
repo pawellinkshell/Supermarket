@@ -8,7 +8,7 @@ import pl.koszela.jan.layer.facade.dto.PriceDTO;
  *
  * @author Jan Koszela
  */
-public class NormalPriceDTO implements PriceDTO, Serializable {
+public class StockPriceDTO implements PriceDTO, Serializable {
 
   private int id;
   private double price;
@@ -46,7 +46,7 @@ public class NormalPriceDTO implements PriceDTO, Serializable {
 
   @Override
   public String toString() {
-    return "NormalPriceDTO{" +
+    return "StockPriceDTO{" +
         "id=" + id +
         ", price=" + price +
         ", currency='" + currency + '\'' +

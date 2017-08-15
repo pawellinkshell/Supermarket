@@ -10,24 +10,24 @@ import pl.koszela.jan.layer.model.domain.impl.StockPrice;
  *
  * @author Jan Koszela
  */
-public class NormalPriceMapper {
+public class StockPriceMapper {
 
-  public static NormalPriceDTO map(Price price) {
-    NormalPriceDTO dto = new NormalPriceDTO();
+  public static StockPriceDTO map(Price price) {
+    StockPriceDTO dto = new StockPriceDTO();
     dto.setId(price.getId());
     dto.setPrice(price.getUnit());
 
     return dto;
   }
 
-  public static Price map(NormalPriceDTO dto) {
+  public static Price map(StockPriceDTO dto) {
     return new StockPrice(dto.getId(),
         dto.getPrice(),
         dto.getCurrency());
   }
 
-  public static List<NormalPriceDTO> map(List<Price> prices) {
-    List<NormalPriceDTO> dtos = new ArrayList<NormalPriceDTO>();
+  public static List<StockPriceDTO> map(List<Price> prices) {
+    List<StockPriceDTO> dtos = new ArrayList<StockPriceDTO>();
 
     for (Price price : prices) {
       dtos.add(map(price));
@@ -37,10 +37,10 @@ public class NormalPriceMapper {
   }
 
 
-  public static List<Price> productMap(List<NormalPriceDTO> dtos) {
+  public static List<Price> productMap(List<StockPriceDTO> dtos) {
     List<Price> prices = new ArrayList<Price>();
 
-    for (NormalPriceDTO dto : dtos) {
+    for (StockPriceDTO dto : dtos) {
       prices.add(map(dto));
     }
 
