@@ -1,6 +1,6 @@
 package pl.koszela.jan.layer.facade.impl;
 
-import pl.koszela.jan.layer.facade.CartFacade;
+import pl.koszela.jan.layer.facade.ProductFacade;
 import pl.koszela.jan.main.annotation.Facade;
 
 /**
@@ -9,6 +9,6 @@ import pl.koszela.jan.main.annotation.Facade;
  * @author Jan Koszela
  */
 @Facade
-public class DefaultCartFacade implements CartFacade {
+public class DefaultProductFacade implements ProductFacade {
 
 }
