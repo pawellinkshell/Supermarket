@@ -1,5 +1,8 @@
 package pl.koszela.jan.layer.facade.dto;
 
+import pl.koszela.jan.layer.model.domain.Price;
+import pl.koszela.jan.layer.model.domain.impl.Item;
+
 /**
  * Created on 14.08.2017.
  *
@@ -7,19 +10,19 @@ package pl.koszela.jan.layer.facade.dto;
  */
 public interface OrderDTO {
 
-  ItemDTO getItem();
+  Item getItem();
 
-  PriceDTO getStockPrice();
+  Price getStockPrice();
 
-  PriceDTO getTotalPrice();
+  Price getTotalPrice();
 
-  void setTotalPrice(PriceDTO totalPrice);
+  void setTotalPrice(Price totalPrice);
 
   int getQuantity();
 
-  void setItem(ItemDTO productName);
+  void setItem(Item productName);
 
-  void setStockPrice(PriceDTO stockPrice);
+  void setStockPrice(Price stockPrice);
 
   void setQuantity(int quantity);
 

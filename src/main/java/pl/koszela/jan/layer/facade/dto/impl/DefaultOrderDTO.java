@@ -1,9 +1,9 @@
 package pl.koszela.jan.layer.facade.dto.impl;
 
 import java.util.Objects;
-import pl.koszela.jan.layer.facade.dto.ItemDTO;
 import pl.koszela.jan.layer.facade.dto.OrderDTO;
-import pl.koszela.jan.layer.facade.dto.PriceDTO;
+import pl.koszela.jan.layer.model.domain.Price;
+import pl.koszela.jan.layer.model.domain.impl.Item;
 
 /**
  * Created on 12.08.2017.
@@ -12,37 +12,29 @@ import pl.koszela.jan.layer.facade.dto.PriceDTO;
  */
 public class DefaultOrderDTO implements OrderDTO {
 
-  private ItemDTO product;
-  private PriceDTO stockPrice;
+  private Item item;
+  private Price stockPrice;
   private int quantity;
-  private PriceDTO totalPrice;
+  private Price totalPrice;
   private boolean specialOffer;
 
-  public DefaultOrderDTO(ItemDTO product, int quantity) {
-    this.product = product;
-    this.quantity = quantity;
-    this.stockPrice = null;
-    this.totalPrice = null;
-    this.specialOffer = false;
+  @Override
+  public Item getItem() {
+    return this.item;
   }
 
   @Override
-  public ItemDTO getItem() {
-    return this.product;
-  }
-
-  @Override
-  public PriceDTO getStockPrice() {
+  public Price getStockPrice() {
     return this.stockPrice;
   }
 
   @Override
-  public PriceDTO getTotalPrice() {
+  public Price getTotalPrice() {
     return this.totalPrice;
   }
 
   @Override
-  public void setTotalPrice(PriceDTO totalPrice) {
+  public void setTotalPrice(Price totalPrice) {
     this.totalPrice = totalPrice;
   }
 
@@ -52,12 +44,12 @@ public class DefaultOrderDTO implements OrderDTO {
   }
 
   @Override
-  public void setItem(ItemDTO productName) {
-    this.product = productName;
+  public void setItem(Item productName) {
+    this.item = productName;
   }
 
   @Override
-  public void setStockPrice(PriceDTO stockPrice) {
+  public void setStockPrice(Price stockPrice) {
     this.stockPrice = stockPrice;
   }
 
@@ -79,7 +71,7 @@ public class DefaultOrderDTO implements OrderDTO {
   @Override
   public String toString() {
     return "DefaultOrderDTO{" +
-        "product=" + product +
+        "item=" + item +
         ", stockPrice=" + stockPrice +
         ", quantity=" + quantity +
         ", totalPrice=" + totalPrice +
@@ -96,14 +88,14 @@ public class DefaultOrderDTO implements OrderDTO {
       return false;
     }
     DefaultOrderDTO orderDTO = (DefaultOrderDTO) o;
-    return Objects.equals(product, orderDTO.product);
+    return Objects.equals(item, orderDTO.item);
   }
 
   @Override
   public int hashCode() {
     int prime = 13;
 
-    int result = prime + product.getId() + product.getItem().hashCode();
+    int result = prime + item.getId() + item.getName().hashCode();
     return result;
   }
 }
