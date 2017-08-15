@@ -2,6 +2,7 @@ package pl.koszela.jan.layer.service.dao;
 
 import java.util.List;
 import pl.koszela.jan.layer.model.domain.Price;
+import pl.koszela.jan.layer.model.domain.impl.Cart;
 import pl.koszela.jan.layer.model.domain.impl.Order;
 
 /**
@@ -18,4 +19,6 @@ public interface CartDAO {
   boolean removeOrder(Order order);
 
   Price getPrice();
+
+  Cart getCart();
 }
