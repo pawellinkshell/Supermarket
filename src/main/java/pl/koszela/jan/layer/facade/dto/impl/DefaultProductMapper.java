@@ -16,13 +16,12 @@ public class DefaultProductMapper {
     DefaultItemDTO dto = new DefaultItemDTO();
     dto.setId(item.getId());
     dto.setItem(item.getName());
-    dto.setMultipricing(item.isMultipricing());
 
     return dto;
   }
 
   public static Item map(ItemDTO dto) {
-    return new Item(dto.getId(), dto.getItem(), dto.isMultipricing());
+    return new Item(dto.getId(), dto.getItem());
   }
 
   public static List<ItemDTO> map(List<Item> items) {
