@@ -123,4 +123,13 @@ public class DefaultProductService implements ProductService {
     return Arrays.asList(modelService.getStockPrices());
   }
 
+  @Override
+  public Item[] getItems() {
+    return modelService.getItems();
+  }
+
+  @Override
+  public List<Item> getItemList() {
+    return Arrays.asList(modelService.getItems());
+  }
 }
