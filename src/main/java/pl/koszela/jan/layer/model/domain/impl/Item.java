@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  *
  * @author Jan Koszela
  */
-public class Item {
+public class Item implements Comparable<Item>{
 
   @SerializedName("id")
   private int id;
@@ -41,5 +41,16 @@ public class Item {
         "id=" + id +
         ", name='" + name + '\'' +
         '}';
+  }
+
+  @Override
+  public int compareTo(Item o) {
+    if (this.getId() == o.getId()) {
+      return 0;
+    } else if (this.getId() > o.getId()) {
+      return 1;
+    } else {
+      return -1;
+    }
   }
 }

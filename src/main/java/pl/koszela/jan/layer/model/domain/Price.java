@@ -5,7 +5,7 @@ package pl.koszela.jan.layer.model.domain;
  *
  * @author Jan Koszela
  */
-public interface Price {
+public interface Price extends Comparable<Price>{
 
   int getId();
 
@@ -18,4 +18,15 @@ public interface Price {
   double getUnit();
 
   void setUnit(final double price);
+
+  @Override
+  default int compareTo(Price o) {
+    if (this.getUnit() == o.getUnit()) {
+      return 0;
+    } else if (this.getUnit() > o.getUnit()) {
+      return 1;
+    } else {
+      return -1;
+    }
+  }
 }
