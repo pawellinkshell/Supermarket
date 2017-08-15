@@ -15,9 +15,9 @@ public interface ProductService {
 
   Map<Item, Price> getProducts();
 
-  Item getProduct(int id);
+  Item getItem(int id);
 
-  Item getProduct(String productName);
+  Item getItem(String productName);
 
   Price getPrice(Item item);
 

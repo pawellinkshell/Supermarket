@@ -5,11 +5,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Service;
 import pl.koszela.jan.layer.model.domain.Price;
 import pl.koszela.jan.layer.model.domain.impl.Item;
-import pl.koszela.jan.layer.model.service.ModelService;
+import pl.koszela.jan.layer.model.service.impl.DefaultModelService;
 import pl.koszela.jan.layer.service.ProductService;
 
 /**
@@ -19,14 +20,20 @@ import pl.koszela.jan.layer.service.ProductService;
  */
 @Service("productService")
 @DependsOn("modelService")
+//@Component("productService")
+//@Qualifier("productService")
 public class DefaultProductService implements ProductService {
 
   private Map<Item, Price> products;
 
   @Autowired
-  private ModelService modelService;
+  @Qualifier("modelService")
+  private DefaultModelService modelService;
 
   public DefaultProductService() {
+    System.out.println(this.getClass().getCanonicalName());
+    System.out.println(modelService.getItems());
+
     putProductsFromModel();
   }
 
@@ -34,16 +41,17 @@ public class DefaultProductService implements ProductService {
     /*
      * We assume that the data's are ordered in model layer without lack of id's
      */
+//     modelService = new DefaultModelService();
 
     products = new TreeMap<>();
-    Item[] items = modelService.getItems();
-    Price[] prices = modelService.getStockPrices();
-
-    for (int i = 0; (i < items.length) && (i < prices.length); i++) {
-      if (items[i].getId() == prices[i].getId()) {
-        products.put(items[i], prices[i]);
-      }
-    }
+//    Item[] items = modelService.getItems();
+//    Price[] prices = modelService.getStockPrices();
+//
+//    for (int i = 0; (i < items.length) && (i < prices.length); i++) {
+//      if (items[i].getId() == prices[i].getId()) {
+//        products.put(items[i], prices[i]);
+//      }
+//    }
 
     /*
      * Data should be loaded in order.
@@ -68,7 +76,7 @@ public class DefaultProductService implements ProductService {
   }
 
   @Override
-  public Item getProduct(int id) {
+  public Item getItem(int id) {
     for (Item item : products.keySet()) {
       if (item.getId() == id) {
         return item;
@@ -78,9 +86,9 @@ public class DefaultProductService implements ProductService {
   }
 
   @Override
-  public Item getProduct(String productName) {
+  public Item getItem(String name) {
     for (Item item : products.keySet()) {
-      if (item.getName().equals(productName)) {
+      if (item.getName().equals(name)) {
         return item;
       }
     }
