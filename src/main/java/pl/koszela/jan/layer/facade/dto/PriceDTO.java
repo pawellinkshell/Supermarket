@@ -11,9 +11,9 @@ public interface PriceDTO {
 
   void setId(final int id);
 
-  double getPrice();
+  double getUnit();
 
-  void setPrice(final double price);
+  void setUnit(final double price);
 
   String getCurrency();
 

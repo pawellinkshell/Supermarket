@@ -25,12 +25,12 @@ public class StockPriceDTO implements PriceDTO, Serializable {
   }
 
   @Override
-  public double getPrice() {
+  public double getUnit() {
     return this.price;
   }
 
   @Override
-  public void setPrice(double price) {
+  public void setUnit(double price) {
     this.price = price;
   }
 
