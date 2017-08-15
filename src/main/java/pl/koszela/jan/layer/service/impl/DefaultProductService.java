@@ -4,13 +4,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Service;
 import pl.koszela.jan.layer.model.domain.Price;
 import pl.koszela.jan.layer.model.domain.impl.Item;
-import pl.koszela.jan.layer.model.service.impl.DefaultModelService;
+import pl.koszela.jan.layer.model.service.ModelService;
 import pl.koszela.jan.layer.service.ProductService;
 
 /**
@@ -19,39 +18,28 @@ import pl.koszela.jan.layer.service.ProductService;
  * @author Jan Koszela
  */
 @Service("productService")
-@DependsOn("modelService")
-//@Component("productService")
-//@Qualifier("productService")
 public class DefaultProductService implements ProductService {
 
   private Map<Item, Price> products;
 
   @Autowired
-  @Qualifier("modelService")
-  private DefaultModelService modelService;
+  private ModelService modelService;
 
-  public DefaultProductService() {
-    System.out.println(this.getClass().getCanonicalName());
-    System.out.println(modelService.getItems());
-
-    putProductsFromModel();
-  }
-
+  @PostConstruct
   private void putProductsFromModel() {
     /*
      * We assume that the data's are ordered in model layer without lack of id's
      */
-//     modelService = new DefaultModelService();
 
     products = new TreeMap<>();
-//    Item[] items = modelService.getItems();
-//    Price[] prices = modelService.getStockPrices();
-//
-//    for (int i = 0; (i < items.length) && (i < prices.length); i++) {
-//      if (items[i].getId() == prices[i].getId()) {
-//        products.put(items[i], prices[i]);
-//      }
-//    }
+    Item[] items = modelService.getItems();
+    Price[] prices = modelService.getStockPrices();
+
+    for (int i = 0; (i < items.length) && (i < prices.length); i++) {
+      if (items[i].getId() == prices[i].getId()) {
+        products.put(items[i], prices[i]);
+      }
+    }
 
     /*
      * Data should be loaded in order.
