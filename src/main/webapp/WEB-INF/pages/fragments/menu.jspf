@@ -105,16 +105,16 @@
                             <li>
                                 <span class="item">
                                     <span class="item-left">
-                                        <img src="http://via.placeholder.com/50x50?text=${order.product.name}"
+                                        <img src="http://via.placeholder.com/50x50?text=${order.item.name}"
                                              alt=""/>
                                         <span class="item-info">
-                                            <span>${order.product.name}</span>
+                                            <span>${order.item.name}</span>
                                                 ${order.totalPrice.unit} €
                                         </span>
                                     </span>
                                     <span class="item-right">
                                         <a class="btn btn-xs btn-danger pull-right"
-                                        href="${pageContext.request.contextPath}/${currentPath}/${removeAction}?product=${order.product.name}&quantity=0">x</a>
+                                        href="${pageContext.request.contextPath}/${currentPath}/${removeAction}?product=${order.item.name}&quantity=0">x</a>
                                     </span>
                                 </span>
                             </li>
