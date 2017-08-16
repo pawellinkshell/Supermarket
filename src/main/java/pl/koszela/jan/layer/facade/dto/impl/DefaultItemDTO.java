@@ -12,7 +12,6 @@ public class DefaultItemDTO implements ItemDTO, Serializable {
 
   private int id;
   private String item;
-  private boolean multipricing;
 
   @Override
   public int getId() {
@@ -35,21 +34,10 @@ public class DefaultItemDTO implements ItemDTO, Serializable {
   }
 
   @Override
-  public boolean isMultipricing() {
-    return this.multipricing;
-  }
-
-  @Override
-  public void setMultipricing(boolean multipricing) {
-    this.multipricing = multipricing;
-  }
-
-  @Override
   public String toString() {
     return "DefaultItemDTO{" +
         "id=" + id +
         ", item='" + item + '\'' +
-        ", multipricing=" + multipricing +
         '}';
   }
 }

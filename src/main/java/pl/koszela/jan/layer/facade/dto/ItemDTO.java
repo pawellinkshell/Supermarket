@@ -5,7 +5,7 @@ package pl.koszela.jan.layer.facade.dto;
  *
  * @author Jan Koszela
  */
-public interface ItemDTO {
+public interface ItemDTO  extends Comparable<ItemDTO>{
 
   int getId();
 
@@ -15,7 +15,14 @@ public interface ItemDTO {
 
   void setItem(final String item);
 
-  boolean isMultipricing();
-
-  void setMultipricing(final boolean isMultipricing);
+  @Override
+  default int compareTo(ItemDTO o) {
+    if (this.getId() == o.getId()) {
+      return 0;
+    } else if (this.getId() > o.getId()) {
+      return 1;
+    } else {
+      return -1;
+    }
+  }
 }

@@ -5,7 +5,7 @@ package pl.koszela.jan.layer.facade.dto;
  *
  * @author Jan Koszela
  */
-public interface PriceDTO {
+public interface PriceDTO extends Comparable<PriceDTO>{
 
   int getId();
 
@@ -18,4 +18,15 @@ public interface PriceDTO {
   String getCurrency();
 
   void setCurrency(final String currency);
+
+  @Override
+  default int compareTo(PriceDTO o) {
+    if (this.getUnit() == o.getUnit()) {
+      return 0;
+    } else if (this.getUnit() > o.getUnit()) {
+      return 1;
+    } else {
+      return -1;
+    }
+  }
 }
