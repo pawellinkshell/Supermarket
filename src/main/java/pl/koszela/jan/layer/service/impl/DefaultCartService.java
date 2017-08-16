@@ -25,13 +25,13 @@ public class DefaultCartService implements CartService {
   }
 
   @Override
-  public void addToCart(Order order) {
-    cartDAO.add(order);
+  public boolean addToCart(Order order) {
+    return cartDAO.add(order);
   }
 
   @Override
-  public void removeOrderFromCart(Order order) {
-    cartDAO.removeOrder(order);
+  public boolean removeOrderFromCart(Order order) {
+    return cartDAO.removeOrder(order);
   }
 
   @Override

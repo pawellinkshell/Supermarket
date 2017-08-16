@@ -13,9 +13,9 @@ public interface CartService {
 
   Cart getCart();
 
-  void addToCart(Order order);
+  boolean addToCart(Order order);
 
-  void removeOrderFromCart(Order order);
+  boolean removeOrderFromCart(Order order);
 
   Price getPriceCart();
 }

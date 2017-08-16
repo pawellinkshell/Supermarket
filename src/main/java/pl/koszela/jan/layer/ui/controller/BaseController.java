@@ -15,10 +15,6 @@ import pl.koszela.jan.layer.facade.CartFacade;
 import pl.koszela.jan.layer.facade.ProductFacade;
 import pl.koszela.jan.layer.ui.constans.AttributeConstans;
 import pl.koszela.jan.layer.ui.constans.PathConstans;
-import pl.koszela.jan.layer.facade.dto.impl.DefaultOrderDTO;
-import pl.koszela.jan.layer.service.CartService;
-import pl.koszela.jan.layer.service.OrderService;
-import pl.koszela.jan.layer.service.ProductService;
 
 /**
  * Created on 09.08.2017.
@@ -74,33 +70,7 @@ public class BaseController {
       @RequestParam(value = "product", required = false) String product,
       @RequestParam(value = "quantity", required = false) String quantity) {
 
-//    if (name.equals(PathConstans.REMOVE_ACTION.getValue())) {
-//      if (product != null) {
-//        DefaultOrderDTO foundOrderDTO = orderService.getOrderByName(product);
-//        cartService.removeOrderFromCart(foundOrderDTO);
-//      }
-//    } else if (name.equals(PathConstans.ADD_ACTION.getValue())) {
-//      if (product != null) {
-//        DefaultOrderDTO foundOrderDTO = orderService.getOrderByName(product);
-//
-//        DefaultOrderDTO newOrderDTO = null;
-//        if (foundOrderDTO == null) {
-//          newOrderDTO = new DefaultOrderDTO(
-//              productService.getProduct(product), Integer.valueOf(quantity));
-//          orderService.createOrder(newOrderDTO);
-//        } else {
-//          if (foundOrderDTO.getQuantity() != Integer.valueOf(quantity)) {
-//            newOrderDTO = new DefaultOrderDTO(productService.getProduct(product),
-//                Integer.valueOf(quantity));
-//            orderService.updateOrder(newOrderDTO);
-//          } else {
-//            newOrderDTO = foundOrderDTO;
-//          }
-//        }
-//
-//        cartService.addToCart(newOrderDTO);
-//      }
-//    }
+    resolveAction(name, product, quantity);
 
     model.addAllAttributes(modelAttributes);
 
@@ -114,6 +84,28 @@ public class BaseController {
 
     return VIEW_INDEX;
 
+  }
+
+  private void resolveAction(@PathVariable String name,
+      @RequestParam(value = "product", required = false) String product,
+      @RequestParam(value = "quantity", required = false) String quantity) {
+    if (removeAction(name)) {
+      if (product != null) {
+        cartFacade.removeOrderFromCart(product);
+      }
+    } else if (addAction(name)) {
+      if (product != null) {
+        cartFacade.addOrderToCart(product, quantity);
+      }
+    }
+  }
+
+  private boolean addAction(@PathVariable String name) {
+    return name.equals(PathConstans.ADD_ACTION.getValue());
+  }
+
+  private boolean removeAction(@PathVariable String name) {
+    return name.equals(PathConstans.REMOVE_ACTION.getValue());
   }
 
   @RequestMapping("/" + PathConstans.CART_PATH)
@@ -133,36 +125,7 @@ public class BaseController {
       @RequestParam(value = "product", required = false) String product,
       @RequestParam(value = "quantity", required = false) String quantity) {
 
-//    if (name.equals(PathConstans.REMOVE_ACTION.getValue())) {
-//      if (product != null) {
-//        DefaultOrderDTO foundOrderDTO = orderService.getOrderByName(product);
-//        if (foundOrderDTO != null) {
-//          orderService.removeOrder(foundOrderDTO);
-//          cartService.removeOrderFromCart(foundOrderDTO);
-//        }
-//      }
-//    } else if (name.equals(PathConstans.ADD_ACTION.getValue())) {
-//      if (product != null) {
-//        DefaultOrderDTO foundOrderDTO = orderService.getOrderByName(product);
-//
-//        DefaultOrderDTO newOrderDTO = null;
-//        if (foundOrderDTO == null) {
-//          newOrderDTO = new DefaultOrderDTO(
-//              productService.getProduct(product), Integer.valueOf(quantity));
-//          orderService.createOrder(newOrderDTO);
-//        } else {
-//          if (foundOrderDTO.getQuantity() != Integer.valueOf(quantity)) {
-//            newOrderDTO = new DefaultOrderDTO(productService.getProduct(product),
-//                Integer.valueOf(quantity));
-//            orderService.updateOrder(newOrderDTO);
-//          } else {
-//            newOrderDTO = foundOrderDTO;
-//          }
-//        }
-//
-//        cartService.addToCart(newOrderDTO);
-//      }
-//    }
+    resolveAction(name, product, quantity);
 
     model.addAllAttributes(modelAttributes);
 
@@ -181,7 +144,7 @@ public class BaseController {
     modelAttributes.put(AttributeConstans.CART.getKey(),
         cartFacade.getCart());
     modelAttributes.put(AttributeConstans.PRODUCTS.getKey(),
-          productFacade.getProducts());
+        productFacade.getProducts());
 
     // Path Constants
     modelAttributes.put(PathConstans.SERVLET_NAME.getKey(),
