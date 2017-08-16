@@ -23,7 +23,8 @@
                             <span class="glyphicon glyphicon-eur"></span> ${product.value.unit}
                         </h4>
                         <h4>
-                            <a href="#">${product.key.item}</a>
+                            <a href="#" data-toggle="modal"
+                               data-target="#product_view_${product.key.id}">${product.key.item}</a>
                         </h4>
                         <p>Lorem Ipsum is simply dummy text of the printing and typesetting
                             industry.
