@@ -35,6 +35,17 @@ public class DefaultCartDTO implements CartDTO {
   }
 
   @Override
+  public double getPrice() {
+    double price = 0.0d;
+
+    for (Order order : orders) {
+      price += order.getTotalPrice().getUnit();
+    }
+
+    return price;
+  }
+
+  @Override
   public String toString() {
     return "DefaultCartDTO{" +
         "orders=" + orders +

@@ -18,4 +18,6 @@ public interface CartDTO {
 
   void setCurrency(String currency);
 
+  double getPrice();
+
 }
