@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import pl.koszela.jan.layer.facade.CartFacade;
+import pl.koszela.jan.layer.facade.ProductFacade;
 import pl.koszela.jan.layer.ui.constans.AttributeConstans;
 import pl.koszela.jan.layer.ui.constans.PathConstans;
 import pl.koszela.jan.layer.facade.dto.impl.DefaultOrderDTO;
@@ -34,13 +36,10 @@ public class BaseController {
   private static Map<String, Object> modelAttributes;
 
   @Autowired
-  private ProductService productService;
+  private ProductFacade productFacade;
 
   @Autowired
-  private OrderService orderService;
-
-  @Autowired
-  private CartService cartService;
+  private CartFacade cartFacade;
 
   @RequestMapping("/")
   public String welcomePage(ModelMap model) {
@@ -75,33 +74,33 @@ public class BaseController {
       @RequestParam(value = "product", required = false) String product,
       @RequestParam(value = "quantity", required = false) String quantity) {
 
-    if (name.equals(PathConstans.REMOVE_ACTION.getValue())) {
-      if (product != null) {
-        DefaultOrderDTO foundOrderDTO = orderService.getOrderByName(product);
-        cartService.removeOrderFromCart(foundOrderDTO);
-      }
-    } else if (name.equals(PathConstans.ADD_ACTION.getValue())) {
-      if (product != null) {
-        DefaultOrderDTO foundOrderDTO = orderService.getOrderByName(product);
-
-        DefaultOrderDTO newOrderDTO = null;
-        if (foundOrderDTO == null) {
-          newOrderDTO = new DefaultOrderDTO(
-              productService.getProduct(product), Integer.valueOf(quantity));
-          orderService.createOrder(newOrderDTO);
-        } else {
-          if (foundOrderDTO.getQuantity() != Integer.valueOf(quantity)) {
-            newOrderDTO = new DefaultOrderDTO(productService.getProduct(product),
-                Integer.valueOf(quantity));
-            orderService.updateOrder(newOrderDTO);
-          } else {
-            newOrderDTO = foundOrderDTO;
-          }
-        }
-
-        cartService.addToCart(newOrderDTO);
-      }
-    }
+//    if (name.equals(PathConstans.REMOVE_ACTION.getValue())) {
+//      if (product != null) {
+//        DefaultOrderDTO foundOrderDTO = orderService.getOrderByName(product);
+//        cartService.removeOrderFromCart(foundOrderDTO);
+//      }
+//    } else if (name.equals(PathConstans.ADD_ACTION.getValue())) {
+//      if (product != null) {
+//        DefaultOrderDTO foundOrderDTO = orderService.getOrderByName(product);
+//
+//        DefaultOrderDTO newOrderDTO = null;
+//        if (foundOrderDTO == null) {
+//          newOrderDTO = new DefaultOrderDTO(
+//              productService.getProduct(product), Integer.valueOf(quantity));
+//          orderService.createOrder(newOrderDTO);
+//        } else {
+//          if (foundOrderDTO.getQuantity() != Integer.valueOf(quantity)) {
+//            newOrderDTO = new DefaultOrderDTO(productService.getProduct(product),
+//                Integer.valueOf(quantity));
+//            orderService.updateOrder(newOrderDTO);
+//          } else {
+//            newOrderDTO = foundOrderDTO;
+//          }
+//        }
+//
+//        cartService.addToCart(newOrderDTO);
+//      }
+//    }
 
     model.addAllAttributes(modelAttributes);
 
@@ -134,36 +133,36 @@ public class BaseController {
       @RequestParam(value = "product", required = false) String product,
       @RequestParam(value = "quantity", required = false) String quantity) {
 
-    if (name.equals(PathConstans.REMOVE_ACTION.getValue())) {
-      if (product != null) {
-        DefaultOrderDTO foundOrderDTO = orderService.getOrderByName(product);
-        if (foundOrderDTO != null) {
-          orderService.removeOrder(foundOrderDTO);
-          cartService.removeOrderFromCart(foundOrderDTO);
-        }
-      }
-    } else if (name.equals(PathConstans.ADD_ACTION.getValue())) {
-      if (product != null) {
-        DefaultOrderDTO foundOrderDTO = orderService.getOrderByName(product);
-
-        DefaultOrderDTO newOrderDTO = null;
-        if (foundOrderDTO == null) {
-          newOrderDTO = new DefaultOrderDTO(
-              productService.getProduct(product), Integer.valueOf(quantity));
-          orderService.createOrder(newOrderDTO);
-        } else {
-          if (foundOrderDTO.getQuantity() != Integer.valueOf(quantity)) {
-            newOrderDTO = new DefaultOrderDTO(productService.getProduct(product),
-                Integer.valueOf(quantity));
-            orderService.updateOrder(newOrderDTO);
-          } else {
-            newOrderDTO = foundOrderDTO;
-          }
-        }
-
-        cartService.addToCart(newOrderDTO);
-      }
-    }
+//    if (name.equals(PathConstans.REMOVE_ACTION.getValue())) {
+//      if (product != null) {
+//        DefaultOrderDTO foundOrderDTO = orderService.getOrderByName(product);
+//        if (foundOrderDTO != null) {
+//          orderService.removeOrder(foundOrderDTO);
+//          cartService.removeOrderFromCart(foundOrderDTO);
+//        }
+//      }
+//    } else if (name.equals(PathConstans.ADD_ACTION.getValue())) {
+//      if (product != null) {
+//        DefaultOrderDTO foundOrderDTO = orderService.getOrderByName(product);
+//
+//        DefaultOrderDTO newOrderDTO = null;
+//        if (foundOrderDTO == null) {
+//          newOrderDTO = new DefaultOrderDTO(
+//              productService.getProduct(product), Integer.valueOf(quantity));
+//          orderService.createOrder(newOrderDTO);
+//        } else {
+//          if (foundOrderDTO.getQuantity() != Integer.valueOf(quantity)) {
+//            newOrderDTO = new DefaultOrderDTO(productService.getProduct(product),
+//                Integer.valueOf(quantity));
+//            orderService.updateOrder(newOrderDTO);
+//          } else {
+//            newOrderDTO = foundOrderDTO;
+//          }
+//        }
+//
+//        cartService.addToCart(newOrderDTO);
+//      }
+//    }
 
     model.addAllAttributes(modelAttributes);
 
@@ -180,9 +179,9 @@ public class BaseController {
     modelAttributes = new HashMap<>();
 
     modelAttributes.put(AttributeConstans.CART.getKey(),
-        cartService.getCart());
+        cartFacade.getCart());
     modelAttributes.put(AttributeConstans.PRODUCTS.getKey(),
-        productService.getProducts());
+          productFacade.getProducts());
 
     // Path Constants
     modelAttributes.put(PathConstans.SERVLET_NAME.getKey(),

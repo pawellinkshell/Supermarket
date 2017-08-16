@@ -23,21 +23,18 @@ public class DefaultItemDTOTest {
   public static final String ITEM = "Civic";
   public static final int UNIT_PRICE = 72;
   public static final String CURRENCY = "EUR";
-  public static final boolean MULTIPRICING = true;
 
   private ItemDTO givenItemDTO;
 
   @Before
   public void setUp(){
-    givenItemDTO = createProductDTO(ID, ITEM, UNIT_PRICE, CURRENCY, MULTIPRICING);
+    givenItemDTO = createProductDTO(ID, ITEM, UNIT_PRICE, CURRENCY);
   }
 
-  private ItemDTO createProductDTO(int id, String item, int unitPrice, String currency,
-      boolean multipricing) {
+  private ItemDTO createProductDTO(int id, String item, int unitPrice, String currency) {
     DefaultItemDTO productDTO = new DefaultItemDTO();
     productDTO.setId(id);
     productDTO.setItem(item);
-    productDTO.setMultipricing(multipricing);
 
     return productDTO;
   }
@@ -50,11 +47,6 @@ public class DefaultItemDTOTest {
   @Test
   public void shouldGetItem() {
     assertThat(givenItemDTO.getItem()).isEqualTo(ITEM);
-  }
-
-  @Test
-  public void shouldGetMultipricing() {
-    assertThat(givenItemDTO.isMultipricing()).isEqualTo(MULTIPRICING);
   }
 
   @Test
