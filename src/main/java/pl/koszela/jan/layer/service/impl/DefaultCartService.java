@@ -38,4 +38,11 @@ public class DefaultCartService implements CartService {
   public Price getPriceCart() {
     return cartDAO.getPrice();
   }
+
+  @Override
+  public boolean updateOrderInCart(Order order) {
+    return cartDAO.update(order);
+  }
+
+
 }

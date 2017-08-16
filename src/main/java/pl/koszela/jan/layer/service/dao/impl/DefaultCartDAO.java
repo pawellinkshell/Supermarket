@@ -32,7 +32,6 @@ public class DefaultCartDAO implements CartDAO {
   @Override
   public boolean add(Order order) {
     setCartCurrency(order);
-    removeOrderIfExists(order);
 
     if (isValidQuantity(order)) {
       return this.cart.addOrder(order);
@@ -59,6 +58,18 @@ public class DefaultCartDAO implements CartDAO {
 
   private boolean isValidQuantity(Order order) {
     return order.getQuantity() > 0;
+  }
+
+  @Override
+  public boolean update(Order order) {
+    setCartCurrency(order);
+//    removeOrderIfExists(order);
+
+    if (isValidQuantity(order)) {
+      return this.cart.updateOrder(order);
+    } else {
+      return false;
+    }
   }
 
   @Override

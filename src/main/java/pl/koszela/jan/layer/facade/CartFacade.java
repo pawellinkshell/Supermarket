@@ -14,4 +14,6 @@ public interface CartFacade {
   boolean removeOrderFromCart(String product);
 
   boolean addOrderToCart(String product, String quantity);
+
+  boolean updateOrderInCart(String product, String quantity);
 }

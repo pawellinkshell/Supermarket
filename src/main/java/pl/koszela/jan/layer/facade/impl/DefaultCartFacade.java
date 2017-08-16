@@ -42,6 +42,7 @@ public class DefaultCartFacade implements CartFacade {
   @Override
   public boolean removeOrderFromCart(String product) {
     Order foundOrder = orderService.getOrderByName(product);
+    orderService.removeOrder(foundOrder);
     return cartService.removeOrderFromCart(foundOrder);
   }
 
@@ -50,24 +51,39 @@ public class DefaultCartFacade implements CartFacade {
 
     Order foundOrder = orderService.getOrderByName(product);
 
-    if (isOrderFound(foundOrder)) {
-      if (isNewQuantityDifferent(quantity, foundOrder)) {
-        orderService.updateOrder(product, Integer.parseInt(quantity));
-      }
-
-    } else {
+    if (foundOrder == null) {
       orderService.createOrder(product, Integer.valueOf(quantity));
+      foundOrder = orderService.getOrderByName(product);
+
+      return (foundOrder != null) ? cartService.addToCart(foundOrder) : false;
+    } else {
+      return false;
+    }
+  }
+
+  @Override
+  public boolean updateOrderInCart(String product, String quantity) {
+    Order foundOrder = orderService.getOrderByName(product);
+
+    if (foundOrder != null) {
+      if (isValidQuantity(Integer.parseInt(quantity), foundOrder)) {
+        orderService.updateOrder(product, Integer.parseInt(quantity));
+        foundOrder = orderService.getOrderByName(product);
+      } else {
+        return false;
+      }
     }
 
-    return cartService.addToCart(orderService.getOrderByName(product));
+    return (foundOrder != null) ? cartService.updateOrderInCart(foundOrder) : false;
   }
 
-  private boolean isOrderFound(Order foundOrder) {
-    return foundOrder != null;
+  private boolean isValidQuantity(int quantity, Order foundOrder) {
+    if (quantity == foundOrder.getQuantity()){
+      return false;
+    } else if (quantity > 0) {
+      return foundOrder.getQuantity() != quantity;
+    } else {
+      return false;
+    }
   }
-
-  private boolean isNewQuantityDifferent(String quantity, Order foundOrder) {
-    return foundOrder.getQuantity() != Integer.parseInt(quantity);
-  }
-
 }

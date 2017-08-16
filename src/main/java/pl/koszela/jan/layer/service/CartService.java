@@ -18,4 +18,6 @@ public interface CartService {
   boolean removeOrderFromCart(Order order);
 
   Price getPriceCart();
+
+  boolean updateOrderInCart(Order order);
 }

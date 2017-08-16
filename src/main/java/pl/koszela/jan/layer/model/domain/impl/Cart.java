@@ -57,4 +57,19 @@ public class Cart {
         ", currency='" + currency + '\'' +
         '}';
   }
+
+  public boolean updateOrder(Order order) {
+    for (int i = 0; i < orders.size(); i++) {
+      if (orders.get(i).getItem().getId() == order.getItem().getId()) {
+        try {
+          orders.set(i, order);
+          return true;
+        } catch (RuntimeException exception) {
+          return false;
+        }
+      }
+    }
+
+    return false;
+  }
 }

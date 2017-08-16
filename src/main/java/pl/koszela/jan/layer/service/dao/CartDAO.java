@@ -21,4 +21,6 @@ public interface CartDAO {
   Price getPrice();
 
   Cart getCart();
+
+  boolean update(Order order);
 }
