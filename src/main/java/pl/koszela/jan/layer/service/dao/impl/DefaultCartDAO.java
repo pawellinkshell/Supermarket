@@ -42,7 +42,7 @@ public class DefaultCartDAO implements CartDAO {
   }
 
   private void setCartCurrency(Order order) {
-    if (this.cart.getCurrency() != null) {
+    if (this.cart.getCurrency() == null) {
       this.cart.setCurrency(order.getStockPrice().getCurrency());
     }
   }
