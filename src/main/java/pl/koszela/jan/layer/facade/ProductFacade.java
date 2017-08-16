@@ -1,13 +1,15 @@
 package pl.koszela.jan.layer.facade;
 
-import pl.koszela.jan.main.annotation.Facade;
+import java.util.Map;
+import pl.koszela.jan.layer.facade.dto.ItemDTO;
+import pl.koszela.jan.layer.facade.dto.PriceDTO;
 
 /**
  * Created on 15.08.2017.
  *
  * @author Jan Koszela
  */
-@Facade
 public interface ProductFacade {
 
+  Map<ItemDTO, PriceDTO> getProducts();
 }
