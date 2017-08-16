@@ -15,4 +15,5 @@ public class AttributeConstans {
   public static final Map.Entry<String, String> PRODUCTS = new SimpleEntry<>(
       "productItems", "");
 
+  public static final String ALERT = "alerts";
 }
