@@ -30,6 +30,9 @@ public class Order {
     this.specialOffer = specialOffer;
   }
 
+  public Order() {
+  }
+
   public Item getItem() {
     return item;
   }

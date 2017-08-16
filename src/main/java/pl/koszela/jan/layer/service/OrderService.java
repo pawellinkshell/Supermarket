@@ -11,10 +11,9 @@ public interface OrderService {
 
   Order getOrderByName(String productName);
 
-  boolean createOrder(Order orderDTO);
+  boolean updateOrder(String product, int quantity);
 
-  boolean updateOrder(Order orderDTO);
+  boolean removeOrder(Order removedOrder);
 
-  boolean removeOrder(Order removedOrderDTO);
-
+  boolean createOrder(String product, int quantity);
 }

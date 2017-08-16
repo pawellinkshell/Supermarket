@@ -6,7 +6,6 @@ import pl.koszela.jan.layer.model.domain.Price;
 import pl.koszela.jan.layer.model.domain.impl.Item;
 import pl.koszela.jan.layer.model.domain.impl.Order;
 import pl.koszela.jan.layer.model.domain.impl.SpecialPrice;
-import pl.koszela.jan.layer.model.domain.impl.StockPrice;
 import pl.koszela.jan.layer.model.service.ModelService;
 import pl.koszela.jan.layer.service.OrderService;
 import pl.koszela.jan.layer.service.dao.OrderDAO;
@@ -31,9 +30,12 @@ public class DefaultOrderService implements OrderService {
   }
 
   @Override
-  public boolean createOrder(Order order) {
-    if (isValidQuantity(order)) {
-      fillByPrices(order);
+  public boolean createOrder(String product, int quantity) {
+    Order order = getBaseOrder(product, quantity);
+    if (isValidQuantity(quantity)) {
+
+      order = setOrderPricing(order, quantity);
+
       return orderDAO.addOrder(order);
     } else {
       if (removeOrder(order)) {
@@ -44,33 +46,31 @@ public class DefaultOrderService implements OrderService {
     return false;
   }
 
-  private boolean isValidQuantity(Order order) {
-    return order.getQuantity() > 0;
+  private Order setOrderPricing(Order order, int quantity) {
+    Price totalPrice = calculateTotalPrice(order.getItem(), quantity);
+    order.setTotalPrice(totalPrice);
+    order.setSpecialOffer(isSpecialOffer(totalPrice));
+
+    return order;
   }
 
-  private void fillByPrices(Order order) {
-    order.setStockPrice(getStockPrice(order.getItem()));
+  private Order getBaseOrder(String productName, int quantity) {
+    Order order = new Order();
+    Item item = modelService.getItem(productName);
 
-    Price totalPrice = calculateTotalPrice(order.getItem(), order.getQuantity());
-    if (totalPrice instanceof SpecialPrice) {
-      order.setSpecialOffer(true);
-    }
-    order.setTotalPrice(totalPrice);
+    order.setItem(item);
+    order.setQuantity(quantity);
+    order.setStockPrice(getStockPrice(item));
+
+    return order;
+  }
+
+  private boolean isValidQuantity(int quantity) {
+    return quantity > 0;
   }
 
   private Price getStockPrice(Item item) {
-    Price resultPrice = null;
-
-    for (Price price : modelService.getStockPrices()) {
-      if (price.getId() == item.getId()) {
-        resultPrice = new StockPrice(
-            price.getId(),
-            price.getUnit(),
-            price.getCurrency());
-        break;
-      }
-    }
-    return resultPrice;
+    return modelService.getStockPrice(item.getId());
   }
 
   private Price calculateTotalPrice(Item item, int quantity) {
@@ -84,44 +84,36 @@ public class DefaultOrderService implements OrderService {
     return price;
   }
 
+  private boolean isSpecialOffer(Price totalPrice) {
+    return (totalPrice instanceof SpecialPrice) ? true : false;
+  }
+
   private Price getSpecialPrice(Item item, int quantity) {
-    Price resultPrice = null;
-
-    for (SpecialPrice price : modelService.getSpecialPrices()) {
-      if (price.getId() == item.getId() &&
-          price.getAmount() == quantity) {
-        resultPrice = new SpecialPrice(price.getId(),
-            price.getAmount(),
-            price.getUnit(),
-            price.getCurrency());
-        break;
-      }
-    }
-
-    return resultPrice;
+    return modelService.getSpecialPrice(item.getId(), quantity);
   }
 
   @Override
-  public boolean updateOrder(Order order) {
-    Order foundOrder = orderDAO.findOrderByName(order.getItem().getName());
+  public boolean updateOrder(String product, int quantity) {
+    Order foundOrder = orderDAO.findOrderByName(product);
 
     if (foundOrder != null) {
-      fillByPrices(order);
+      foundOrder = setOrderPricing(foundOrder, quantity);
 
       int orderId = orderDAO.findId(foundOrder);
 
-      if (isValidQuantity(order) &&
+      if (isValidQuantity(quantity) &&
           isValidId(orderId)) {
-        return orderDAO.updateOrder(orderId, order);      // (P && Q)
+        foundOrder.setQuantity(quantity);
+        return orderDAO.updateOrder(orderId, foundOrder);       // (P && Q)
       } else {
-        return orderDAO.removeOrder(orderId);             // (!Q && P) Commutative property
+        return orderDAO.removeOrder(orderId);                   // (!Q && P) Commutative property
       }
 
 //      if (isValidId(orderId)) {
 //        if (isValidQuantity(order)) {
-//          return orderDAO.updateOrder(orderId, order);  // (P && Q)
+//          return orderDAO.updateOrder(orderId, order);        // (P && Q)
 //        } else {
-//          return orderDAO.removeOrder(orderId);         // (P && !Q)
+//          return orderDAO.removeOrder(orderId);               // (P && !Q)
 //        }
 //      }
     }
@@ -133,8 +125,7 @@ public class DefaultOrderService implements OrderService {
   public boolean removeOrder(Order order) {
     int orderId = orderDAO.findId(order);
     if (isValidId(orderId)) {
-      orderDAO.removeOrder(orderId);
-      return true;
+      return orderDAO.removeOrder(orderId);
     }
     return false;
   }
@@ -142,5 +133,5 @@ public class DefaultOrderService implements OrderService {
   private boolean isValidId(int idFromOrders) {
     return idFromOrders >= 0;
   }
-  
+
 }
