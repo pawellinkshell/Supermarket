@@ -49,26 +49,25 @@ public class DefaultCartFacade implements CartFacade {
   public boolean addOrderToCart(String product, String quantity) {
 
     Order foundOrder = orderService.getOrderByName(product);
-    Order newOrder = null;
 
     if (isOrderFound(foundOrder)) {
-      newOrder = orderService.createOrder(product, Integer.parseInt(quantity));
-    } else {
       if (isNewQuantityDifferent(quantity, foundOrder)) {
         orderService.updateOrder(product, Integer.parseInt(quantity));
-      } else {
-        newOrder = foundOrder;
       }
+
+    } else {
+      orderService.createOrder(product, Integer.valueOf(quantity));
     }
 
-    return cartService.addToCart(newOrder);
+    return cartService.addToCart(orderService.getOrderByName(product));
+  }
+
+  private boolean isOrderFound(Order foundOrder) {
+    return foundOrder != null;
   }
 
   private boolean isNewQuantityDifferent(String quantity, Order foundOrder) {
     return foundOrder.getQuantity() != Integer.parseInt(quantity);
   }
 
-  private boolean isOrderFound(Order foundOrder) {
-    return foundOrder == null;
-  }
 }
