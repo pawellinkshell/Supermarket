@@ -101,13 +101,12 @@
                     <a href="${pageContext.request.contextPath}/${cart}"> ${cart} </a>
                 </li>
             </ul>
-            <c:if test="${alerts != null}">
-            <ul class="nav navbar-nav navbar-right ">
-                <div id="alert" class="alert ${alerts.type}">
-                    <a href="javascript:;" class="close" data-dismiss="alert">&times;</a>
-                    <strong>Success!</strong> Indicates a successful or positive action.
-                </div>
-            </ul>
+            <c:if test="${alerts.type != null}">
+                <ul class="nav navbar-nav navbar-right ">
+                    <div id="alert" class="alert ${alerts.type}">
+                        <strong>${alerts.result}!</strong> ${alerts.message}
+                    </div>
+                </ul>
             </c:if>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">

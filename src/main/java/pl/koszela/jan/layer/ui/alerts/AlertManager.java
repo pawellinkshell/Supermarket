@@ -13,25 +13,56 @@ public class AlertManager {
   public static final String SUCCESS = "alert-success";
   public static final String WARNING = "alert-warning";
   public static final String ERROR = "alert-danger";
+  public static final String INFO = "alert-info";
 
-  private String currentAlertType = null;
-  private String currentMessage = null;
+  private String type = null;
+  private String result = null;
+  private String message = null;
 
   public void setAlert(final String alertType, String message) {
-    this.currentAlertType = alertType;
-    this.currentMessage = message;
+    this.type = alertType;
+    switch (alertType) {
+      case SUCCESS:
+        this.result = "Success";
+        break;
+      case WARNING:
+        this.result = "Warning";
+        break;
+      case ERROR:
+        this.result = "Problem";
+        break;
+      case INFO:
+        this.result = "Note";
+        break;
+    }
+
+    this.message = message;
   }
 
-  public String getAlert() {
-    return this.currentMessage;
+  public String getMessage() {
+    return this.message;
   }
 
   public String getType(){
-    return this.currentAlertType;
+    return this.type;
+  }
+
+  public String getResult() {
+    return result;
   }
 
   public void cleanAlert() {
-    this.currentAlertType = null;
-    this.currentMessage = null;
+    this.type = null;
+    this.result = null;
+    this.message = null;
+  }
+
+  @Override
+  public String toString() {
+    return "AlertManager{" +
+        "type='" + type + '\'' +
+        ", result='" + result + '\'' +
+        ", message='" + message + '\'' +
+        '}';
   }
 }
