@@ -11,9 +11,15 @@ import pl.koszela.jan.layer.model.domain.impl.SpecialPrice;
  */
 public interface ModelService {
 
+  Item getItem(String itemName);
+
   Item[] getItems();
 
+  Price getStockPrice(int id);
+
   Price[] getStockPrices();
+
+  SpecialPrice getSpecialPrice(int id, int quantity);
 
   SpecialPrice[] getSpecialPrices();
 }
