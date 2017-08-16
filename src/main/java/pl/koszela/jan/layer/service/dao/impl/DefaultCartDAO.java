@@ -79,6 +79,11 @@ public class DefaultCartDAO implements CartDAO {
   }
 
   @Override
+  public Cart getCart() {
+    return this.cart;
+  }
+
+  @Override
   public String toString() {
     return "DefaultCartDAO{" +
         "cart=" + cart +

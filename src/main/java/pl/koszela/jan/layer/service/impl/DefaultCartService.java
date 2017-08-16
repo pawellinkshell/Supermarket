@@ -3,6 +3,7 @@ package pl.koszela.jan.layer.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.koszela.jan.layer.model.domain.Price;
+import pl.koszela.jan.layer.model.domain.impl.Cart;
 import pl.koszela.jan.layer.model.domain.impl.Order;
 import pl.koszela.jan.layer.service.CartService;
 import pl.koszela.jan.layer.service.dao.CartDAO;
@@ -19,8 +20,8 @@ public class DefaultCartService implements CartService {
   private CartDAO cartDAO;
 
   @Override
-  public CartDAO getCart() {
-    return this.cartDAO;
+  public Cart getCart() {
+    return this.cartDAO.getCart();
   }
 
   @Override
