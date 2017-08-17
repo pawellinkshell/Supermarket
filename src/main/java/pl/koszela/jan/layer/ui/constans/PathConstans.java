@@ -20,6 +20,8 @@ public class PathConstans {
   //Actions on paths
   public static final Map.Entry<String, String> ADD_ACTION = new SimpleEntry<>(
       "addAction", "add");
+  public static final Map.Entry<String, String> UPDATE_ACTION = new SimpleEntry<>(
+      "updateAction", "update");
   public static final Map.Entry<String, String> REMOVE_ACTION = new SimpleEntry<>(
       "removeAction", "remove");
 
