@@ -36,16 +36,16 @@
                             <td class="col-sm-8 col-md-6">
                                 <div class="media">
                                     <a class="thumbnail pull-left" href="#" data-toggle="modal"
-                                       data-target="#product_view_${order.product.id}">
+                                       data-target="#product_view_${order.item.id}">
                                         <img class="media-object"
-                                             src="http://via.placeholder.com/72x72?text=${order.product.name}"
+                                             src="http://via.placeholder.com/72x72?text=${order.item.name}"
                                              style="width: 72px; height: 72px;">
                                     </a>
                                     <div class="media-body">
                                         <h4 class="media-heading">
                                             <a href="#" data-toggle="modal"
-                                               data-target="#product_view_${order.product.id}">
-                                                    ${order.product.name}
+                                               data-target="#product_view_${order.item.id}">
+                                                    ${order.item.name}
                                             </a>
                                         </h4>
                                     </div>
@@ -73,7 +73,7 @@
                             </td>
                             <td class="col-sm-1 col-md-1">
                                 <a
-                                    href="${pageContext.request.contextPath}/${currentPath}/${removeAction}?product=${order.product.name}&quantity=0"
+                                    href="${pageContext.request.contextPath}/${currentPath}/${removeAction}?product=${order.item.name}&quantity=0"
                                     class="btn btn-danger">
 
                                     <span class="glyphicon glyphicon-remove"></span> Remove
@@ -81,7 +81,6 @@
                             </td>
                         </tr>
                     </c:forEach>
-
                     <%--END OF PRODUCTS--%>
                     <tr>
                         <td>  </td>
@@ -91,7 +90,7 @@
                         <td class="text-right">
                             <h3><strong>
                                 <span class="glyphicon glyphicon-eur"></span>
-                                ${cartItem.price.unit}
+                                ${cartItem.price}
                             </strong></h3>
                         </td>
                         <td>  </td>

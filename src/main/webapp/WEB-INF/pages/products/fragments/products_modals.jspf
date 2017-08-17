@@ -15,15 +15,15 @@
                     <a href="#" data-dismiss="modal" class="class pull-right">
                         <span class="glyphicon glyphicon-remove"></span>
                     </a>
-                    <h3 class="modal-title">${product.key.name}</h3>
+                    <h3 class="modal-title">${product.key.item}</h3>
                 </div>
                 <div class="modal-body">
                     <form action="/${servletPath}/${currentPath}/${addAction}" method="get">
-                        <input type="hidden" name="product" value="${product.key.name}" >
+                        <input type="hidden" name="product" value="${product.key.item}" >
 
                     <div class="row">
                         <div class="col-md-6 product_img">
-                            <img src="http://via.placeholder.com/500x300?text=${product.key.name}"
+                            <img src="http://via.placeholder.com/500x300?text=${product.key.item}"
                                  class="img-responsive">
                         </div>
                         <div class="col-md-6 product_content">
