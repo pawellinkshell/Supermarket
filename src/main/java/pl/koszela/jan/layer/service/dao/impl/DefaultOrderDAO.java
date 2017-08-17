@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 import pl.koszela.jan.layer.model.domain.impl.Order;
 import pl.koszela.jan.layer.service.dao.OrderDAO;
+import pl.koszela.jan.main.annotation.SessionScope;
 
 /**
  * Created on 14.08.2017.
@@ -13,6 +14,7 @@ import pl.koszela.jan.layer.service.dao.OrderDAO;
  * @author Jan Koszela
  */
 @Component("orderDAO")
+@SessionScope
 public class DefaultOrderDAO implements OrderDAO {
 
   private List<Order> orders;

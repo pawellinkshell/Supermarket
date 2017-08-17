@@ -9,6 +9,7 @@ import pl.koszela.jan.layer.model.domain.impl.Order;
 import pl.koszela.jan.layer.service.CartService;
 import pl.koszela.jan.layer.service.OrderService;
 import pl.koszela.jan.main.annotation.Facade;
+import pl.koszela.jan.main.annotation.SessionScope;
 
 /**
  * Created on 15.08.2017.
@@ -16,6 +17,7 @@ import pl.koszela.jan.main.annotation.Facade;
  * @author Jan Koszela
  */
 @Facade("cartFacade")
+@SessionScope()
 public class DefaultCartFacade implements CartFacade {
 
   private CartDTO cart;
@@ -78,7 +80,7 @@ public class DefaultCartFacade implements CartFacade {
   }
 
   private boolean isValidQuantity(int quantity, Order foundOrder) {
-    if (quantity == foundOrder.getQuantity()){
+    if (quantity == foundOrder.getQuantity()) {
       return false;
     } else if (quantity > 0) {
       return foundOrder.getQuantity() != quantity;

@@ -9,6 +9,7 @@ import pl.koszela.jan.layer.model.domain.impl.SpecialPrice;
 import pl.koszela.jan.layer.model.service.ModelService;
 import pl.koszela.jan.layer.service.OrderService;
 import pl.koszela.jan.layer.service.dao.OrderDAO;
+import pl.koszela.jan.main.annotation.SessionScope;
 
 /**
  * Created on 12.08.2017.
@@ -16,6 +17,7 @@ import pl.koszela.jan.layer.service.dao.OrderDAO;
  * @author Jan Koszela
  */
 @Service("orderService")
+@SessionScope
 public class DefaultOrderService implements OrderService {
 
   @Autowired
