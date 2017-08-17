@@ -57,6 +57,16 @@
     }
 </style>
 
+<script>
+    <c:if test="${alerts != null}">
+          $(document).ready (function(){
+            $("#alert").fadeTo(2000, 500).slideUp(500, function(){
+              $("#alert").slideUp(500);
+            });
+          });
+    </c:if>
+</script>
+
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -91,6 +101,13 @@
                     <a href="${pageContext.request.contextPath}/${cart}"> ${cart} </a>
                 </li>
             </ul>
+            <c:if test="${alerts.type != null}">
+                <ul class="nav navbar-nav navbar-right ">
+                    <div id="alert" class="alert ${alerts.type}">
+                        <strong>${alerts.result}!</strong> ${alerts.message}
+                    </div>
+                </ul>
+            </c:if>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
@@ -101,24 +118,22 @@
                     </a>
                     <ul class="dropdown-menu dropdown-cart" role="menu">
                         <c:forEach var="order" items="${cartItem.orders}">
-                            <%--<form action="/${servletPath}/${products}" method="get">--%>
                             <li>
                                 <span class="item">
                                     <span class="item-left">
-                                        <img src="http://via.placeholder.com/50x50?text=${order.product.name}"
+                                        <img src="http://via.placeholder.com/50x50?text=${order.item.name}"
                                              alt=""/>
                                         <span class="item-info">
-                                            <span>${order.product.name}</span>
+                                            <span>${order.item.name}</span>
                                                 ${order.totalPrice.unit} €
                                         </span>
                                     </span>
                                     <span class="item-right">
                                         <a class="btn btn-xs btn-danger pull-right"
-                                        href="${pageContext.request.contextPath}/${currentPath}/${removeAction}?product=${order.product.name}&quantity=0">x</a>
+                                        href="${pageContext.request.contextPath}/${currentPath}/${removeAction}?product=${order.item.name}&quantity=0">x</a>
                                     </span>
                                 </span>
                             </li>
-                            <%--</form>--%>
                         </c:forEach>
                         <li class="divider"></li>
                         <li><a class="text-center"
@@ -127,6 +142,7 @@
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->
+
     </div><!-- /.container-fluid -->
 </nav>
 
