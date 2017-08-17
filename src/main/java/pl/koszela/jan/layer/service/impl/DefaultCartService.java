@@ -33,6 +33,9 @@ public class DefaultCartService implements CartService {
 
   @Override
   public boolean removeOrderFromCart(Order order) {
+    if (order == null) {
+      return false;
+    }
     return cartDAO.removeOrder(order);
   }
 

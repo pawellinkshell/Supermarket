@@ -17,7 +17,7 @@ import pl.koszela.jan.main.annotation.SessionScope;
  * @author Jan Koszela
  */
 @Facade("cartFacade")
-@SessionScope()
+@SessionScope
 public class DefaultCartFacade implements CartFacade {
 
   private CartDTO cart;
