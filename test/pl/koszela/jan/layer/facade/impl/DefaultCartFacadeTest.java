@@ -92,16 +92,7 @@ public class DefaultCartFacadeTest {
 
   @Test
   public void shouldGetOrderFromCartIfOneOrder() {
-    //given
-    cartDAO.add(dummyOrder);
-    when(cartService.getCart().getOrders().size()).thenReturn(1);
 
-    //when
-    sut.addOrderToCart(PRODUCT_NAME, String.valueOf(QUANTITY_PRODUCT));
-    CartDTO actualCart = sut.getCart();
-
-    //then
-    assertThat(actualCart.getOrders().size()).isEqualTo(cartService.getCart().getOrders().size());
 
   }
 
