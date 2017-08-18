@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import pl.koszela.jan.layer.facade.CartFacade;
 import pl.koszela.jan.layer.facade.ProductFacade;
 import pl.koszela.jan.layer.ui.alerts.AlertManager;
@@ -22,6 +23,7 @@ import pl.koszela.jan.layer.ui.constans.PathConstans;
  * @author Jan Koszela
  */
 @Controller
+@EnableWebMvc
 public class BaseController {
 
   private static final String VIEW_INDEX = "index";

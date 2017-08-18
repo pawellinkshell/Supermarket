@@ -64,7 +64,6 @@ public class DefaultCartDAO implements CartDAO {
   @Override
   public boolean update(Order order) {
     setCartCurrency(order);
-//    removeOrderIfExists(order);
 
     if (isValidQuantity(order)) {
       return this.cart.updateOrder(order);
