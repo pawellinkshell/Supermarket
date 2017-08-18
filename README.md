@@ -121,6 +121,9 @@ Release second draft in version `0.1.1`
 
 Release third draft in version `0.1.2`
 
+#### 18.08.2017
+[3 H] Add test stubs with example tests for Facaded, Services, DAO, Controller
+
 ## Bugs and Issues
 
 Have you seen a bug or an issue in my page? [Open a new issue](https://github.com/pawellinkshell/supermarket/issues) here on GitHub
