@@ -11,7 +11,7 @@
 		</layout>
 	</appender>
 
-	<logger name="pl.koszela.jan.controller" level="debug"
+	<logger name="pl.pawel.linkshell" level="debug"
 		additivity="false">
 		<appender-ref ref="STDOUT" />
 	</logger>
