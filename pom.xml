@@ -83,6 +83,9 @@
 				</executions>
 			</plugin>
 
+			<!-- For Heroku -->
+			<!--mvn clean install-->
+			<!--java -jar target/dependency/webapp-runner.jar target/*.war-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
