@@ -1,5 +1,4 @@
-##### [17.08.2017] Current work on branch: Tests
-###### Writing tests for application
+[![Quality Gate](https://sonarcloud.io/api/badges/gate?key=pl.pawel.linkshell%3ASupermarket)](https://sonarcloud.io/dashboard?id=pl.pawel.linkshell%3ASupermarket)
 
 # Supermarket
 Demo of Supermarket with simple checkout mechanism created and designed by Pawel Linkshell.
