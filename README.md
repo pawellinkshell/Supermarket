@@ -2,7 +2,7 @@
 ###### Writing tests for application
 
 # Supermarket
-Demo of Supermarket with simple checkout mechanism created and designed by Jan Koszela.
+Demo of Supermarket with simple checkout mechanism created and designed by Pawel Linkshell.
 
 ### Business requirements:
 1. Design and implement supermarket checkout component with readable API that calculates the total unit of a number of items.
@@ -54,13 +54,13 @@ Have you seen a bug or an issue in my page? [Open a new issue](https://github.co
 
 ## Authors
 
-* **Jan Koszela** - *Initial work* - known also as [Pawel Linkshell](https://github.com/pawellinkshell)
+* **Pawel Linkshell** - *Initial work* - [Pawel Linkshell](https://github.com/pawellinkshell)
 
 See also the list of [contributors](https://github.com/pawellinkshell/supermarket/contributors) who participated in this project.
 
 ## Copyright and License
 
-Copyright 2017 Jan Koszela. Code released under the [MIT](https://github.com/pawellinkshell/Supermarket/blob/master/LICENSE) license.
+Copyright 2017 Pawel Linkshell. Code released under the [MIT](https://github.com/pawellinkshell/Supermarket/blob/master/LICENSE) license.
 
 ## Acknowledgments
 Backend was backed by:

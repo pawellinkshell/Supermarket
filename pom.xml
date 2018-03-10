@@ -3,13 +3,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>pl.koszela.jan</groupId>
+	<groupId>pl.pawel.linkshell</groupId>
 	<artifactId>Supermarket</artifactId>
 	<packaging>war</packaging>
 	<version>0.1.3</version>
 
 	<name>Supermarket Maven Webapp</name>
-	<url>http://maven.apache.org</url>
+	<url>https://pl-pawel-linkshell-blackjack.herokuapp.com/</url>
 
 
 	<properties>
@@ -211,5 +211,21 @@
 		</dependency>
 
 	</dependencies>
+
+	<profiles>
+		<profile>
+			<!--mvn clean install sonar:sonar-->
+			<id>sonar</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<sonar.organization>pawellinkshell-github</sonar.organization>
+				<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+				<!--sonarcloud token-->
+				<sonar.login>64e0eb72fb66b382155d4dcca16fb7a5e71b43a7</sonar.login>
+			</properties>
+		</profile>
+	</profiles>
 
 </project>
