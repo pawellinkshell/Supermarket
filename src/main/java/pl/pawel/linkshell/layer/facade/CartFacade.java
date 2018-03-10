@@ -1,6 +1,7 @@
-package pl.koszela.jan.layer.facade;
+package pl.pawel.linkshell.layer.facade;
 
-import pl.koszela.jan.layer.facade.dto.CartDTO;
+
+import pl.pawel.linkshell.layer.facade.dto.CartDTO;
 
 /**
  * Created on 15.08.2017.
