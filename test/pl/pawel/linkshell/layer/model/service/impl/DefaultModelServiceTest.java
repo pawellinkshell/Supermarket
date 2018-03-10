@@ -18,7 +18,6 @@ import pl.pawel.linkshell.layer.model.domain.impl.StockPrice;
 
 /**
  * Created on 18.08.2017.
- *
  */
 @RunWith(MockitoJUnitRunner.class)
 public class DefaultModelServiceTest {

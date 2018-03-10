@@ -17,19 +17,19 @@ public class Maps {
   }
 
   public static <T> Mapper getMapper(T object) {
-    if (object.getClass().isAssignableFrom(ItemDTO.class)) {
+    if (object == ItemDTO.class) {
       return new ItemMapper();
     }
 
-    if (object.getClass().isAssignableFrom(PriceDTO.class)) {
+    if (object == PriceDTO.class) {
       return new StockPriceMapper();
     }
 
-    if (object.getClass().isAssignableFrom(OrderDTO.class)) {
+    if (object == OrderDTO.class) {
       return new OrderMapper();
     }
 
-    if (object.getClass().isAssignableFrom(CartDTO.class)) {
+    if (object == CartDTO.class) {
       return new CartMapper();
     }
 

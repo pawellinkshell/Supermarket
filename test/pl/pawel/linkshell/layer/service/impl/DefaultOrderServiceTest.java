@@ -9,11 +9,11 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import pl.koszela.jan.layer.model.domain.impl.Item;
-import pl.koszela.jan.layer.model.domain.impl.Order;
-import pl.koszela.jan.layer.model.domain.impl.StockPrice;
-import pl.koszela.jan.layer.model.service.impl.DefaultModelService;
-import pl.koszela.jan.layer.service.dao.OrderDAO;
+import pl.pawel.linkshell.layer.model.domain.impl.Item;
+import pl.pawel.linkshell.layer.model.domain.impl.Order;
+import pl.pawel.linkshell.layer.model.domain.impl.StockPrice;
+import pl.pawel.linkshell.layer.model.service.impl.DefaultModelService;
+import pl.pawel.linkshell.layer.service.dao.OrderDAO;
 
 /**
  * Created on 18.08.2017.

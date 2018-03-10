@@ -8,14 +8,13 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import pl.koszela.jan.layer.model.domain.Price;
-import pl.koszela.jan.layer.model.domain.impl.Item;
-import pl.koszela.jan.layer.model.domain.impl.StockPrice;
-import pl.koszela.jan.layer.model.service.impl.DefaultModelService;
+import pl.pawel.linkshell.layer.model.domain.Price;
+import pl.pawel.linkshell.layer.model.domain.impl.Item;
+import pl.pawel.linkshell.layer.model.domain.impl.StockPrice;
+import pl.pawel.linkshell.layer.model.service.impl.DefaultModelService;
 
 /**
  * Created on 18.08.2017.
- *
  */
 @RunWith(MockitoJUnitRunner.class)
 public class DefaultProductServiceTest {
