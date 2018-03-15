@@ -11,7 +11,7 @@ public class SpecialPriceDTO implements PriceDTO, Serializable {
 
   private int id;
   private int amount;
-  private double price;
+  private double unit;
   private String currency;
 
   @Override
@@ -26,12 +26,12 @@ public class SpecialPriceDTO implements PriceDTO, Serializable {
 
   @Override
   public double getUnit() {
-    return this.price;
+    return this.unit;
   }
 
   @Override
   public void setUnit(double price) {
-    this.price = price;
+    this.unit = price;
   }
 
   @Override
@@ -57,7 +57,7 @@ public class SpecialPriceDTO implements PriceDTO, Serializable {
     return "SpecialPriceDTO{" +
         "id=" + id +
         ", amount=" + amount +
-        ", price=" + price +
+        ", unit=" + unit +
         ", currency='" + currency + '\'' +
         '}';
   }

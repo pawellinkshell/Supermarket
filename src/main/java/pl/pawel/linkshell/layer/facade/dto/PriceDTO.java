@@ -20,12 +20,6 @@ public interface PriceDTO extends Comparable<PriceDTO>{
 
   @Override
   default int compareTo(PriceDTO o) {
-    if (this.getUnit() == o.getUnit()) {
-      return 0;
-    } else if (this.getUnit() > o.getUnit()) {
-      return 1;
-    } else {
-      return -1;
-    }
+    return Double.compare(this.getUnit(), o.getUnit());
   }
 }

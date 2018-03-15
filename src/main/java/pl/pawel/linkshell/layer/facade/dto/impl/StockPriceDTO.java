@@ -10,7 +10,7 @@ import pl.pawel.linkshell.layer.facade.dto.PriceDTO;
 public class StockPriceDTO implements PriceDTO, Serializable {
 
   private int id;
-  private double price;
+  private double unit;
   private String currency;
 
   @Override
@@ -25,12 +25,12 @@ public class StockPriceDTO implements PriceDTO, Serializable {
 
   @Override
   public double getUnit() {
-    return this.price;
+    return this.unit;
   }
 
   @Override
   public void setUnit(double price) {
-    this.price = price;
+    this.unit = price;
   }
 
   @Override
@@ -47,7 +47,7 @@ public class StockPriceDTO implements PriceDTO, Serializable {
   public String toString() {
     return "StockPriceDTO{" +
         "id=" + id +
-        ", price=" + price +
+        ", unit=" + unit +
         ", currency='" + currency + '\'' +
         '}';
   }

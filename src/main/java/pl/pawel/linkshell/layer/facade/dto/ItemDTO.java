@@ -16,12 +16,6 @@ public interface ItemDTO  extends Comparable<ItemDTO>{
 
   @Override
   default int compareTo(ItemDTO o) {
-    if (this.getId() == o.getId()) {
-      return 0;
-    } else if (this.getId() > o.getId()) {
-      return 1;
-    } else {
-      return -1;
-    }
+    return Integer.compare(this.getId(), o.getId());
   }
 }

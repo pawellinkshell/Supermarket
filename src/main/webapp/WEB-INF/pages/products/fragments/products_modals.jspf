@@ -5,7 +5,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <!-- Start of products_modals.jspf -->
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <c:forEach var="product" items="${productItems}">
     <div class="modal fade product_view" id="product_view_${product.key.id}">
         <div class="modal-dialog">

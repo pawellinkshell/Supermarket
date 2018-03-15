@@ -53,10 +53,10 @@ public class DefaultCartFacade implements CartFacade {
     Order foundOrder = orderService.getOrderByName(product);
 
     if (foundOrder == null) {
-      orderService.createOrder(product, Integer.valueOf(quantity));
+      orderService.createOrder(product, Integer.parseInt(quantity));
       foundOrder = orderService.getOrderByName(product);
 
-      return (foundOrder != null) ? cartService.addToCart(foundOrder) : false;
+      return (foundOrder != null) && cartService.addToCart(foundOrder);
     } else {
       return false;
     }
@@ -75,7 +75,7 @@ public class DefaultCartFacade implements CartFacade {
       }
     }
 
-    return (foundOrder != null) ? cartService.updateOrderInCart(foundOrder) : false;
+    return (foundOrder != null) && cartService.updateOrderInCart(foundOrder);
   }
 
   private boolean isValidQuantity(int quantity, Order foundOrder) {

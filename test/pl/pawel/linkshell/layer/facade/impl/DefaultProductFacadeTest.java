@@ -20,13 +20,13 @@ import pl.pawel.linkshell.layer.service.ProductService;
 @RunWith(MockitoJUnitRunner.class)
 public class DefaultProductFacadeTest {
 
-  public static final int PRODUCT_ID = 1;
-  public static final String PRODUCT_NAME = "Prius";
-  public static final int QUANTITY_PRODUCT = 2;
+  private static final int PRODUCT_ID = 1;
+  private static final String PRODUCT_NAME = "Prius";
+  private static final int QUANTITY_PRODUCT = 2;
 
-  public static final double STOCK_PRICE = 12.0;
-  public static final String CURRENCY = "EUR";
-  public static final double TOTAL_PRICE = 24.0;
+  private static final double STOCK_PRICE = 12.0;
+  private static final String CURRENCY = "EUR";
+  private static final double TOTAL_PRICE = 24.0;
 
   @InjectMocks
   private DefaultProductFacade sut;
@@ -36,11 +36,11 @@ public class DefaultProductFacadeTest {
   @Mock
   private ProductService productService;
 
-  ItemDTO itemDTO;
-  PriceDTO priceDTO;
+  private ItemDTO itemDTO;
+  private PriceDTO priceDTO;
 
   @Before
-  public void setUp() throws Exception {
+  public void setUp() {
     itemDTO = new DefaultItemDTO();
     priceDTO = new StockPriceDTO();
 

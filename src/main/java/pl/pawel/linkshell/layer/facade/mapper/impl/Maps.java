@@ -10,26 +10,26 @@ import pl.pawel.linkshell.layer.facade.mapper.Mapper;
  * Created on 16.08.2017.
  *
  */
-public class Maps {
+public final class Maps {
 
   private Maps() {
     throw new IllegalStateException("Utility class");
   }
 
   public static <T> Mapper getMapper(T object) {
-    if (object.getClass().isAssignableFrom(ItemDTO.class)) {
+    if (object == ItemDTO.class) {
       return new ItemMapper();
     }
 
-    if (object.getClass().isAssignableFrom(PriceDTO.class)) {
+    if (object == PriceDTO.class) {
       return new StockPriceMapper();
     }
 
-    if (object.getClass().isAssignableFrom(OrderDTO.class)) {
+    if (object == OrderDTO.class) {
       return new OrderMapper();
     }
 
-    if (object.getClass().isAssignableFrom(CartDTO.class)) {
+    if (object == CartDTO.class) {
       return new CartMapper();
     }
 
