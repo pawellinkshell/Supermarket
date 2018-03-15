@@ -29,17 +29,15 @@ import pl.pawel.linkshell.layer.ui.constans.PathConstans;
 @RunWith(MockitoJUnitRunner.class)
 public class BaseControllerTest {
 
-  public static final String PRODUCT_NAME = "Prius";
-  public static final int QUANTITY_PRODUCT = 2;
+  private static final String PRODUCT_NAME = "Prius";
+  private static final int QUANTITY_PRODUCT = 2;
 
-  public static final String INDEX_VIEW = "/";
-  public static final String PRODUCTS_VIEW = "/products";
-  public static final String CART_VIEW = "/cart";
+  private static final String INDEX_VIEW = "/";
+  private static final String PRODUCTS_VIEW = "/products";
+  private static final String CART_VIEW = "/cart";
 
   @InjectMocks
   private BaseController sut;
-
-  private static Map<String, Object> modelAttributes;
 
   @Mock
   private DefaultProductFacade productFacade;
@@ -53,7 +51,7 @@ public class BaseControllerTest {
   private MockMvc mockMvc;
 
   @Before
-  public void setUp() throws Exception {
+  public void setUp() {
     MockitoAnnotations.initMocks(this);
     InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
     viewResolver.setPrefix("/WEB-INF/pages/");
@@ -78,7 +76,7 @@ public class BaseControllerTest {
   }
 
   private void setModelAttributes() {
-    modelAttributes = new HashMap<>();
+    Map<String, Object> modelAttributes = new HashMap<>();
 
     modelAttributes.put(AttributeConstans.CART.getKey(),
         cartFacade.getCart());
