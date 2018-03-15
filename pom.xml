@@ -16,7 +16,7 @@
 		<app.name>Supermarket</app.name>
 
 		<logback.version>1.0.13</logback.version>
-		<jcl-over-slf4j.version>1.7.5</jcl-over-slf4j.version>
+		<jcl-over-slf4j.version>1.7.25</jcl-over-slf4j.version>
 
 		<spring.version>4.1.1.RELEASE</spring.version>
 		<jstl.version>1.2</jstl.version>
