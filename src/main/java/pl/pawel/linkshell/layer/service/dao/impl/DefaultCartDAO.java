@@ -2,6 +2,7 @@ package pl.pawel.linkshell.layer.service.dao.impl;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 import org.springframework.stereotype.Component;
 import pl.pawel.linkshell.layer.model.domain.Price;
 import pl.pawel.linkshell.layer.model.domain.impl.Cart;
@@ -19,7 +20,7 @@ import pl.pawel.linkshell.main.annotation.SessionScope;
 @SessionScope
 public class DefaultCartDAO implements CartDAO {
 
-  private Cart cart;
+  private final Cart cart;
 
   public DefaultCartDAO() {
     this.cart = new Cart();
@@ -65,7 +66,7 @@ public class DefaultCartDAO implements CartDAO {
   @Override
   public boolean removeOrder(Order order) {
     for (Iterator<Order> i = this.cart.getOrders().iterator(); i.hasNext(); ) {
-      if (i.next().getItem() == order.getItem()) {
+      if (Objects.equals(i.next().getItem(), order.getItem())) {
         i.remove();
         return true;
       }

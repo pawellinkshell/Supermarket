@@ -80,7 +80,7 @@ public class DefaultOrderService implements OrderService {
   }
 
   private boolean isSpecialOffer(Price totalPrice) {
-    return (totalPrice instanceof SpecialPrice) ? true : false;
+    return totalPrice instanceof SpecialPrice;
   }
 
   private Price getSpecialPrice(Item item, int quantity) {

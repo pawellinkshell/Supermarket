@@ -16,7 +16,7 @@ import pl.pawel.linkshell.layer.model.service.ModelService;
 @Service("modelService")
 public class DefaultModelService implements ModelService {
 
-  private Converter converter;
+  private final Converter converter;
 
   public DefaultModelService() {
     this.converter = new JsonConverter();
@@ -24,10 +24,9 @@ public class DefaultModelService implements ModelService {
 
   @Override
   public Item getItem(String itemName) {
-    Item[] items = getItems();
-    for (int i = 0; i < items.length; i++) {
-      if (items[i].getName().equals(itemName)) {
-        return items[i];
+    for (Item item : getItems()) {
+      if (item.getName().equals(itemName)) {
+        return item;
       }
     }
 
@@ -41,10 +40,9 @@ public class DefaultModelService implements ModelService {
 
   @Override
   public Price getStockPrice(int id) {
-    Price[] prices = getStockPrices();
-    for (int i = 0; i < prices.length; i++) {
-      if (prices[i].getId() == id) {
-        return prices[i];
+    for (Price price : getStockPrices()) {
+      if (price.getId() == id) {
+        return price;
       }
     }
 
@@ -58,10 +56,9 @@ public class DefaultModelService implements ModelService {
 
   @Override
   public SpecialPrice getSpecialPrice(int id, int quantity) {
-    SpecialPrice[] prices = getSpecialPrices();
-    for (int i = 0; i < prices.length; i++) {
-      if ( isSpecialPrice(prices[i], id, quantity)) {
-        return prices[i];
+    for (SpecialPrice price : getSpecialPrices()) {
+      if (isSpecialPrice(price, id, quantity)) {
+        return price;
       }
     }
 

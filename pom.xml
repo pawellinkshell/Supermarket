@@ -8,17 +8,15 @@
 	<packaging>war</packaging>
 	<version>0.1.3</version>
 
-	<name>Supermarket Maven Webapp</name>
-	<url>https://pl-pawel-linkshell-blackjack.herokuapp.com/</url>
+	<name>${artifactId} Maven Webapp</name>
+	<url>https://github.com/pawellinkshell/${artifactId}</url>
 
 
 	<properties>
-		<app.name>Supermarket</app.name>
+		<logback.version>1.2.3</logback.version>
+		<jcl-over-slf4j.version>1.7.25</jcl-over-slf4j.version>
 
-		<logback.version>1.0.13</logback.version>
-		<jcl-over-slf4j.version>1.7.5</jcl-over-slf4j.version>
-
-		<spring.version>4.1.1.RELEASE</spring.version>
+		<spring.version>5.0.4.RELEASE</spring.version>
 		<jstl.version>1.2</jstl.version>
 
 		<assertj.version>RELEASE</assertj.version>
@@ -26,7 +24,7 @@
 		<mockito.version>2.8.9</mockito.version>
 
 		<maven.dependency.version>3.0.0</maven.dependency.version>
-		<maven.compiler.version>3.6.1</maven.compiler.version>
+		<maven.compiler.version>3.7.0</maven.compiler.version>
 		<slf4j.version>LATEST</slf4j.version>
 		<java.version>1.8</java.version>
 
@@ -38,11 +36,16 @@
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 
+		<spotbugs.version>3.1.3</spotbugs.version>
+		<error.prone.version>RELEASE</error.prone.version>
+		<cobertura.version>2.7</cobertura.version>
+
 		<tomcat.plugin.version>2.2</tomcat.plugin.version>
 	</properties>
 
 	<build>
-		<finalName>Supermarket</finalName>
+		<!--How artifact will be named-->
+		<finalName>${artifactId}-${version}</finalName>
 
 		<plugins>
 
@@ -52,9 +55,37 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>${maven.compiler.version}</version>
 				<configuration>
+					<compilerId>javac-with-errorprone</compilerId>
+					<forceJavacCompilerUse>true</forceJavacCompilerUse>
 					<source>${java.version}</source>
 					<target>${java.version}</target>
+					<showWarnings>true</showWarnings>
+					<annotationProcessorPaths>
+						<path>
+							<groupId>com.uber.nullaway</groupId>
+							<artifactId>nullaway</artifactId>
+							<version>0.3.0</version>
+						</path>
+					</annotationProcessorPaths>
+					<compilerArgs>
+						<arg>-Xep:NullAway:ERROR</arg>
+						<arg>-XepOpt:NullAway:AnnotatedPackages=com.uber</arg>
+					</compilerArgs>
 				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.codehaus.plexus</groupId>
+						<artifactId>plexus-compiler-javac-errorprone</artifactId>
+						<version>2.8</version>
+					</dependency>
+					<!-- override plexus-compiler-javac-errorprone's dependency on
+               Error Prone with the latest version -->
+					<dependency>
+						<groupId>com.google.errorprone</groupId>
+						<artifactId>error_prone_core</artifactId>
+						<version>${error.prone.version}</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 
 			<plugin>
@@ -69,9 +100,6 @@
 							<goal>copy-dependencies</goal>
 						</goals>
 						<configuration>
-							<!--<outputDirectory>${project.build.directory}</outputDirectory>-->
-							<!--<overWriteReleases>false</overWriteReleases>-->
-							<!--<overWriteSnapshots>true</overWriteSnapshots>-->
 							<additionalProperties>
 								<encoding.source>${project.build.sourceEncoding}</encoding.source>
 								<encoding.reporting>${project.reporting.outputEncoding}</encoding.reporting>
@@ -108,13 +136,31 @@
 				</executions>
 			</plugin>
 
+			<!-- Static code analysis using
+         Codecov
+         To analyze:                mvn cobertura:cobertura
+         To see the result:         check Travis-CI build
+      -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+				<version>${cobertura.version}</version>
+				<configuration>
+					<formats>
+						<format>html</format>
+						<format>xml</format>
+					</formats>
+					<check />
+				</configuration>
+			</plugin>
+
 			<!-- For Tomcat -->
 			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<version>${tomcat.plugin.version}</version>
 				<configuration>
-					<path>/${app.name}</path>
+					<path>/${artifactId}</path>
 				</configuration>
 			</plugin>
 
@@ -123,6 +169,13 @@
 	</build>
 
 	<dependencies>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
+			<scope>provided</scope>
+		</dependency>
 
 		<!-- TESTING -->
 		<dependency>

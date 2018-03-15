@@ -5,7 +5,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <!-- Start of products.jspf -->
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <div class="container">
     <h2>
         <span class="glyphicon glyphicon-tag" style="color: darkkhaki"></span> &nbsp;

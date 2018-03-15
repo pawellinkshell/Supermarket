@@ -10,7 +10,7 @@ import pl.pawel.linkshell.layer.facade.mapper.Mapper;
  * Created on 16.08.2017.
  *
  */
-public class Maps {
+public final class Maps {
 
   private Maps() {
     throw new IllegalStateException("Utility class");

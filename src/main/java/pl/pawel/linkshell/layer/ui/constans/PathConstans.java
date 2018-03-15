@@ -7,11 +7,7 @@ import java.util.Map;
  * Created on 12.08.2017.
  *
  */
-public class PathConstans {
-
-  private PathConstans() {
-    throw new IllegalStateException("Utility class");
-  }
+public final class PathConstans {
 
   public static final Map.Entry<String, String> SERVLET_NAME = new SimpleEntry<>(
       "servletPath", "Supermarket");
@@ -27,5 +23,9 @@ public class PathConstans {
       "updateAction", "update");
   public static final Map.Entry<String, String> REMOVE_ACTION = new SimpleEntry<>(
       "removeAction", "remove");
+
+  private PathConstans() {
+    throw new IllegalStateException("Utility class");
+  }
 
 }
