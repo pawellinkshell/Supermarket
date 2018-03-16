@@ -13,9 +13,9 @@ public class AlertManager {
   public static final String ERROR = "alert-danger";
   public static final String INFO = "alert-info";
 
-  private String type = null;
-  private String result = null;
-  private String message = null;
+  private String type;
+  private String result;
+  private String message;
 
   public void setAlert(final String alertType, String message) {
     this.type = alertType;

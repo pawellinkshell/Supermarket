@@ -1,7 +1,6 @@
 package pl.pawel.linkshell.layer.service.dao.impl;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import org.springframework.stereotype.Component;
 import pl.pawel.linkshell.layer.model.domain.impl.Order;
@@ -16,7 +15,7 @@ import pl.pawel.linkshell.main.annotation.SessionScope;
 @SessionScope
 public class DefaultOrderDAO implements OrderDAO {
 
-  private List<Order> orders;
+  private final List<Order> orders;
 
   public DefaultOrderDAO() {
     this.orders = new ArrayList<>();
@@ -24,8 +23,7 @@ public class DefaultOrderDAO implements OrderDAO {
 
   @Override
   public Order findOrderByName(String productName) {
-    for (Iterator<Order> i = orders.iterator(); i.hasNext(); ) {
-      Order currentOrder = i.next();
+    for (Order currentOrder : orders) {
       if (isSameProduct(productName, currentOrder)) {
         return currentOrder;
       }

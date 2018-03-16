@@ -28,35 +28,35 @@ import pl.pawel.linkshell.layer.service.impl.DefaultCartService;
 public class DefaultCartFacadeTest {
 
 
-  public static final String PRODUCT_NAME = "Prius";
-  public static final int QUANTITY_PRODUCT = 2;
-  public static final int ID = 1;
-  public static final double UNIT_PRICE = 12.0;
-  public static final String CURRENCY = "EUR";
-  public static final double TOTAL_PRICE = 24.0;
+  private static final String PRODUCT_NAME = "Prius";
+  private static final int QUANTITY_PRODUCT = 2;
+  private static final int ID = 1;
+  private static final double UNIT_PRICE = 12.0;
+  private static final String CURRENCY = "EUR";
+  private static final double TOTAL_PRICE = 24.0;
 
-  Order dummyOrder;
+  private Order dummyOrder;
 
   @InjectMocks
-  DefaultCartFacade sut;
+  private DefaultCartFacade sut;
 
   @Mock
-  DefaultCartService cartService;
+  private DefaultCartService cartService;
 
   @Mock
-  DefaultCartDTO cartDTO;
+  private DefaultCartDTO cartDTO;
 
   @Mock
-  Cart cart;
+  private Cart cart;
 
   @Mock
-  DefaultCartDAO cartDAO;
+  private DefaultCartDAO cartDAO;
 
 
-  Mapper cartMapper;
+  private Mapper cartMapper;
 
   @Before
-  public void setUp() throws Exception {
+  public void setUp() {
 //    cart = new Cart();
 
     cartMapper = Maps.getMapper(CartDTO.class);

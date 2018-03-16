@@ -35,7 +35,7 @@ public class DefaultProductFacade implements ProductFacade {
       Mapper items = Maps.getMapper(ItemDTO.class);
       Mapper prices = Maps.getMapper(PriceDTO.class);
 
-      for (java.util.Map.Entry<Item, Price> entry : productService.getProducts().entrySet()) {
+      for (Map.Entry<Item, Price> entry : productService.getProducts().entrySet()) {
         products.put((ItemDTO) items.map(entry.getKey()),
             (PriceDTO) prices.map(entry.getValue()));
       }

@@ -27,7 +27,7 @@ public class BaseController {
 
   private static final String VIEW_INDEX = "index";
   private static final Logger LOGGER = LoggerFactory.getLogger(BaseController.class);
-  public static final String CURRENT_PATH = "currentPath";
+  private static final String CURRENT_PATH = "currentPath";
 
   private Map<String, Object> modelAttributes;
 
@@ -55,7 +55,7 @@ public class BaseController {
     model.addAllAttributes(modelAttributes);
     model.addAttribute(CURRENT_PATH, PathConstans.PRODUCTS_PATH);
 
-    LOGGER.debug("Page: /{0}", PathConstans.PRODUCTS_PATH);
+    LOGGER.debug("Page: /{}", PathConstans.PRODUCTS_PATH);
     // Spring uses InternalResourceViewResolver and return back index.jsp
     return VIEW_INDEX;
   }
@@ -70,14 +70,14 @@ public class BaseController {
     model.addAllAttributes(modelAttributes);
     model.addAttribute(CURRENT_PATH, PathConstans.PRODUCTS_PATH);
 
-    LOGGER.debug("Page: /{0}/{1}", PathConstans.PRODUCTS_PATH, name);
-    LOGGER.debug("Product = {0}   Quantity = {1}", product, quantity);
+    LOGGER.debug("Page: /{}/{}", PathConstans.PRODUCTS_PATH, name);
+    LOGGER.debug("Product = {}   Quantity = {}", product, quantity);
     return VIEW_INDEX;
   }
 
   @RequestMapping("/" + PathConstans.CART_PATH)
   public String cartPage(ModelMap model) {
-    LOGGER.debug("Page: /{0}", PathConstans.CART_PATH);
+    LOGGER.debug("Page: /{}", PathConstans.CART_PATH);
     return cartPageAction(null, model, null, null);
   }
 
@@ -91,8 +91,8 @@ public class BaseController {
     model.addAllAttributes(modelAttributes);
     model.addAttribute(CURRENT_PATH, PathConstans.CART_PATH);
 
-    LOGGER.debug("Page: /{0}/{1}", PathConstans.CART_PATH, name);
-    LOGGER.debug("Product = {0}   Quantity = {1}", product, quantity);
+    LOGGER.debug("Page: /{}/{}", PathConstans.CART_PATH, name);
+    LOGGER.debug("Product = {}   Quantity = {}", product, quantity);
     return VIEW_INDEX;
   }
 
@@ -107,17 +107,17 @@ public class BaseController {
         boolean isRemoved = cartFacade.removeOrderFromCart(product);
         setAlert(isRemoved, PathConstans.REMOVE_ACTION.getValue());
 
-        LOGGER.info("Order name: '{0}' was removed: {1}", product, isRemoved);
+        LOGGER.info("Order name: '{}' was removed: {}", product, isRemoved);
       } else if (isAddAction(name)) {
 
         boolean isOrderAdded = cartFacade.addOrderToCart(product, quantity);
         if (isOrderAdded) {
           setAlert(isOrderAdded, PathConstans.ADD_ACTION.getValue());
-          LOGGER.info("Order name: '{0}' was added: {1}", product, isOrderAdded);
+          LOGGER.info("Order name: '{}' was added: {}", product, isOrderAdded);
         } else {
           boolean isOrderUpdated = cartFacade.updateOrderInCart(product, quantity);
           setAlert(isOrderUpdated, PathConstans.UPDATE_ACTION.getValue());
-          LOGGER.info("Order name: '{0}' was updated: {1}", product, isOrderUpdated);
+          LOGGER.info("Order name: '{}' was updated: {}", product, isOrderUpdated);
         }
       }
       modelAttributes.put(AttributeConstans.ALERT, alerts);
@@ -137,7 +137,7 @@ public class BaseController {
     }
 
     // ADD ACTION
-    if (isAddAction(name) && condition) {
+    if (condition && isAddAction(name)) {
       alerts.setAlert(AlertManager.SUCCESS, "Order was ADD to cart");
       return;
     }
@@ -146,10 +146,8 @@ public class BaseController {
     if (isUpdateAction(name)) {
       if (condition) {
         alerts.setAlert(AlertManager.WARNING, "Order was UPDATED in cart");
-        return;
       } else {
         alerts.setAlert(AlertManager.ERROR, "Order cannot be UPDATED in cart");
-        return;
       }
     }
   }

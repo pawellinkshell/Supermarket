@@ -22,14 +22,14 @@ import pl.pawel.linkshell.layer.model.domain.impl.StockPrice;
 @RunWith(MockitoJUnitRunner.class)
 public class DefaultModelServiceTest {
 
-  public static final int PRODUCT_ID = 1;
-  public static final String PRODUCT_NAME = "Prius";
-  public static final int QUANTITY_PRODUCT = 2;
+  private static final int PRODUCT_ID = 1;
+  private static final String PRODUCT_NAME = "Prius";
+  private static final int QUANTITY_PRODUCT = 2;
 
-  public static final double STOCK_PRICE = 12.0;
-  public static final String CURRENCY = "EUR";
-  public static final double TOTAL_PRICE = 24.0;
-  public static final int SPECIALPRICE_AMOUNT = 2;
+  private static final double STOCK_PRICE = 12.0;
+  private static final String CURRENCY = "EUR";
+  private static final double TOTAL_PRICE = 24.0;
+  private static final int SPECIALPRICE_AMOUNT = 2;
 
   @InjectMocks
   private DefaultProductFacade sut;
@@ -39,12 +39,12 @@ public class DefaultModelServiceTest {
   @Mock
   private Converter converter;
 
-  Item item;
-  Price stockPrice;
-  SpecialPrice specialPrice;
+  private Item item;
+  private Price stockPrice;
+  private SpecialPrice specialPrice;
 
   @Before
-  public void setUp() throws Exception {
+  public void setUp() {
     item = new Item(PRODUCT_ID, PRODUCT_NAME);
     stockPrice = new StockPrice(PRODUCT_ID, STOCK_PRICE, CURRENCY);
     specialPrice = new SpecialPrice(PRODUCT_ID, SPECIALPRICE_AMOUNT, STOCK_PRICE, CURRENCY);
